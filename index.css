@@ -513,11 +513,16 @@ body:not(.user-is-tabbing) a:focus {
     display: flex;
     justify-content: space-between;
     filter: invert(100%) grayscale(100%) opacity(.8);
+    margin-bottom: 2rem; /* Add space below the logos */
 }
 
 .client__logo {
     height: 6.5rem;
     max-width: 18rem;
+}
+
+.work__links {
+    margin-top: 1rem; /* Add space above the hyperlink */
 }
 
 @media(max-width: 1240px) {
