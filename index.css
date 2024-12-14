@@ -522,7 +522,7 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .work__links {
-    margin-top: 5rem; /* Add space above the hyperlink */
+    margin-top: 13rem; /* Add space above the hyperlink */
 }
 
 @media(max-width: 1240px) {
