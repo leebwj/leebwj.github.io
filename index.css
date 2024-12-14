@@ -490,14 +490,14 @@ body:not(.user-is-tabbing) a:focus {
 
 .work__image-box {
     margin-bottom: var(--gutter-normal);
-    transform: translateY(-50px); /* Moves the image 10px upward */
+    transform: translateY(-70px); /* Moves the image 10px upward */
 }
 
 @media(min-width: 901px) {
     .work__image-box {
         flex: 1;
         margin: 0 0 0 10rem;
-        transform: translateY(-50px); /* Adjust as needed */
+        transform: translateY(-70px); /* Adjust as needed */
     }
 }
 
