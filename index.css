@@ -467,6 +467,13 @@ body:not(.user-is-tabbing) a:focus {
     align-items: center;
 }
 
+.work__links--stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;  /* space between the two buttons */
+  align-items: flex-start; /* keep left-aligned */
+}
+
 .work__text {
     flex: 0 0 30%;
 }
