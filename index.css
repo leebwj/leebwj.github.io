@@ -511,31 +511,36 @@ body:not(.user-is-tabbing) a:focus {
 /* ----- Clients ----- */
 /* --------------------------------------- */
 
-.client__logos {
-    display: flex;
-    justify-content: space-between;
-    filter: invert(100%) grayscale(100%) opacity(.8);
-    margin-bottom: 2rem; /* Add space below the logos */
+/* Make logos themselves the interactive element */
+.client__logo-link {
+  display: inline-block;
+  text-decoration: none;
+  outline: 2px solid transparent;
 }
 
+.client__logo-link:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 6px;
+}
+
+/* Subtle hover motion */
 .client__logo {
-    height: 6.5rem;
-    max-width: 18rem;
+  height: 6.5rem;
+  max-width: 18rem;
+  transition: transform .15s ease;
 }
 
-.work__links {
-    margin-top: 13rem; /* Add space above the hyperlink */
+.client__logo-link:hover .client__logo,
+.client__logo-link:focus .client__logo {
+  transform: translateY(-4px) scale(1.02);
 }
 
-@media(max-width: 1240px) {
-    .client__logos {
-        overflow-x: scroll;
-        padding: var(--gutter-normal);
-    }
-
-    .client__logo:not(:last-of-type) {
-        margin-right: var(--gutter-medium);
-    }
+/* Logos in full color + responsive layout */
+.client__logos {
+  display: flex;
+  gap: 2rem;            /* Space between logos */
+  flex-wrap: wrap;      /* Wrap on smaller screens */
+  margin-bottom: 2rem;
 }
 
 /* --------------------------------------- */
