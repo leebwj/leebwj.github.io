@@ -525,8 +525,8 @@ body:not(.user-is-tabbing) a:focus {
 
 /* Subtle hover motion */
 .client__logo {
-  height: 6.5rem;
-  max-width: 18rem;
+  height: 10rem;
+  max-width: 26rem;
   transition: transform .15s ease;
 }
 
