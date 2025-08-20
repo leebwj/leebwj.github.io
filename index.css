@@ -453,12 +453,12 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .work__box:not(:last-child) {
-    margin-bottom: 5rem;
+    margin-bottom: 8rem;   /* was 5rem */
 }
 
 @media(max-width: 500px) {
     .work__box:not(:last-child) {
-        margin-bottom: 10rem;
+        margin-bottom: 14rem;  /* was 10rem */
     }
 }
 
