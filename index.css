@@ -597,13 +597,13 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .contact__info .btn {
-  margin-bottom: 1.5rem; 
+  display: block;                
+  margin-bottom: 1.2rem !important;  
 }
 
 .contact__links {
-  margin-top: 0;
+  margin-top: 0 !important;
 }
-
 
 /* --------------------------------------- */
 /* ----- Footer ----- */
