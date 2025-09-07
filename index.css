@@ -550,6 +550,12 @@ body:not(.user-is-tabbing) a:focus {
   margin-bottom: 2rem;
 }
 
+/* Slightly smaller variant for specific logos */
+.client__logo--sm {
+  height: 8rem;        /* was 10rem */
+  max-width: 22rem;    /* optional: keep proportion in check */
+}
+
 /* --------------------------------------- */
 /* ----- About ----- */
 /* --------------------------------------- */
@@ -589,6 +595,11 @@ body:not(.user-is-tabbing) a:focus {
 .contact__info {
     max-width: var(--container-medium-width);
 }
+
+.contact__links {
+  margin-top: var(--gutter-small); /* nice, consistent spacing */
+}
+
 
 /* --------------------------------------- */
 /* ----- Footer ----- */
