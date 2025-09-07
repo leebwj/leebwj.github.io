@@ -597,12 +597,14 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .contact__info .btn {
-  display: block;                
-  margin-bottom: 1.2rem !important;  
+  display: inline-block;        
+  width: auto;                  
+  max-width: max-content;      
+  margin: 0 0 1.2rem 0 !important; 
 }
 
 .contact__links {
-  margin-top: 0 !important;
+  margin-top: 0 !important;     /* avoid double-spacing */
 }
 
 /* --------------------------------------- */
