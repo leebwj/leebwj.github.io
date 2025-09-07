@@ -597,16 +597,15 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .contact__info .btn {
-  display: inline-block;        
-  width: auto;                  
-  max-width: max-content;      
-  margin: 0 0 1.2rem 0 
+  display: inline-block !important;  
+  width: auto !important;
+  max-width: max-content;
+  margin: 0 0 1.5rem 0;       
 }
 
 .contact__links {
-  margin-top: 0 !important;     /* avoid double-spacing */
+  margin-top: 0 !important;        
 }
-
 /* --------------------------------------- */
 /* ----- Footer ----- */
 /* --------------------------------------- */
