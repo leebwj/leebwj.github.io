@@ -596,12 +596,12 @@ body:not(.user-is-tabbing) a:focus {
     max-width: var(--container-medium-width);
 }
 
-.contact__links {
-  margin-top: var(--gutter-medium); 
+.contact__info .btn {
+  margin-bottom: var(--gutter-normal); 
 }
 
-.contact__info .btn {
-  margin-bottom: var(--gutter-medium);
+.contact__links {
+  margin-top: 0;
 }
 
 
