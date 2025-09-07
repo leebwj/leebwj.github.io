@@ -597,7 +597,7 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .contact__info .btn {
-  margin-bottom: var(--gutter-small); 
+  margin-bottom: 1.5rem; 
 }
 
 .contact__links {
