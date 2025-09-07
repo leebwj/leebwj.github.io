@@ -600,6 +600,10 @@ body:not(.user-is-tabbing) a:focus {
   margin-top: var(--gutter-small); /* nice, consistent spacing */
 }
 
+.contact__info .btn {
+  margin-bottom: var(--gutter-small);
+}
+
 
 /* --------------------------------------- */
 /* ----- Footer ----- */
