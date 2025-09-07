@@ -597,11 +597,11 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .contact__links {
-  margin-top: var(--gutter-small); /* nice, consistent spacing */
+  margin-top: var(--gutter-medium); 
 }
 
 .contact__info .btn {
-  margin-bottom: var(--gutter-small);
+  margin-bottom: var(--gutter-medium);
 }
 
 
