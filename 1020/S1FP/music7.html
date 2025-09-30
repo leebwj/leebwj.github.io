@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blue Tape - Song Details</title>
+
+  <link rel="stylesheet" href="music7.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <a href="library.html" class="back-button">
+        <img src="Assets/Image/Back.png" alt="Go Back">
+    </a>
+
+  <div id="paper">
+    <div class="tape-assembly">
+
+      <div id="play-button" class="tape-hitbox" title="Click to play/pause"></div>
+      <img src="Assets/Image/LeftCircle.png" alt="Left reel" class="tape-circle left-circle" />
+      <img src="Assets/Image/RightCircle.png" alt="Right reel" class="tape-circle right-circle" />
+      <img src="Assets/Image/Tape7.png" alt="Cassette Tape" class="tape-image-main" />
+    </div>
+
+    <div id="player" aria-hidden="true"></div>
+
+    <div class="text-content">
+      <h1 class="song-title">Painkiller</h1>
+      <h2 class="artist-name">Ruel</h2>
+      <div class="lyrics">
+         <p>
+            Released May 1, 2019,<br>
+            as the lead single from his EP *Free Time*.<br>
+            Written by Ruel, Sarah Aarons, and Hiren Mor,<br>
+            produced by M-Phazes.<br><br>
+
+            A remix featuring Denzel Curry followed in 2020,<br>
+            and the song placed 3rd at the 2020 Vanda & Young<br>
+            Global Songwriting Competition.<br><br>
+
+            The track is pop / R&B in style,<br>
+            and the official video was published on May 1, 2019.<br>
+            Released under RCA / Sony Australia.<br> <br>
+
+            The version in this website is a <br>
+            Mr. Carmack Remix version
+          </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    var player = null;
+    var playerReady = false;
+    var pendingPlay = false;
+
+    function onYouTubeIframeAPIReady() {
+    }
+
+    function createPlayer() {
+      if (player) return;
+      player = new YT.Player('player', {
+        height: '1',
+        width: '1',
+        videoId: 'nvzgXbCH-KU',
+        playerVars: { playsinline: 1, controls: 0, rel: 0 },
+        events: {
+          onReady: function () {
+            playerReady = true;
+            try {
+              var iframe = player.getIframe();
+              iframe.setAttribute('allow', 'autoplay; encrypted-media');
+            } catch (e) {}
+
+            if (pendingPlay) {
+              pendingPlay = false;
+              togglePlay();
+            }
+          },
+          onStateChange: onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerStateChange(event) {
+      const left = document.querySelector('.left-circle');
+      const right = document.querySelector('.right-circle');
+
+      if (event.data === YT.PlayerState.PLAYING) {
+        left.classList.remove('paused');
+        right.classList.remove('paused');
+        left.classList.add('spinning');
+        right.classList.add('spinning');
+      } else {
+        left.classList.remove('spinning');
+        right.classList.remove('spinning');
+        left.classList.add('paused');
+        right.classList.add('paused');
+      }
+    }
+
+    function togglePlay() {
+      if (!playerReady) {
+        pendingPlay = true;
+        return;
+      }
+      var state = player.getPlayerState(); 
+      if (state === YT.PlayerState.PLAYING) {
+        player.pauseVideo();
+      } else {
+        player.playVideo(); 
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var btn = document.getElementById('play-button');
+
+      btn.addEventListener('click', function () {
+        if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') {
+          pendingPlay = true;
+          setTimeout(createPlayer, 150);
+          return;
+        }
+        if (!player) {
+          pendingPlay = true;
+          createPlayer();
+          return;
+        }
+        togglePlay();
+      });
+    });
+  </script>
+</body>
+</html>
