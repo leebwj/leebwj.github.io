@@ -3,135 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blue Tape - Song Details</title>
-
-  <link rel="stylesheet" href="music6.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="music1.css" />
 
 </head>
 <body>
 
-    <a href="library.html" class="back-button">
-        <img src="Assets/Image/Back.png" alt="Go Back">
-    </a>
+  <a href="library.html" class="back-button">
+    <img src="Assets/Image/Back.png" alt="Go Back">
+  </a>
 
   <div id="paper">
     <div class="tape-assembly">
+      <div id="play-button"
+           class="tape-hitbox"
+           title="Open on YouTube"
+           role="button"
+           tabindex="0"
+           aria-label="Open this song on YouTube"></div>
 
-      <div id="play-button" class="tape-hitbox" title="Click to play/pause"></div>
-      <img src="Assets/Image/LeftCircle.png" alt="Left reel" class="tape-circle left-circle" />
+      <img src="Assets/Image/LeftCircle.png"  alt="Left reel"  class="tape-circle left-circle" />
       <img src="Assets/Image/RightCircle.png" alt="Right reel" class="tape-circle right-circle" />
-      <img src="Assets/Image/Tape6.png" alt="Cassette Tape" class="tape-image-main" />
+      <img src="Assets/Image/Tape1.png"      alt="Cassette Tape" class="tape-image-main" />
     </div>
 
-    <div id="player" aria-hidden="true"></div>
-
     <div class="text-content">
-      <h1 class="song-title">Sharon</h1>
-      <h2 class="artist-name">OFFICIAL HIGE DANDISM</h2>
+      <h1 class="song-title">Kiss Me Right</h1>
+      <h2 class="artist-name">keshi</h2>
       <div class="lyrics">
-         <p>
-          Released July 3, 2024,<br>
-          as a digital single prior to the album *Rejoice*.<br>
-          “Sharon” was chosen as the theme <br>
-          for the TV drama “Mountain Doctor”.<br><br>
+        <p>
+          Released Sept 20, 2024,<br>
+          as a bonus track on <em>Requiem</em> (extended).<br>
+          Built on electric guitar and lo-fi textures,<br>
+          its mood is hushed and intimate.<br><br>
 
-          Written and composed by Satoshi Fujihara,<br>
-          arranged by Official HIGE DANDISM.<br>
-          It’s a medium rock song with emotional resonance,<br>
-          addressed to those waiting for someone’s return.<br><br>
+          Produced by Madeon,<br>
+          co-written with Hugo Leclercq and keshi.<br>
+          The mix and master were handled<br>
+          by George Seara and Chris Gehringer.<br><br>
 
-          The music video premiered with the drama tie-in,<br>
-          and the album *Rejoice* dropped July 24, 2024.<br>
-          The track is distributed under <br> 
-          IRORI Records / Pony Canyon.
+          Issued under Island Records,<br>
+          with global distribution through Universal.<br>
+          It highlights keshi’s evolving sound,<br>
+          blending bedroom pop and R&amp;B tones.
         </p>
       </div>
     </div>
   </div>
 
-  <!-- YouTube IFrame API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <script>
-    var player = null;
-    var playerReady = false;
-    var pendingPlay = false;
+  <!-- Youtube API for this song does not work. Open on new tab -->
+    <script>
+      const WATCH_URL = 'https://www.youtube.com/watch?v=Ssj-NhrKOdg&list=RDSsj-NhrKOdg&start_radio=1';
 
-    function onYouTubeIframeAPIReady() {
-    }
-
-    function createPlayer() {
-      if (player) return;
-      player = new YT.Player('player', {
-        height: '1',
-        width: '1',
-        videoId: 'Ssj-NhrKOdg',
-        playerVars: { playsinline: 1, controls: 0, rel: 0 },
-        events: {
-          onReady: function () {
-            playerReady = true;
-            try {
-              var iframe = player.getIframe();
-              iframe.setAttribute('allow', 'autoplay; encrypted-media');
-            } catch (e) {}
-
-            if (pendingPlay) {
-              pendingPlay = false;
-              togglePlay();
-            }
-          },
-          onStateChange: onPlayerStateChange
-        }
-      });
-    }
-
-    function onPlayerStateChange(event) {
-      const left = document.querySelector('.left-circle');
+      const btn   = document.getElementById('play-button');
+      const left  = document.querySelector('.left-circle');
       const right = document.querySelector('.right-circle');
 
-      if (event.data === YT.PlayerState.PLAYING) {
-        left.classList.remove('paused');
-        right.classList.remove('paused');
-        left.classList.add('spinning');
-        right.classList.add('spinning');
-      } else {
-        left.classList.remove('spinning');
-        right.classList.remove('spinning');
-        left.classList.add('paused');
-        right.classList.add('paused');
+      function startSpinForever() {
+        left.classList.add('spinning');  left.classList.remove('paused');
+        right.classList.add('spinning'); right.classList.remove('paused');
       }
-    }
 
-    function togglePlay() {
-      if (!playerReady) {
-        pendingPlay = true;
-        return;
+      function openInNewTab() {
+        window.open(WATCH_URL, '_blank', 'noopener,noreferrer');
       }
-      var state = player.getPlayerState(); 
-      if (state === YT.PlayerState.PLAYING) {
-        player.pauseVideo();
-      } else {
-        player.playVideo(); 
+
+      function handleActivate() {
+        startSpinForever();   
+        openInNewTab();       
       }
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      var btn = document.getElementById('play-button');
-
-      btn.addEventListener('click', function () {
-        if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') {
-          pendingPlay = true;
-          setTimeout(createPlayer, 150);
-          return;
-        }
-        if (!player) {
-          pendingPlay = true;
-          createPlayer();
-          return;
-        }
-        togglePlay();
-      });
-    });
-  </script>
-</body>
+      btn.addEventListener('click', handleActivate);
+    </script>
+  </body>
 </html>
