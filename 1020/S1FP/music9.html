@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music 9 - Webring</title>
+    <link rel="stylesheet" href="music9.css">
+</head>
+<body>
+    <a href="library.html" class="back-button">
+        <img src="Assets/Image/Back.png" alt="Go Back">
+    </a>
+    <div id="paper">
+        <div id="pattern">
+            <div id="content">
+                <!-- Webring module, adapted to have a separate hitbox -->
+                <div class="webring">
+                    <div class="webringlink"></div> <!-- This div displays the tape image -->
+                    <a href="https://jagar-bhan.github.io/" class="clickable-area" target="_blank" rel="noopener noreferrer"></a> <!-- This is the invisible hitbox -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const clickableArea = document.querySelector('.clickable-area');
+            const webringContainer = document.querySelector('.webring');
+
+            clickableArea.addEventListener('click', function(event) {
+                event.preventDefault(); 
+                
+                // Apply animation style to the container
+                webringContainer.style.transform = 'rotate(0deg) scale(1.10)';
+
+                setTimeout(() => {
+                    window.open(this.href, '_blank');
+                }, 600); // Match the CSS transition time
+            });
+        });
+    </script>
+</body>
+</html>
