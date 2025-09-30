@@ -3,31 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blue Tape - Song Details</title>
-
   <link rel="stylesheet" href="music1.css" />
 
-  <!-- Make sure the hitbox really receives clicks -->
-  <style>
-    .tape-assembly { position: fixed; left: 30%; top: 50%; transform: translate(-50%, -50%); width: 40%; aspect-ratio: 800/500; z-index: 0; }
-    .tape-image-main { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-    .tape-circle { position: absolute; width: 6%; height: auto; z-index: 2; pointer-events: none; transform-origin: 50% 50%; will-change: transform; }
-    .left-circle  { top: 41.4%; left: 35.6%; }
-    .right-circle { top: 41.4%; left: 58.3%; }
-
-    /* Clickable area over the cassette window */
-    .tape-hitbox#play-button {
-      position: absolute;
-      top: 23%;
-      left: 22%;
-      width: 55.5%;
-      height: 52.5%;
-      cursor: pointer;
-      z-index: 1000;
-      background: transparent;
-      border-radius: 12px;
-    }
-  </style>
 </head>
 <body>
 
@@ -37,7 +14,6 @@
 
   <div id="paper">
     <div class="tape-assembly">
-      <!-- Click target: opens YouTube in the same tab -->
       <div id="play-button"
            class="tape-hitbox"
            title="Open on YouTube"
@@ -59,10 +35,12 @@
           as a bonus track on <em>Requiem</em> (extended).<br>
           Built on electric guitar and lo-fi textures,<br>
           its mood is hushed and intimate.<br><br>
+
           Produced by Madeon,<br>
           co-written with Hugo Leclercq and keshi.<br>
           The mix and master were handled<br>
           by George Seara and Chris Gehringer.<br><br>
+
           Issued under Island Records,<br>
           with global distribution through Universal.<br>
           It highlights keshi’s evolving sound,<br>

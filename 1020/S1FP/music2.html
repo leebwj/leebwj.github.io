@@ -3,71 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blue Tape - Song Details</title>
+  <link rel="stylesheet" href="music2.css" />
 
-  <!-- Your site stylesheet -->
-  <link rel="stylesheet" href="music1.css" />
-
-  <style>
-    /* --- Minimal layout + reliability helpers (safe to keep alongside music1.css) --- */
-
-    /* Cassette block */
-    .tape-assembly {
-      position: fixed;
-      left: 30%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 40%;
-      aspect-ratio: 800 / 500;
-      z-index: 0; /* base stacking context */
-    }
-
-    /* Cassette art sits below the iframe so clicks reach the iframe */
-    .tape-image-main {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      z-index: 1;
-      pointer-events: none; /* do not steal clicks */
-    }
-
-    /* Reels above the art (still below our optional overlays) */
-    .tape-circle {
-      position: absolute;
-      width: 6%;
-      height: auto;
-      z-index: 2;
-      pointer-events: none;
-      transform-origin: 50% 50%;
-      will-change: transform;
-    }
-    .left-circle  { top: 41.4%; left: 35.6%; }
-    .right-circle { top: 41.4%; left: 58.3%; }
-
-    /* We are NOT using the old hitbox; if it exists, ensure it doesn't block the iframe */
-    .tape-hitbox#play-button { pointer-events: none; }
-
-    /* The magic: almost-invisible iframe exactly where the tape window is.
-       It MUST be above the artwork to receive the click. */
-    .yt-underlay {
-      position: absolute;
-      top: 23%;      /* match your tape window bounds */
-      left: 22%;
-      width: 55.5%;
-      height: 52.5%;
-      border: 0;
-      z-index: 5;    /* > tape art (1) and reels (2) so it gets the click */
-      opacity: 0.015;/* nearly invisible but still clickable */
-      pointer-events: auto;
-    }
-
-    /* Text area layout (unchanged from your setup) */
-    .text-content { margin-left: 40%; padding: 5%; text-align: center; }
-
-    /* Reel spin animation */
-    @keyframes spin { from { transform: rotate(0) } to { transform: rotate(360deg) } }
-    .tape-circle.paused   { animation: spin 5s linear infinite; animation-play-state: paused; }
-    .tape-circle.spinning { animation: spin 5s linear infinite; animation-play-state: running; }
-  </style>
 </head>
 <body>
 
@@ -77,67 +14,64 @@
 
   <div id="paper">
     <div class="tape-assembly">
+      <div id="play-button"
+           class="tape-hitbox"
+           title="Open on YouTube"
+           role="button"
+           tabindex="0"
+           aria-label="Open this song on YouTube"></div>
 
-      <!-- (Optional) legacy hitbox left in DOM but disabled via CSS above -->
-      <div id="play-button" class="tape-hitbox" title="Click to play/pause"></div>
-
-      <!-- Left / Right reels -->
-      <img src="Assets/Image/LeftCircle.png"  alt="Left reel"  class="tape-circle left-circle paused" />
-      <img src="Assets/Image/RightCircle.png" alt="Right reel" class="tape-circle right-circle paused" />
-
-      <!-- Cassette artwork -->
-      <img src="Assets/Image/Tape1.png" alt="Cassette Tape" class="tape-image-main" />
-
-      <!-- The working/embed player UNDER the cassette window (receives the click) -->
-      <iframe
-        id="ytUnderlay"
-        class="yt-underlay"
-        src="https://www.youtube.com/embed/NlVmrREOMIw?playsinline=1&rel=0&modestbranding=1"
-        title="YouTube player"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
+      <img src="Assets/Image/LeftCircle.png"  alt="Left reel"  class="tape-circle left-circle" />
+      <img src="Assets/Image/RightCircle.png" alt="Right reel" class="tape-circle right-circle" />
+      <img src="Assets/Image/Tape2.png"      alt="Cassette Tape" class="tape-image-main" />
     </div>
 
     <div class="text-content">
-      <h1 class="song-title">Kiss Me Right</h1>
-      <h2 class="artist-name">keshi</h2>
+      <h1 class="song-title">Superpowers</h1>
+      <h2 class="artist-name">Daniel Caesar</h2>
       <div class="lyrics">
-        <p>
-          Released Sept 20, 2024,<br>
-          as a bonus track on <em>Requiem</em> (extended).<br>
-          Built on electric guitar and lo-fi textures,<br>
-          its mood is hushed and intimate.
+         <p>
+          Released April 7, 2023,<br>
+          as part of the album *Never Enough*.<br>
+          Produced by Dylan Wiggins, Matthew Burnett,<br>
+          Jordan Evans, and Caesar himself.<br><br>
+
+          The track is credited to Ashton Simmonds (Daniel Caesar),<br>
+          Joel Compass, Dylan Wiggins.<br>
+          Mixed by Tom Elmhirst,<br>
+          engineered by Riley Bell.<br><br>
+
+          The label credits read: Hollace Inc.<br>
+          Released under Republic Records / UMG.<br>
+          “Superpowers” showcases Caesar’s blend of<br>
+          soft vocal intimacy and refined production.<br>
         </p>
       </div>
     </div>
   </div>
 
-  <script>
-    // We can’t read the player’s state (no API), so we start/stop reels on user interaction.
-    // Trick: listen to pointerdown on the iframe element itself (the element in the parent DOM).
-    const iframe = document.getElementById('ytUnderlay');
-    const L = document.querySelector('.left-circle');
-    const R = document.querySelector('.right-circle');
+  <!-- Youtube API for this song does not work. Open on new tab -->
+    <script>
+      const WATCH_URL = 'https://www.youtube.com/watch?v=rScwLoES2bM&list=RDrScwLoES2bM&start_radio=1';
 
-    // Start spinning on first click into the player (user is about to start playback)
-    iframe.addEventListener('pointerdown', () => {
-      L.classList.add('spinning');  L.classList.remove('paused');
-      R.classList.add('spinning');  R.classList.remove('paused');
-    });
+      const btn   = document.getElementById('play-button');
+      const left  = document.querySelector('.left-circle');
+      const right = document.querySelector('.right-circle');
 
-    // OPTIONAL: provide a simple pause UI if you want to stop the reels manually.
-    // Users can always pause with the YouTube controls (space/click) inside the player,
-    // but we can't detect it without the API. If you want a manual pause:
-    // document.addEventListener('keydown', (e) => {
-    //   if (e.key.toLowerCase() === 'p') {
-    //     L.classList.remove('spinning'); L.classList.add('paused');
-    //     R.classList.remove('spinning'); R.classList.add('paused');
-    //   }
-    // });
+      function startSpinForever() {
+        left.classList.add('spinning');  left.classList.remove('paused');
+        right.classList.add('spinning'); right.classList.remove('paused');
+      }
 
-    // Pro-tip: if you ever need to make the player more/less visible for testing,
-    // tweak .yt-underlay { opacity: 0.2 } temporarily to see it lined up.
-  </script>
-</body>
+      function openInNewTab() {
+        window.open(WATCH_URL, '_blank', 'noopener,noreferrer');
+      }
+
+      function handleActivate() {
+        startSpinForever();   
+        openInNewTab();       
+      }
+      btn.addEventListener('click', handleActivate);
+    </script>
+  </body>
 </html>
