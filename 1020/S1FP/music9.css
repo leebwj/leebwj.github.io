@@ -28,8 +28,7 @@ html, body {
     height: 100%;
 }
 
-/* MODIFIED WEBRING MODULE */
-.webring { /* This is now the container, like 'image-container' */
+.webring { 
     position: relative;
     display: block;
     width: 50%;
@@ -41,36 +40,33 @@ html, body {
     will-change: transform;
 }
 
-/* Trigger animation when hovering the clickable area */
 .webring:has(.clickable-area:hover) {
     transform: rotate(0deg) scale(1.10);
 }
 
-.webringlink { /* This just displays the tape image */
+.webringlink { 
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('Assets/Image/Tape1.png');
+    background-image: url('Assets/Image/Tape9.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-/* This is the invisible hitbox, copied from start.css */
 .clickable-area {
     position: absolute;
-    top: 22%;
-    left: 36%;
-    width: 28%;
-    height: 53.5%;
-    border-radius: 4mm;
-    background-color: rgba(0, 0, 0, 0); 
+    top: 32%;
+    left: 22.5%;
+    width: 55%;
+    height: 35%;
+    border-radius: 3mm;
+    background-color: rgba(255, 255, 255, 0); 
     cursor: pointer;
 }
 
-/* Back button styles */
 .back-button {
   position: fixed;
   top: 30px;

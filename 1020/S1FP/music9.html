@@ -13,9 +13,9 @@
     <div id="paper">
         <div id="pattern">
             <div id="content">
-                <!-- Webring module, adapted to have a separate hitbox -->
+                <!-- Webring Module -->
                 <div class="webring">
-                    <div class="webringlink"></div> <!-- This div displays the tape image -->
+                    <div class="webringlink"></div>
                     <a href="https://jagar-bhan.github.io/" class="clickable-area" target="_blank" rel="noopener noreferrer"></a> <!-- This is the invisible hitbox -->
                 </div>
             </div>
@@ -29,12 +29,11 @@
             clickableArea.addEventListener('click', function(event) {
                 event.preventDefault(); 
                 
-                // Apply animation style to the container
                 webringContainer.style.transform = 'rotate(0deg) scale(1.10)';
 
                 setTimeout(() => {
                     window.open(this.href, '_blank');
-                }, 600); // Match the CSS transition time
+                }, 600); 
             });
         });
     </script>
