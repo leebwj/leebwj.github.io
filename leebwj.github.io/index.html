@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" type="image/png" href="./images/favicon.png" />
+
+  <!-- Put your site title here -->
+  <title>
+    Brian Wonjun Lee | Website Introducing Myself
+  </title>
+
+  <meta name="Brian Wonjun Lee" content="Passionate about crafting immersive 3D graphics and exploring the limitless potential of programming. I thrive at the intersection of creativity and technology, building visually stunning and technically sophisticated solutions that bring ideas to life. Whether it's designing intricate virtual worlds or developing innovative tools, I'm driven by a fascination for how code transforms imagination into reality.">
+  <!-- Add some coding keywords below, Ex: (React, CSS etc.) -->
+  <meta name="keywords" content="Brian Wonjun Lee, Java, OCaml, C++, C#, Visual Studio, Oracle, DBeaver, SQLite, Blender, Adobe Creative Suite" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+
+<!-- ***** Header ***** -->
+
+<header class="header" role="banner" id="top">
+  <div class="row">
+    <nav class="nav" role="navigation">
+      <ul class="nav__items">
+        <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
+        <li class="nav__item"><a href="#clients" class="nav__link">Experience</a></li>
+        <li class="nav__item">
+          <a href="#about" class="nav__link">About</a>
+        </li>
+        <li class="nav__item">
+          <a href="#contact" class="nav__link">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="header__text-box row">
+    <div class="header__text">
+      <h1 class="heading-primary">
+        <!-- Replace the following name with your name -->
+        <span>Brian Wonjun Lee</span>
+      </h1>
+      <!-- Put a small paragraph about yourself -->
+      <p>A 3D graphics enthusiast and programmer passionate about blending creativity with technology to craft immersive experiences.</p>
+      <a href="#contact" class="btn btn--pink">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main role="main">
+
+<!-- ***** About ***** -->
+
+<section class="about" id="about">
+  <div class="row">
+    <h2>About Me</h2>
+    <div class="about__content">
+      <div class="about__text">
+        <!-- Replace the below paragraph with info about yourself -->
+        <p>
+          Hello! I'm Brian Lee, a junior at the University of Pennsylvania studying Design and Computer Science. I’m passionate about blending creativity with technology to craft innovative, human-centered experiences. With a background spanning programming, 3D graphics, and interactive media, I enjoy exploring how design and code intersect to bring ideas to life. From building games to experimenting with digital art and immersive environments, I’m always seeking new ways to push boundaries, learn, and create impactful work. Welcome to my portfolio!
+        </p>
+        <!-- Provide a link to your resume -->
+        <!-- <a href="#" class="btn">My Profile</a> -->
+      </div>
+
+      <div class="about__photo-container">
+        <!-- Add a nice photo of yourself -->
+        <img class="about__photo" src="./images/IMG_0047.jpg" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+  <!-- ***** Work ***** -->
+<section class="work" id="work">
+  <div class="row">
+    <h2>My Work</h2>
+    <div class="work__boxes">
+
+      <!-- Pixel Dash -->
+      <div class="work__box">
+        <div class="work__text">
+          <h3>Pixel Dash</h3>
+          <p>
+            Self-Directed Project: A side-scrolling endless runner game with collectible coins, customizable skins, and dynamic obstacles, designed to deepen my Java expertise. The project applies key concepts like File I/O for saving progress, Lists and Collections for managing game objects, and JUnit testing to validate mechanics such as collision detection and scoring. It demonstrates my ability to create engaging gameplay while ensuring robust, scalable code.
+          </p>
+          <ul class="work__list">
+            <li>Java</li>
+            <li>OOP</li>
+            <li>File I/O</li>
+            <li>Game Design</li>
+          </ul>
+
+          <div class="work__links">
+            <a href="https://github.com/leebwj/pixeldash.github.io" target="_blank" class="link__text">
+              View Code <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+        <div class="work__image-box">
+          <img src="./images/pixelrun.png" class="work__image" alt="Pixel Run" />
+        </div>
+      </div>
+
+      <!-- 3D Project: Playground-->
+      <div class="work__box">
+        <div class="work__text">
+          <h3>3D Interactive Project: “Playground”</h3>
+          <p>
+            Recreation of a childhood memory, bringing life to a character with distinctive animations through user interactive actions with the 3D models. Using keyboard or mouse, players can trigger interactive animations as “Boo” comes to life. Press ‘Q’ to reset the scene.
+          </p>
+          <ul class="work__list">
+            <li>Spline</li>
+            <li>Maya</li>
+            <li>Substance Painter</li>
+            <li>Photoshop</li>
+          </ul>
+
+          <div class="work__links">
+            <a href="https://my.spline.design/untitled-QVRKLSCWxKCmX5aAVZUXDukV/" target="_blank" class="link__text">
+              View Project <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="work__image-box">
+          <iframe 
+            src="https://my.spline.design/untitled-QVRKLSCWxKCmX5aAVZUXDukV/" 
+            frameborder="0" 
+            width="100%" 
+            height="400" 
+            style="border-radius: 8px; overflow:hidden;">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Capsule Project -->
+      <div class="work__box">
+        <div class="work__text">
+          <h3>Capsule</h3>
+          <p>
+            A collaborative web app where users create interactive 3D time capsules that unlock on specific dates. Each capsule acts as a playful container for memories—photos, videos, and notes—revealed in an immersive 3D gallery inspired by Japanese gachapon machines. Built with React Three Fiber, MongoDB, and AWS S3, Capsule combines creative design with real-time collaboration.
+          </p>
+          <ul class="work__list">
+            <li>React Three Fiber</li>
+            <li>MongoDB</li>
+            <li>AWS S3</li>
+            <li>Blender</li>
+            <li>Spline</li>
+          </ul>
+
+          <div class="work__links work__links--stacked">
+            <a href="https://github.com/leebwj/sp25-penn-time-capsule?tab=readme-ov-file" target="_blank" class="link__text">
+              View Code <span>&rarr;</span>
+            </a>
+            <a href="https://www.figma.com/proto/xNLzE7NKvOo9SToBUZtaSn/Penn-Time-Capsule?node-id=913-1430&t=ThuJ8gaWZlmAcply-0&scaling=contain&content-scaling=fixed&page-id=662%3A1067" target="_blank" class="link__text">
+              View Presentation <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="work__image-box">
+          <iframe 
+            width="100%" 
+            height="400" 
+            src="https://www.youtube.com/embed/VcS-ikD9YmM" 
+            title="Capsule Demo" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen 
+            style="border-radius: 8px;">
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ***** Clients ***** -->
+<section class="client" id="clients">
+  <div class="row">
+    <h2>Work Experience</h2>
+
+    <div class="client__logos">
+      <!-- IT Farm -->
+      <a href="https://it-farm.co.kr/" target="_blank" rel="noopener" class="client__logo-link">
+        <img src="./images/logo.svg" class="client__logo" alt="IT Farm" loading="lazy" />
+      </a>
+
+      <!-- BitMango -->
+      <a href="https://www.bitmango.com/en/homepageen/" target="_blank" rel="noopener" class="client__logo-link">
+        <img src="./images/BitMango.png" class="client__logo" alt="BitMango" loading="lazy" />
+      </a>
+
+      <!-- Puzzle1 Studio -->
+      <a href="https://www.puzzle1studio.com/" target="_blank" rel="noopener" class="client__logo-link">
+        <img src="./images/Puzzle1Studio.png" class="client__logo" alt="Puzzle1 Studio" loading="lazy" />
+      </a>
+
+      <!-- Spark -->
+      <a href="https://pennspark.org" target="_blank" rel="noopener" class="client__logo-link" aria-label="Spark website">
+        <img src="./images/spark.png" class="client__logo client__logo--sm" alt="Spark" loading="lazy" />
+      </a>
+      
+    </div>
+  </div>
+</section>
+
+<!-- ***** Contact ***** -->
+
+<section class="contact" id="contact">
+  <div class="row">
+    <h2>Get in Touch</h2>
+    <div class="contact__info">
+      <p>Contact Information</p>
+
+      <a href="mailto:leebwj@sas.upenn.edu" class="btn">leebwj@sas.upenn.edu</a>
+
+      <div class="contact__links work__links--stacked">
+        <a href="https://brianleeportfolio.cargo.site/" target="_blank" rel="noopener" class="link__text">
+          Art Portfolio <span>&rarr;</span>
+        </a>
+        <a href="https://www.linkedin.com/in/brian-lee-0b706b225/" target="_blank" rel="noopener" class="link__text">
+          LinkedIn <span>&rarr;</span>
+        </a>
+        <a href="https://github.com/leebwj" target="_blank" rel="noopener" class="link__text">
+          GitHub <span>&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ***** Footer ***** -->
+
+<footer role="contentinfo" class="footer">
+  <div class="row">
+    <!-- Update the links to point to your accounts -->
+    <ul class="footer__social-links">
+      <li class="footer__social-link-item">
+        <a href="https://github.com/leebwj" title="Link to Github Profile">
+          <img src="./images/github.svg" class="footer__social-image" alt="Github">
+        </a>
+      </li>
+      <li class="footer__social-link-item">
+        <a href="https://brianleeportfolio.cargo.site/" title="Link to Art Portfolio Website">
+          <img src="./images/Cargo.png" class="footer__social-image" alt="Cargo">
+        </a>
+      </li>
+      <li class="footer__social-link-item">
+        <a href="https://www.linkedin.com/in/brian-lee-0b706b225/">
+          <img src="./images/linkedin.svg" title="Link to Linkedin Profile" class="footer__social-image" alt="Linkedin">
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</footer>
+
+<a href="#top" class="back-to-top" title="Back to Top">
+  <img src="./images/arrow-up.svg" alt="Back to Top" class="back-to-top__image"/>
+</a>
+<script src="./index.js"></script>
+</body>
+
+</html>
