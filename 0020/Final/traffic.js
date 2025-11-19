@@ -5,8 +5,8 @@ const TILE_SIZE = 40; // must match world.js
 const ROAD_SPACING = 3;
 const ROAD_WIDTH = 12;
 
-const TRAFFIC_MAX = 10;
-const TRAFFIC_SPAWN_INTERVAL = 3.2;
+const TRAFFIC_MAX = 5;
+const TRAFFIC_SPAWN_INTERVAL = 3.0;
 const TRAFFIC_RADIUS = 1.35;
 const STOP_DURATION = 3;
 const TRAFFIC_COLORS = [

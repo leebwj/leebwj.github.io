@@ -7,8 +7,8 @@ const loader = new GLTFLoader();
 // ---------- World settings ----------
 const TILE_SIZE      = 40;  // size of one chunk in world units
 const ACTIVE_RADIUS  = 2;   // how many tiles to keep around player (2 => 5x5 area)
-const ROCKS_PER_CHUNK = 4;
-const TREES_PER_CHUNK = 4;
+const ROCKS_PER_CHUNK = 2;
+const TREES_PER_CHUNK = 2;
 const BUILDINGS_PER_CHUNK = 1;
 
 // ---------- Road layout ----------
