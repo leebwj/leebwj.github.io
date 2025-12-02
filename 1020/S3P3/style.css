@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  background: #ffffff;
+}
+
+#canvas {
+  display: block;
+}
+
+#canvas:active {
+  cursor: crosshair;
+}
+
+#footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 32px;
+  padding: 0 16px;
+  font-size: 12px;
+  color: #555;
+  background: rgba(255, 255, 255, 0.95);
+  border-top: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 120ms ease;
+}
+
+#footer:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+#compression {
+  font-variant-numeric: tabular-nums;
+}
