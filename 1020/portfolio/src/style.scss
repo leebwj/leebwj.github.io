@@ -111,7 +111,7 @@ body.app-ready .ui {
     line-height: 0.95;
     text-transform: uppercase;
     white-space: nowrap;
-    text-shadow: none;
+    text-shadow: none; // explicit: keep main title flat
   }
 
   p {
@@ -121,7 +121,7 @@ body.app-ready .ui {
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.86);
-    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    text-shadow: none; // keep subtitle flat as well
   }
 }
 
