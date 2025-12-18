@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Floating Portfolio</title>
+    <script type="module" crossorigin src="/assets/app.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index.css">
+  </head>
+  <body>
+    <div class="loading-screen">
+      <div class="loading-card">
+        <p class="loading-label">Loading</p>
+        <div class="loading-bar">
+          <div class="loading-progress"></div>
+        </div>
+      </div>
+    </div>
+    <div id="experience">
+      <canvas id="experience-canvas" class="experience-canvas"></canvas>
+      <div class="background-title">
+        <h1>Art of the Web</h1>
+        <p>Experiments in the Web as Medium</p>
+      </div>
+    </div>
+    <button class="reset-floating" id="reset-camera">Reset Camera</button>
+
+    <div class="overlay"></div>
+    <div class="modal" id="project-modal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2 id="modal-title">Title</h2>
+          <button class="close" id="close-modal" aria-label="Close modal">×</button>
+        </div>
+        <div class="modal-body">
+          <p id="modal-description">Description</p>
+          <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer">Open project</a>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
