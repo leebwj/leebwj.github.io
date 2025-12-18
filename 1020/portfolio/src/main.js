@@ -234,7 +234,7 @@ modelList.forEach((m) => {
   if (m.name === 'Clock' || m.name === 'Tape') scaleMul = 1.25;
   if (m.name === 'Cube' || m.file === 'cube.glb') scaleMul = 0.8;
   if (typeof m.scaleMul === 'number') scaleMul = m.scaleMul;
-  const p = addGlb(`/models/${m.file}`, {
+  const p = addGlb(`./models/${m.file}`, {
     name: m.name,
     description: m.description,
     url: m.url,
