@@ -1,6 +1,4 @@
-/* -----------------------------------------
-  Have focus outline only for keyboard users 
- ---------------------------------------- */
+/* Keyboard-only focus outlines */
 
 const handleFirstTab = (e) => {
   if(e.key === 'Tab') {

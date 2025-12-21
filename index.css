@@ -1,6 +1,4 @@
-/* --------------------------------------- */
-/* ----- Basic Setup ----- */
-/* --------------------------------------- */
+/* Basic */
 
 @font-face {
     font-family: 'Hk Grotesk';
@@ -55,7 +53,7 @@
 }
 
 html {
-    font-size: 62.5%; /* (16/10)*100 = 62.5% => 1rem = 10px */
+    font-size: 62.5%;
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
@@ -115,9 +113,7 @@ img {
     max-width: 100%;
 }
 
-/* --------------------------------------- */
-/* ----- Headlines and Paragraphs ----- */
-/* --------------------------------------- */
+/* Typography */
 
 h1,
 h2,
@@ -183,9 +179,7 @@ p {
     }
 }
 
-/* --------------------------------------- */
-/* ----- Buttons and Links ----- */
-/* --------------------------------------- */
+/* Buttons + Links */
 
 a {
     color: var(--white);
@@ -297,7 +291,7 @@ body:not(.user-is-tabbing) a:focus {
     font-family: sans-serif;
 }
 
-/* ----- Back to Top ----- */
+/* Back to Top */
 
 .back-to-top {
     position: fixed;
@@ -331,9 +325,7 @@ body:not(.user-is-tabbing) a:focus {
     }
 }
 
-/* --------------------------------------- */
-/* ----- Navigation ----- */
-/* --------------------------------------- */
+/* Navigation */
 
 .nav {
     display: flex;
@@ -399,9 +391,7 @@ body:not(.user-is-tabbing) a:focus {
     background: var(--pink);
 }
 
-/* --------------------------------------- */
-/* ----- Header ----- */
-/* --------------------------------------- */
+/* Header */
 
 .header {
     background: linear-gradient(rgba(0,0,0, .1), rgba(0,0,0, .4)), 
@@ -436,9 +426,7 @@ body:not(.user-is-tabbing) a:focus {
     }
 }
 
-/* --------------------------------------- */
-/* ----- Work ----- */
-/* --------------------------------------- */
+/* Work */
 
 .work__box {
     display: flex;
@@ -453,12 +441,12 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .work__box:not(:last-child) {
-    margin-bottom: 8rem;   /* was 5rem */
+    margin-bottom: 8rem;
 }
 
 @media(max-width: 500px) {
     .work__box:not(:last-child) {
-        margin-bottom: 14rem;  /* was 10rem */
+        margin-bottom: 14rem;
     }
 }
 
@@ -470,8 +458,8 @@ body:not(.user-is-tabbing) a:focus {
 .work__links--stacked {
   display: flex;
   flex-direction: column;
-  gap: 1rem;  /* space between the two buttons */
-  align-items: flex-start; /* keep left-aligned */
+  gap: 1rem;
+  align-items: flex-start;
 }
 
 .work__text {
@@ -487,7 +475,6 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .work__list {
-    /* list-style-type: square; */
     list-style-position: inside;
     margin-bottom: var(--gutter-normal);
 }
@@ -505,7 +492,7 @@ body:not(.user-is-tabbing) a:focus {
 
 .work__image-box {
     margin-bottom: var(--gutter-normal);
-    transform: translateY(-70px); /* Moves the image 10px upward */
+    transform: translateY(-70px);
 }
 
 .work__image {
@@ -596,7 +583,7 @@ body:not(.user-is-tabbing) a:focus {
     .work__image-box {
         flex: 1;
         margin: 0 0 0 10rem;
-        transform: translateY(-70px); /* Adjust as needed */
+        transform: translateY(-70px);
     }
 }
 
@@ -606,11 +593,9 @@ body:not(.user-is-tabbing) a:focus {
     }
 }
 
-/* --------------------------------------- */
-/* ----- Clients ----- */
-/* --------------------------------------- */
+/* Clients */
 
-/* Make logos themselves the interactive element */
+/* Logo links */
 .client__logo-link {
   display: inline-block;
   text-decoration: none;
@@ -622,7 +607,7 @@ body:not(.user-is-tabbing) a:focus {
   outline-offset: 6px;
 }
 
-/* Subtle hover motion */
+/* Hover motion */
 .client__logo {
   height: 10rem;
   max-width: 26rem;
@@ -634,23 +619,21 @@ body:not(.user-is-tabbing) a:focus {
   transform: translateY(-4px) scale(1.02);
 }
 
-/* Logos in full color + responsive layout */
+/* Logos layout */
 .client__logos {
   display: flex;
-  gap: 2rem;            /* Space between logos */
-  flex-wrap: wrap;      /* Wrap on smaller screens */
+  gap: 2rem;
+  flex-wrap: wrap;
   margin-bottom: 2rem;
 }
 
-/* Slightly smaller variant for specific logos */
+/* Smaller logo */
 .client__logo--sm {
-  height: 8rem;        /* was 10rem */
-  max-width: 22rem;    /* optional: keep proportion in check */
+  height: 8rem;
+  max-width: 22rem;
 }
 
-/* --------------------------------------- */
-/* ----- About ----- */
-/* --------------------------------------- */
+/* About */
 
 .about__content {
     display: flex;
@@ -680,9 +663,7 @@ body:not(.user-is-tabbing) a:focus {
     }
 }
 
-/* --------------------------------------- */
-/* ----- Contact ----- */
-/* --------------------------------------- */
+/* Contact */
 
 .contact__info {
     max-width: var(--container-medium-width);
@@ -698,9 +679,7 @@ body:not(.user-is-tabbing) a:focus {
 .contact__links {
   margin-top: 0 !important;        
 }
-/* --------------------------------------- */
-/* ----- Footer ----- */
-/* --------------------------------------- */
+/* Footer */
 
 .footer {
     text-align: center;
