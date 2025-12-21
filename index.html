@@ -85,19 +85,23 @@
       <div class="work__box">
         <div class="work__text">
           <h3>Art of the Web</h3>
+          <p class="work__date">Aug 2025 - Dec 2025</p>
           <p>
-            A semester-long portfolio website that documents every project, assignment, and reading response from Art of the Web. Built with consistent styling and deliberate interaction design, the site explores internet culture while showcasing my growth in HTML, CSS, and p5.js (JavaScript) through curated archives and interactive layouts that highlight UX and information architecture.
+            A semester-long portfolio website that documents every project, assignment, and reading response from Art of the Web. Built with consistent styling and deliberate interaction design, the site explores internet culture while showcasing my growth in HTML, CSS, JavaScript through curated archives and interactive layouts that highlight UX and information architecture.
           </p>
           <ul class="work__list">
             <li>HTML</li>
             <li>CSS</li>
             <li>JavaScript</li>
-            <li>UX/UI Design</li>
+            <li>Web Design</li>
           </ul>
 
-          <div class="work__links">
+          <div class="work__links work__links--stacked">
             <a href="https://leebwj.github.io/1020/portfolio/" target="_blank" class="link__text">
               View Project <span>&rarr;</span>
+            </a>
+            <a href="https://github.com/leebwj?tab=repositories" target="_blank" class="link__text">
+              Repository <span>&rarr;</span>
             </a>
           </div>
         </div>
@@ -113,10 +117,82 @@
         </div>
       </div>
 
+      <!-- Road Rogue -->
+      <div class="work__box">
+        <div class="work__text">
+          <h3>Road Rogue</h3>
+          <p class="work__date">Nov 2025</p>
+          <p>
+            A 3D car chase game inspired by Smashy Road where you weave through a low-poly city while police cars hunt you down. Built with Three.js and custom low-poly assets, the project focuses on responsive driving controls, obstacle-filled streets, and a survival-based score system that ramps up the tension as the pursuit closes in.
+          </p>
+          <ul class="work__list">
+            <li>Three.js</li>
+            <li>JavaScript</li>
+            <li>Low-Poly Modeling</li>
+            <li>Game Design</li>
+          </ul>
+
+          <div class="work__links work__links--stacked">
+            <a href="https://leebwj.github.io/0020/Final/index.html" target="_blank" class="link__text">
+              View Project <span>&rarr;</span>
+            </a>
+            <a href="https://github.com/leebwj/RodeRogue" target="_blank" class="link__text">
+              Repository <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="work__image-box">
+          <img src="./images/rodeRogue.png" class="work__image" alt="Road Rogue gameplay" />
+        </div>
+      </div>
+
+      <!-- Penn Spark Website Redesign -->
+      <div class="work__box">
+        <div class="work__text">
+          <h3>Penn Spark Website Redesign</h3>
+          <p class="work__date">Sep 2025 - Dec 2025</p>
+          <p>
+            Led the redesign of Penn Spark's public website to better showcase the organization's mission and product work. We rebuilt the site from an outdated Gatsby stack to a modern Next.js + React setup, consolidating repos into a single codebase with shared components, styles, and structured data. The result is faster performance, consistent branding, and a case-study driven project experience across responsive, accessible layouts.
+          </p>
+          <ul class="work__list">
+            <li>UI/UX Design</li>
+            <li>Web Design</li>
+            <li>React</li>
+            <li>Nextx.js</li>
+          </ul>
+
+          <div class="work__links work__links--stacked">
+            <a href="https://spark-website-alpha.vercel.app/" target="_blank" class="link__text">
+              View Demo <span>&rarr;</span>
+            </a>
+            <a href="https://www.figma.com/proto/v6Bk2muGj7Zy8rD7Jaxbnl/Penn-Spark-Website?page-id=1066%3A1266&node-id=1106-2004&viewport=312%2C387%2C0.03&t=yGq0WoEWqaRYcbyK-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1103%3A1296" target="_blank" class="link__text">
+              Hi-Fi Prototype <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="work__image-box">
+          <div class="work__slideshow" data-interval="4200">
+            <img src="./images/pennSpark.PNG" class="work__slide is-active" alt="Penn Spark website redesign" />
+            <img src="./images/pennSpark2.PNG" class="work__slide" alt="Penn Spark website redesign" />
+            <img src="./images/pennSpark3.PNG" class="work__slide" alt="Penn Spark website redesign" />
+            <img src="./images/PennSpark4.PNG" class="work__slide" alt="Penn Spark website redesign" />
+            <button class="work__slide-control work__slide-control--prev" type="button" aria-label="Previous slide">
+              <img src="./images/arrow-up.svg" alt="" class="work__slide-icon work__slide-icon--prev" />
+            </button>
+            <button class="work__slide-control work__slide-control--next" type="button" aria-label="Next slide">
+              <img src="./images/arrow-up.svg" alt="" class="work__slide-icon work__slide-icon--next" />
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Capsule Project -->
       <div class="work__box">
         <div class="work__text">
           <h3>Capsule</h3>
+          <p class="work__date">Jan 2025 - April 2025</p>
           <p>
             A collaborative web app where users create interactive 3D time capsules that unlock on specific dates. Each capsule acts as a playful container for memories—photos, videos, and notes—revealed in an immersive 3D gallery inspired by Japanese gachapon machines. Built with React Three Fiber, MongoDB, and AWS S3, Capsule combines creative design with real-time collaboration.
           </p>
@@ -130,10 +206,10 @@
 
           <div class="work__links work__links--stacked">
             <a href="https://github.com/leebwj/sp25-penn-time-capsule?tab=readme-ov-file" target="_blank" class="link__text">
-              View Project <span>&rarr;</span>
+              View Demo <span>&rarr;</span>
             </a>
             <a href="https://www.figma.com/proto/xNLzE7NKvOo9SToBUZtaSn/Penn-Time-Capsule?node-id=913-1430&t=ThuJ8gaWZlmAcply-0&scaling=contain&content-scaling=fixed&page-id=662%3A1067" target="_blank" class="link__text">
-              View Presentation <span>&rarr;</span>
+              Presentation <span>&rarr;</span>
             </a>
           </div>
         </div>
@@ -155,7 +231,8 @@
       <!-- 3D Project: Playground-->
       <div class="work__box">
         <div class="work__text">
-          <h3>3D Interactive Project: “Playground”</h3>
+          <h3>Playground</h3>
+          <p class="work__date">Mar 2025 - April 2025</p>
           <p>
             Recreation of a childhood memory, bringing life to a character with distinctive animations through user interactive actions with the 3D models. Using keyboard or mouse, players can trigger interactive animations as “Boo” comes to life. Press ‘Q’ to reset the scene. (Wait for full render result)
           </p>
@@ -188,6 +265,7 @@
       <div class="work__box">
         <div class="work__text">
           <h3>Pixel Dash</h3>
+          <p class="work__date">Nov 2024 - Dec 2024</p>
           <p>
             Self-Directed Project: A side-scrolling endless runner game with collectible coins, customizable skins, and dynamic obstacles, designed to deepen my Java expertise. The project applies key concepts like File I/O for saving progress, Lists and Collections for managing game objects, and JUnit testing to validate mechanics such as collision detection and scoring. It demonstrates my ability to create engaging gameplay while ensuring robust, scalable code.
           </p>
@@ -200,7 +278,7 @@
 
           <div class="work__links">
             <a href="https://github.com/leebwj/pixeldash.github.io" target="_blank" class="link__text">
-              View Project <span>&rarr;</span>
+              Repository <span>&rarr;</span>
             </a>
           </div>
         </div>
@@ -267,6 +345,9 @@
         <a href="https://github.com/leebwj" target="_blank" rel="noopener" class="link__text">
           GitHub <span>&rarr;</span>
         </a>
+        <a href="./assets/Brain_Lee_Resume.pdf" target="_blank" rel="noopener" class="link__text">
+          Resume <span>&rarr;</span>
+        </a>
       </div>
     </div>
   </div>
@@ -305,3 +386,7 @@
 </body>
 
 </html>
+
+
+
+
