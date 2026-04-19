@@ -1,3 +1,64 @@
+/* ── Custom cursor ── */
+
+const cursorDot  = document.querySelector('.cursor--dot');
+const cursorRing = document.querySelector('.cursor--ring');
+
+if (cursorDot && cursorRing) {
+  document.addEventListener('mousemove', (e) => {
+    cursorDot.style.transform  = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
+    cursorRing.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
+  });
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursorRing.classList.add('is-hovering'));
+    el.addEventListener('mouseleave', () => cursorRing.classList.remove('is-hovering'));
+  });
+
+  document.addEventListener('mouseleave', () => {
+    cursorDot.style.opacity  = '0';
+    cursorRing.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', () => {
+    cursorDot.style.opacity  = '1';
+    cursorRing.style.opacity = '1';
+  });
+}
+
+/* ── Scroll reveal ── */
+
+const revealEls = document.querySelectorAll('[data-reveal]');
+
+// Hero elements reveal on load (they're already in view)
+window.addEventListener('load', () => {
+  revealEls.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.9) {
+      const delay = Number(el.dataset.revealDelay) || 0;
+      setTimeout(() => el.classList.add('is-revealed'), delay);
+    }
+  });
+});
+
+if (revealEls.length) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = Number(entry.target.dataset.revealDelay) || 0;
+        setTimeout(() => entry.target.classList.add('is-revealed'), delay);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  revealEls.forEach(el => {
+    // Skip elements already revealed by the load handler
+    // Also skip work__box elements (they're handled by the tab system timing)
+    if (!el.classList.contains('is-revealed') && !el.classList.contains('work__box')) {
+      revealObserver.observe(el);
+    }
+  });
+}
+
 /* Keyboard-only focus outlines */
 
 const handleFirstTab = (e) => {

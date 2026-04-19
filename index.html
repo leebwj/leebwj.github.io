@@ -17,6 +17,10 @@
 
 <body>
 
+<!-- Custom cursor -->
+<div class="cursor cursor--dot"></div>
+<div class="cursor cursor--ring"></div>
+
 <!-- Navigation -->
 
 <nav class="nav" role="navigation" id="site-nav">
@@ -36,11 +40,11 @@
 <header class="header" role="banner" id="top">
   <div class="header__text-box row">
     <div class="header__text">
-      <h1 class="heading-primary">
+      <h1 class="heading-primary" data-reveal>
         <span>Brian Wonjun Lee</span>
       </h1>
-      <p>A designer and programmer passionate about blending creativity with technology to craft immersive experiences.</p>
-      <a href="#contact" class="btn btn--pink">Get in touch</a>
+      <p data-reveal data-reveal-delay="120">A designer and engineer passionate about blending creativity with technology to craft immersive experiences.</p>
+      <a href="#contact" class="btn btn--pink" data-reveal data-reveal-delay="240">Get in touch</a>
     </div>
   </div>
 </header>
@@ -51,15 +55,15 @@
 
 <section class="about" id="about">
   <div class="row">
-    <h2>About Me</h2>
+    <h2 data-reveal>About Me</h2>
     <div class="about__content">
-      <div class="about__text">
+      <div class="about__text" data-reveal data-reveal-delay="100">
         <p>
           Hello! I'm Brian Lee, a junior at the University of Pennsylvania double majoring Design and Computer Science. I'm passionate about blending creativity with technology to craft innovative, human-centered experiences. With a background spanning programming, graphic design, 3D graphics, and interactive media, I enjoy exploring how design and code intersect to bring ideas to life. From designing and develping end-to-end products to experimenting with digital art and immersive environments, I'm always seeking new ways to push boundaries, learn, and create impactful work. Welcome to my portfolio!
         </p>
       </div>
 
-      <div class="about__photo-container">
+      <div class="about__photo-container" data-reveal data-reveal-delay="200">
         <img class="about__photo" src="./images/IMG_0047.jpg" alt="" />
       </div>
     </div>
@@ -70,7 +74,7 @@
 <!-- Work -->
 <section class="work" id="work">
   <div class="row">
-    <h2>My Work</h2>
+    <h2 data-reveal>My Work</h2>
 
     <!-- Tabs -->
     <div class="work__tabs" role="tablist" aria-label="Project categories">
@@ -89,6 +93,7 @@
           </div>
           <h3>Path@Penn Redesign</h3>
           <p class="work__date">March 2026</p>
+          <a href="./work/path-at-penn.html" class="work__cta">View Case Study →</a>
           <p>
             Self Directed Project: Path@Penn's existing experience supports enrollment, but its dense interface, fragmented workflows, unclear registration feedback, and reliance on outside tools make course planning unnecessarily difficult, especially for first-time users. Through a self-directed UX/UI redesign grounded in user research, interviews, and iterative prototype testing, the portal was reimagined as four connected sections—Dashboard, Course, Schedule, and Degree—creating a clearer, more cohesive, and more guided academic planning experience.
           </p>
@@ -129,6 +134,7 @@
           </div>
           <h3>Art of the Web</h3>
           <p class="work__date">Aug 2025 - Dec 2025</p>
+          <a href="./work/art-of-web.html" class="work__cta">View Case Study →</a>
           <p>
             Self-Directed Project: A semester-long portfolio website that documents every project, assignment, and reading response from Art of the Web. Built with consistent styling and deliberate interaction design, the site explores internet culture while showcasing my growth in HTML, CSS, JavaScript through curated archives and interactive layouts that highlight UX and information architecture.
           </p>
@@ -169,6 +175,7 @@
           </div>
           <h3>Penn Spark Website Redesign</h3>
           <p class="work__date">Sep 2025 - Dec 2025</p>
+          <a href="./work/penn-spark.html" class="work__cta">View Case Study →</a>
           <p>
             Team Project: Led the redesign of Penn Spark's public website as project lead, overseeing design and development end-to-end. Wireframes, component systems, and high-fidelity layouts were designed in Figma before rebuilding the site from an outdated Gatsby stack to Next.js + React with shared components and structured data. The result is faster performance, consistent branding, and a case-study driven experience across responsive, accessible pages.
           </p>
@@ -214,6 +221,7 @@
           </div>
           <h3>Road Rogue</h3>
           <p class="work__date">Nov 2025</p>
+          <a href="./work/road-rogue.html" class="work__cta">View Case Study →</a>
           <p>
             Self-Directed Project: A 3D car chase game inspired by Smashy Road where you weave through a low-poly city while police cars hunt you down. Built with Three.js and custom low-poly assets, the project focuses on responsive driving controls, obstacle-filled streets, and a survival-based score system that ramps up the tension as the pursuit closes in.
           </p>
@@ -248,6 +256,7 @@
           </div>
           <h3>Capsule</h3>
           <p class="work__date">Jan 2025 - April 2025</p>
+          <a href="./work/capsule.html" class="work__cta">View Case Study →</a>
           <p>
             Team Project: A collaborative web app where users create interactive 3D time capsules that unlock on specific dates. UI and user flows were designed in Figma, with 3D assets modeled in Blender—each capsule a playful container for memories revealed in an immersive gallery inspired by Japanese gachapon machines. Built with React Three Fiber, MongoDB, and AWS S3.
           </p>
@@ -291,6 +300,7 @@
           </div>
           <h3>Playground</h3>
           <p class="work__date">Mar 2025 - April 2025</p>
+          <a href="./work/playground.html" class="work__cta">View Case Study →</a>
           <p>
             Self-Directed Project: Recreation of a childhood memory, bringing life to a character with distinctive animations through user interactive actions with the 3D models. Using keyboard or mouse, players can trigger interactive animations as "Boo" comes to life. Press 'Q' to reset the scene. (Wait for full render result)
           </p>
@@ -301,7 +311,7 @@
             <li>Photoshop</li>
           </ul>
 
-          <div class="work__links">
+          <div class="work__links work__links--stacked">
             <a href="https://my.spline.design/untitled-QVRKLSCWxKCmX5aAVZUXDukV/" target="_blank" class="link__text">
               View Project <span>&rarr;</span>
             </a>
@@ -327,6 +337,7 @@
           </div>
           <h3>Pixel Dash</h3>
           <p class="work__date">Nov 2024 - Dec 2024</p>
+          <a href="./work/pixel-dash.html" class="work__cta">View Case Study →</a>
           <p>
             Self-Directed Project: A side-scrolling endless runner game with collectible coins, customizable skins, and dynamic obstacles, designed to deepen my Java expertise. The project applies key concepts like File I/O for saving progress, Lists and Collections for managing game objects, and JUnit testing to validate mechanics such as collision detection and scoring. It demonstrates my ability to create engaging gameplay while ensuring robust, scalable code.
           </p>
@@ -337,7 +348,7 @@
             <li>Game Design</li>
           </ul>
 
-          <div class="work__links">
+          <div class="work__links work__links--stacked">
             <a href="https://github.com/leebwj/pixeldash.github.io" target="_blank" class="link__text">
               Repository <span>&rarr;</span>
             </a>
@@ -359,7 +370,7 @@
 <!-- Work Experience -->
 <section class="client" id="clients">
   <div class="row">
-    <h2>Work Experience</h2>
+    <h2 data-reveal>Work Experience</h2>
 
     <div class="client__logos">
       <a href="https://it-farm.co.kr/" target="_blank" rel="noopener" class="client__logo-link">
@@ -386,7 +397,7 @@
 
 <section class="contact" id="contact">
   <div class="row">
-    <h2>Get in Touch</h2>
+    <h2 data-reveal>Get in Touch</h2>
     <div class="contact__info">
       <p>Contact Information</p>
 

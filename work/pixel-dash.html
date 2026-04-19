@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel Dash — Brian Lee</title>
+  <link rel="shortcut icon" type="image/png" href="../images/favicon.png" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor cursor--dot"></div>
+<div class="cursor cursor--ring"></div>
+
+<!-- Nav -->
+<nav class="cs-nav">
+  <div class="cs-row">
+    <div class="cs-nav__inner">
+      <a href="../index.html" class="cs-nav__back">← All Work</a>
+      <a href="../index.html" class="cs-nav__logo">Brian Lee</a>
+      <a href="path-at-penn.html" class="cs-nav__next">Back to Start →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="cs-hero">
+  <div class="cs-row">
+    <div class="cs-hero__meta" data-reveal>
+      <span class="cs-hero__tag">Development</span>
+      <span class="cs-hero__year">Nov – Dec 2024</span>
+    </div>
+    <h1 class="cs-hero__title" data-reveal data-reveal-delay="80">Pixel Dash</h1>
+    <p class="cs-hero__subtitle" data-reveal data-reveal-delay="160">
+      A side-scrolling endless runner in Java — collectible coins, customizable skins, dynamic obstacles, and JUnit-tested mechanics, built to deepen core software engineering fundamentals.
+    </p>
+    <div class="cs-hero__links" data-reveal data-reveal-delay="240">
+      <a href="https://github.com/leebwj/pixeldash.github.io" target="_blank" class="cs-link">Repository <span>→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- Meta strip -->
+<div class="cs-row">
+  <div class="cs-meta-strip" data-reveal>
+    <div>
+      <p class="cs-meta__label">Role</p>
+      <p class="cs-meta__value">Solo Developer</p>
+    </div>
+    <div>
+      <p class="cs-meta__label">Timeline</p>
+      <p class="cs-meta__value">Nov – Dec 2024<br>Self-Directed</p>
+    </div>
+    <div>
+      <p class="cs-meta__label">Tools</p>
+      <div class="cs-tools">
+        <span class="cs-tool">Java</span>
+        <span class="cs-tool">OOP</span>
+        <span class="cs-tool">File I/O</span>
+        <span class="cs-tool">JUnit</span>
+        <span class="cs-tool">Swing</span>
+      </div>
+    </div>
+    <div>
+      <p class="cs-meta__label">Platform</p>
+      <p class="cs-meta__value">Desktop Java application</p>
+    </div>
+  </div>
+</div>
+
+<!-- Featured image -->
+<div class="cs-full-media" data-reveal>
+  <img src="../images/pixelrun.png" alt="Pixel Dash gameplay screenshot" />
+</div>
+
+<!-- Overview -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Overview</div>
+      <div class="cs-section__body">
+        <h3>A game built to sharpen core programming skills</h3>
+        <p>
+          Pixel Dash is a side-scrolling endless runner game built in Java — the kind of game that's simple to play but surprisingly complex to build well. The goal wasn't to make the most visually impressive game possible; it was to apply specific computer science concepts in a context that made their value immediately tangible.
+        </p>
+        <p>
+          Games are unusually good vehicles for learning programming fundamentals. The immediate feedback loop — make a change, run the game, see if it works — keeps iteration fast. And the requirements of a game (state management, object interactions, persistence, testing) map cleanly onto the core concepts that matter in larger software systems.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Technical breakdown -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Technical Work</div>
+      <div class="cs-section__body">
+        <h3>Applying CS fundamentals through game mechanics</h3>
+        <p>
+          Each feature of Pixel Dash was chosen to practice a specific programming concept:
+        </p>
+        <ul>
+          <li>
+            <strong>Object-Oriented Programming</strong> — the game is structured around a clean class hierarchy: a base <code>GameObject</code> class extended by <code>Player</code>, <code>Obstacle</code>, <code>Coin</code>, and <code>Background</code>. Shared behavior (rendering, update loop, bounding box) lives in the base class; specific behaviors are overridden in subclasses. This keeps the game loop simple — it just iterates over a list of GameObjects and calls update/render on each.
+          </li>
+          <li>
+            <strong>Lists and Collections</strong> — obstacles and coins are managed as <code>ArrayList</code>s that grow and shrink dynamically during gameplay. Spawning logic adds new elements at the right scroll speed; collision detection removes them after interaction. Working with live, mutable collections in a performance-sensitive context required careful management of iteration order and concurrent modification.
+          </li>
+          <li>
+            <strong>File I/O</strong> — high scores, unlocked skins, and coin totals persist between sessions using serialized file storage. The save/load system uses Java's file stream APIs to write game state to disk and recover it on next launch. This taught the fundamentals of data persistence — what to save, how to handle corrupted saves, and how to version save data when the game's structure changes.
+          </li>
+          <li>
+            <strong>JUnit Testing</strong> — collision detection, scoring logic, and skin unlock conditions are covered by unit tests. Writing tests before implementing the features (a mild form of TDD) caught several edge cases early — particularly around collision box sizing and the boundary conditions for score thresholds.
+          </li>
+        </ul>
+        <p>
+          The visual layer uses Java Swing for the game window and custom-drawn sprite sheets for the player character and obstacles. Animation is handled by cycling through sprite frames at a fixed frame rate, timed to the game loop.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reflection -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Reflection</div>
+      <div class="cs-section__body">
+        <h3>Why building games makes you a better engineer</h3>
+        <p>
+          Pixel Dash was one of the first projects where all the concepts from coursework — OOP, data structures, file systems, testing — had to work together simultaneously. In lecture, these feel like separate topics. In a running game, they're completely entangled: your data structure affects your collision performance, which affects your game loop timing, which affects your test design.
+        </p>
+        <p>
+          The project also reinforced that good software design shows up as ease of extension. Adding a new obstacle type took 10 minutes because the class hierarchy was set up correctly. Adding the skin system required no changes to the game loop because player rendering was properly encapsulated. That's what good object-oriented design feels like — not in theory, but in practice.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Next / back to start -->
+<a href="path-at-penn.html" class="cs-next">
+  <div class="cs-row">
+    <div class="cs-next__inner">
+      <div>
+        <p class="cs-next__label">Back to First Project</p>
+        <p class="cs-next__title">Path@Penn Redesign</p>
+      </div>
+      <span class="cs-next__arrow">→</span>
+    </div>
+  </div>
+</a>
+
+<!-- Footer -->
+<footer class="cs-footer">
+  <div class="cs-row">
+    <div class="cs-footer__inner">
+      <p class="cs-footer__copy">© 2026 Brian Wonjun Lee</p>
+      <div class="cs-footer__links">
+        <a href="../index.html" class="cs-footer__link">Portfolio</a>
+        <a href="https://www.linkedin.com/in/brian-lee-0b706b225/" target="_blank" class="cs-footer__link">LinkedIn</a>
+        <a href="https://github.com/leebwj" target="_blank" class="cs-footer__link">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="project.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Playground — Brian Lee</title>
+  <link rel="shortcut icon" type="image/png" href="../images/favicon.png" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor cursor--dot"></div>
+<div class="cursor cursor--ring"></div>
+
+<!-- Nav -->
+<nav class="cs-nav">
+  <div class="cs-row">
+    <div class="cs-nav__inner">
+      <a href="../index.html" class="cs-nav__back">← All Work</a>
+      <a href="../index.html" class="cs-nav__logo">Brian Lee</a>
+      <a href="pixel-dash.html" class="cs-nav__next">Next Project →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="cs-hero">
+  <div class="cs-row">
+    <div class="cs-hero__meta" data-reveal>
+      <span class="cs-hero__tag">Design</span>
+      <span class="cs-hero__tag">3D / Animation</span>
+      <span class="cs-hero__year">Mar – Apr 2025</span>
+    </div>
+    <h1 class="cs-hero__title" data-reveal data-reveal-delay="80">Playground</h1>
+    <p class="cs-hero__subtitle" data-reveal data-reveal-delay="160">
+      A 3D interactive scene recreating a childhood memory — bringing "Boo" to life through user-triggered animations, built with Spline, Maya, and Substance Painter.
+    </p>
+    <div class="cs-hero__links" data-reveal data-reveal-delay="240">
+      <a href="https://my.spline.design/untitled-QVRKLSCWxKCmX5aAVZUXDukV/" target="_blank" class="cs-link">View Project <span>→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- Meta strip -->
+<div class="cs-row">
+  <div class="cs-meta-strip" data-reveal>
+    <div>
+      <p class="cs-meta__label">Role</p>
+      <p class="cs-meta__value">Solo Designer<br>& 3D Artist</p>
+    </div>
+    <div>
+      <p class="cs-meta__label">Timeline</p>
+      <p class="cs-meta__value">Mar – Apr 2025<br>Self-Directed</p>
+    </div>
+    <div>
+      <p class="cs-meta__label">Tools</p>
+      <div class="cs-tools">
+        <span class="cs-tool">Spline</span>
+        <span class="cs-tool">Maya</span>
+        <span class="cs-tool">Substance Painter</span>
+        <span class="cs-tool">Photoshop</span>
+      </div>
+    </div>
+    <div>
+      <p class="cs-meta__label">Type</p>
+      <p class="cs-meta__value">Interactive 3D experience (browser-based)</p>
+    </div>
+  </div>
+</div>
+
+<!-- Featured embed -->
+<div class="cs-full-media" data-reveal>
+  <iframe
+    src="https://my.spline.design/untitled-QVRKLSCWxKCmX5aAVZUXDukV/"
+    title="Playground — Boo 3D interactive scene">
+  </iframe>
+</div>
+
+<!-- Overview -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Overview</div>
+      <div class="cs-section__body">
+        <h3>A childhood memory, brought to life in 3D</h3>
+        <p>
+          Playground is an interactive 3D scene built around "Boo" — a character from a childhood game that stuck with me long after I stopped playing. The project wasn't about recreating the original game. It was about capturing the feeling of it: the playfulness, the slight eeriness, the sense that something is alive and reacting to you.
+        </p>
+        <p>
+          The scene lives in the browser. Using keyboard and mouse, you trigger different animations — Boo reacts, moves, shifts its attention. Press Q to reset the scene. The interaction is simple, but the goal was to make even simple interactions feel full of personality.
+        </p>
+        <p>
+          <em>(Allow a moment for the 3D scene to fully render in the embed above.)</em>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Craft -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Craft</div>
+      <div class="cs-section__body">
+        <h3>From polygon to personality</h3>
+        <p>
+          The character model was built from scratch in Maya — starting with basic polygon shapes and sculpting toward the rounded, soft silhouette Boo is known for. The goal was to stay close to the original design while giving the 3D version enough volume and detail to feel three-dimensional rather than flat.
+        </p>
+        <p>
+          Texturing was done in Substance Painter, where hand-painted albedo maps and subtle material variations give Boo a painterly, slightly tactile quality. The white surface isn't purely flat — it has faint imperfections and softness that make it feel more like a physical object than a CG render.
+        </p>
+        <p>
+          Rigging and animation were set up in Maya, then exported for use in Spline. Spline's browser runtime allows the animations to be triggered by user interaction — click events, keyboard inputs, and hover states each map to different animation states in the rig.
+        </p>
+        <ul>
+          <li><strong>Idle state</strong> — a subtle floating loop with gentle eye tracking, creating the impression of awareness even when nothing is happening.</li>
+          <li><strong>Triggered animations</strong> — a set of reactions tied to user input: surprise, curiosity, playfulness. Each animation is loopable and blends smoothly back to idle.</li>
+          <li><strong>Scene environment</strong> — the surrounding scene uses simple geometric shapes and a limited color palette to keep the focus on Boo and avoid visual noise.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reflection -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Reflection</div>
+      <div class="cs-section__body">
+        <h3>What animation teaches you about character</h3>
+        <p>
+          Building Playground was a lesson in the difference between motion and character. A character that moves is just geometry changing position. A character that feels alive — that seems to have intentions, reactions, and personality — requires thinking carefully about timing, weight, and the way small details (an eye twitch, a slight lean) change the entire impression.
+        </p>
+        <p>
+          The project sits at the intersection of technical 3D work (modeling, rigging, real-time rendering) and interaction design (how does a user trigger these moments? What's the right delay? How do you make someone smile?). That intersection is the space I find most interesting to work in.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Next project -->
+<a href="pixel-dash.html" class="cs-next">
+  <div class="cs-row">
+    <div class="cs-next__inner">
+      <div>
+        <p class="cs-next__label">Next Project</p>
+        <p class="cs-next__title">Pixel Dash</p>
+      </div>
+      <span class="cs-next__arrow">→</span>
+    </div>
+  </div>
+</a>
+
+<!-- Footer -->
+<footer class="cs-footer">
+  <div class="cs-row">
+    <div class="cs-footer__inner">
+      <p class="cs-footer__copy">© 2026 Brian Wonjun Lee</p>
+      <div class="cs-footer__links">
+        <a href="../index.html" class="cs-footer__link">Portfolio</a>
+        <a href="https://www.linkedin.com/in/brian-lee-0b706b225/" target="_blank" class="cs-footer__link">LinkedIn</a>
+        <a href="https://github.com/leebwj" target="_blank" class="cs-footer__link">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="project.js"></script>
+</body>
+</html>

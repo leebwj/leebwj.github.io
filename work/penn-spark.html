@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Penn Spark Redesign — Brian Lee</title>
+  <link rel="shortcut icon" type="image/png" href="../images/favicon.png" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor cursor--dot"></div>
+<div class="cursor cursor--ring"></div>
+
+<!-- Nav -->
+<nav class="cs-nav">
+  <div class="cs-row">
+    <div class="cs-nav__inner">
+      <a href="../index.html" class="cs-nav__back">← All Work</a>
+      <a href="../index.html" class="cs-nav__logo">Brian Lee</a>
+      <a href="art-of-web.html" class="cs-nav__next">Next Project →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="cs-hero">
+  <div class="cs-row">
+    <div class="cs-hero__meta" data-reveal>
+      <span class="cs-hero__tag">Design</span>
+      <span class="cs-hero__tag">Development</span>
+      <span class="cs-hero__year">Sep – Dec 2025</span>
+    </div>
+    <h1 class="cs-hero__title" data-reveal data-reveal-delay="80">Penn Spark Website Redesign</h1>
+    <p class="cs-hero__subtitle" data-reveal data-reveal-delay="160">
+      Leading the end-to-end redesign of Penn Spark's public website — from a stale Gatsby codebase to a modern Next.js platform with a cohesive design system and case-study driven experience.
+    </p>
+    <div class="cs-hero__links" data-reveal data-reveal-delay="240">
+      <a href="https://pennspark.org/" target="_blank" class="cs-link">Live Website <span>→</span></a>
+      <a href="https://www.figma.com/deck/Smncuea22qlU67fbiESZaP" target="_blank" class="cs-link">Presentation <span>→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- Meta strip -->
+<div class="cs-row">
+  <div class="cs-meta-strip" data-reveal>
+    <div>
+      <p class="cs-meta__label">Role</p>
+      <p class="cs-meta__value">Project Lead<br>Designer & Developer</p>
+    </div>
+    <div>
+      <p class="cs-meta__label">Timeline</p>
+      <p class="cs-meta__value">Sep – Dec 2025<br>Team Project</p>
+    </div>
+    <div>
+      <p class="cs-meta__label">Tools</p>
+      <div class="cs-tools">
+        <span class="cs-tool">Figma</span>
+        <span class="cs-tool">Next.js</span>
+        <span class="cs-tool">React</span>
+        <span class="cs-tool">Tailwind CSS</span>
+      </div>
+    </div>
+    <div>
+      <p class="cs-meta__label">Outcome</p>
+      <p class="cs-meta__value">Live redesigned website at pennspark.org</p>
+    </div>
+  </div>
+</div>
+
+<!-- Featured image -->
+<div class="cs-full-media" data-reveal>
+  <img src="../images/pennSpark.PNG" alt="Penn Spark website redesign — homepage" />
+</div>
+
+<!-- Overview -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Overview</div>
+      <div class="cs-section__body">
+        <h3>Leading a full redesign from design to deployment</h3>
+        <p>
+          Penn Spark is UPenn's technology consulting club, where students partner with organizations to build impactful software. As project lead for the website redesign, the work spanned both ends of the stack — leading a team through a Figma-first design process, then rebuilding the site from the ground up in code.
+        </p>
+        <p>
+          The existing site was built on Gatsby and hadn't been meaningfully updated in years. It suffered from inconsistent branding, outdated content, slow performance, and a codebase that was difficult for non-technical club members to maintain. The redesign was an opportunity to fix all of it simultaneously.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Problem</div>
+      <div class="cs-section__body">
+        <h3>An outdated site that didn't reflect the club's quality</h3>
+        <p>
+          Penn Spark's public face — the first thing potential members, clients, and partner organizations see — was a site that didn't match the quality of work the club actually does. Several core issues needed addressing:
+        </p>
+        <ul>
+          <li><strong>Stale visual design</strong> — the existing design felt dated and lacked a coherent identity. Brand colors, type choices, and layout patterns were inconsistent across pages.</li>
+          <li><strong>Poor information architecture</strong> — the site's structure made it hard for visitors to quickly understand what Penn Spark does, who the team is, and how to get involved or work with the club.</li>
+          <li><strong>Outdated Gatsby stack</strong> — the codebase was slow to build and difficult to update, with no shared component system or structured content.</li>
+          <li><strong>No case study content</strong> — past project work had no dedicated showcase. The club's impact was invisible to outside visitors.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Process</div>
+      <div class="cs-section__body">
+        <h3>Design-first, then build</h3>
+        <p>
+          The process began with Figma — not code. Wireframes established the page structure and information hierarchy across the key pages (Home, About, Projects, Join, Contact). A component system was built alongside the wireframes, defining typography, spacing, color tokens, and reusable UI patterns like cards, navigation, and call-to-action blocks.
+        </p>
+        <p>
+          Once the high-fidelity designs were reviewed and approved by the team, development began on a Next.js + React stack. This choice was deliberate: Next.js offers better performance than Gatsby for a static marketing site, and React's component model maps directly to how the Figma designs were structured.
+        </p>
+        <p>
+          Tailwind CSS was used for styling — fast to write, easy to maintain, and it enforces consistency without requiring a custom design token system in code. Shared components (NavBar, ProjectCard, TeamMember, Footer) were built once and reused across every page.
+        </p>
+        <p>
+          Content for case studies was structured as data files, making it straightforward for future club members to add new projects without touching component code.
+        </p>
+        <div class="cs-grid cs-grid--2">
+          <img src="../images/pennSpark2.PNG" alt="Penn Spark — projects page" />
+          <img src="../images/pennSpark3.PNG" alt="Penn Spark — team page" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Outcome -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Outcome</div>
+      <div class="cs-section__body">
+        <h3>A faster, more cohesive site the club can actually maintain</h3>
+        <p>
+          The redesigned pennspark.org launched at the end of Fall 2025. Compared to the previous site, it loads significantly faster, has a consistent visual identity across all pages, and surfaces the club's project work through dedicated case study pages.
+        </p>
+        <p>
+          The structured content approach means future project leads can add new case studies, team members, and events by editing data files rather than modifying component code. The design system in Figma and the shared component library in code are both documented and handed off for ongoing use.
+        </p>
+        <p>
+          Leading this project end-to-end — from user research and wireframes through design system and final deployment — was one of the most complete product experiences in my work so far.
+        </p>
+        <div class="cs-section__media">
+          <img src="../images/PennSpark4.PNG" alt="Penn Spark — final design" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Next project -->
+<a href="art-of-web.html" class="cs-next">
+  <div class="cs-row">
+    <div class="cs-next__inner">
+      <div>
+        <p class="cs-next__label">Next Project</p>
+        <p class="cs-next__title">Art of the Web</p>
+      </div>
+      <span class="cs-next__arrow">→</span>
+    </div>
+  </div>
+</a>
+
+<!-- Footer -->
+<footer class="cs-footer">
+  <div class="cs-row">
+    <div class="cs-footer__inner">
+      <p class="cs-footer__copy">© 2026 Brian Wonjun Lee</p>
+      <div class="cs-footer__links">
+        <a href="../index.html" class="cs-footer__link">Portfolio</a>
+        <a href="https://www.linkedin.com/in/brian-lee-0b706b225/" target="_blank" class="cs-footer__link">LinkedIn</a>
+        <a href="https://github.com/leebwj" target="_blank" class="cs-footer__link">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="project.js"></script>
+</body>
+</html>

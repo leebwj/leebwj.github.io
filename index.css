@@ -1,3 +1,56 @@
+/* ── Custom cursor ── */
+
+.cursor--dot,
+.cursor--ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+}
+
+.cursor--dot {
+  width: 7px;
+  height: 7px;
+  background: var(--white);
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s linear, background 0.2s;
+}
+
+.cursor--ring {
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid rgba(242,237,229,0.38);
+  transform: translate(-50%, -50%);
+  transition:
+    transform 0.2s ease,
+    width  0.25s ease,
+    height 0.25s ease,
+    border-color 0.25s ease,
+    opacity 0.3s ease;
+}
+
+.cursor--ring.is-hovering {
+  width: 56px;
+  height: 56px;
+  border-color: var(--pink);
+}
+
+/* ── Scroll reveal ── */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Basic */
 
 @font-face {
@@ -32,15 +85,15 @@
     --line-height-normal: 1.7;
     --line-height-small: 1.2;
 
-    --black: #000;
-    --pink: #ff3258;
-    --white: #f0e9f2;
-    --white-1: #e5e5e6da;
+    --black: #0e0d0c;
+    --pink: #d4553a;
+    --white: #f2ede5;
+    --white-1: rgba(214, 206, 195, 0.9);
 
 
     --container-max-width: 1180px;
     --container-normal-width: 800px;
-    --container-medium-width: 700px; 
+    --container-medium-width: 700px;
     --container-small-width: 500px;
 
     --gutter-huge: 12rem;
@@ -49,13 +102,14 @@
     --gutter-small-1: 2.5rem;
     --gutter-small: 2rem;
 
-    --border-light: 1px solid rgb(36, 35, 35);
+    --border-light: 1px solid rgb(44, 41, 38);
 }
 
 html {
     font-size: 56%;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    cursor: none;
 }
 
 @media(max-width: 1000px) {
@@ -601,11 +655,40 @@ body:not(.user-is-tabbing) a:focus {
     transform: rotate(180deg);
 }
 
+/* Primary "View Case Study" CTA button */
+
+.work__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--black);
+  background: var(--white);
+  padding: 0.85rem 2.2rem;
+  margin-bottom: var(--gutter-small);
+  transition: background 0.22s ease, color 0.22s ease, transform 0.2s ease;
+}
+
+.work__cta:hover {
+  background: var(--pink);
+  color: var(--white);
+  transform: translateX(4px);
+}
+
 /* Work */
 
 .work__box {
     display: flex;
     align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.work__box:hover {
+    transform: translateY(-4px);
 }
 
 @media(max-width: 900px) {

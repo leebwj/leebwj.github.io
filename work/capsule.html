@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capsule — Brian Lee</title>
+  <link rel="shortcut icon" type="image/png" href="../images/favicon.png" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor cursor--dot"></div>
+<div class="cursor cursor--ring"></div>
+
+<!-- Nav -->
+<nav class="cs-nav">
+  <div class="cs-row">
+    <div class="cs-nav__inner">
+      <a href="../index.html" class="cs-nav__back">← All Work</a>
+      <a href="../index.html" class="cs-nav__logo">Brian Lee</a>
+      <a href="playground.html" class="cs-nav__next">Next Project →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="cs-hero">
+  <div class="cs-row">
+    <div class="cs-hero__meta" data-reveal>
+      <span class="cs-hero__tag">Design</span>
+      <span class="cs-hero__tag">Development</span>
+      <span class="cs-hero__year">Jan – Apr 2025</span>
+    </div>
+    <h1 class="cs-hero__title" data-reveal data-reveal-delay="80">Capsule</h1>
+    <p class="cs-hero__subtitle" data-reveal data-reveal-delay="160">
+      A collaborative web app for creating 3D time capsules that unlock on a chosen date — inspired by Japanese gachapon machines, built with React Three Fiber, MongoDB, and AWS S3.
+    </p>
+    <div class="cs-hero__links" data-reveal data-reveal-delay="240">
+      <a href="https://github.com/leebwj/sp25-penn-time-capsule?tab=readme-ov-file" target="_blank" class="cs-link">Repository <span>→</span></a>
+      <a href="https://www.figma.com/proto/xNLzE7NKvOo9SToBUZtaSn/Penn-Time-Capsule?node-id=913-1430&t=ThuJ8gaWZlmAcply-0&scaling=contain&content-scaling=fixed&page-id=662%3A1067" target="_blank" class="cs-link">Figma Prototype <span>→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- Meta strip -->
+<div class="cs-row">
+  <div class="cs-meta-strip" data-reveal>
+    <div>
+      <p class="cs-meta__label">Role</p>
+      <p class="cs-meta__value">Designer<br>& Developer</p>
+    </div>
+    <div>
+      <p class="cs-meta__label">Timeline</p>
+      <p class="cs-meta__value">Jan – Apr 2025<br>Team Project</p>
+    </div>
+    <div>
+      <p class="cs-meta__label">Tools</p>
+      <div class="cs-tools">
+        <span class="cs-tool">Figma</span>
+        <span class="cs-tool">Blender</span>
+        <span class="cs-tool">React Three Fiber</span>
+        <span class="cs-tool">MongoDB</span>
+        <span class="cs-tool">AWS S3</span>
+      </div>
+    </div>
+    <div>
+      <p class="cs-meta__label">Type</p>
+      <p class="cs-meta__value">Full-stack web app with 3D interaction</p>
+    </div>
+  </div>
+</div>
+
+<!-- Featured video -->
+<div class="cs-full-media" data-reveal>
+  <iframe
+    src="https://www.youtube.com/embed/VcS-ikD9YmM"
+    title="Capsule Demo"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<!-- Overview -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Overview</div>
+      <div class="cs-section__body">
+        <h3>Memories, locked in 3D, revealed in time</h3>
+        <p>
+          Capsule is a collaborative web application where users create digital time capsules — containers for photos, messages, and media — that are locked until a chosen date in the future. When the date arrives, the capsule becomes available, and its contents are revealed through an immersive 3D gallery experience.
+        </p>
+        <p>
+          The concept was inspired by Japanese gachapon machines: the physical act of turning a dial, receiving a capsule, and opening it to discover what's inside. That sense of anticipation and reveal — the delight of something arriving exactly when expected — shaped both the interaction design and the 3D visual language of the app.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Design -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Design</div>
+      <div class="cs-section__body">
+        <h3>Designing around the moment of reveal</h3>
+        <p>
+          UI and user flows were designed in Figma before any code was written. The core design challenge was building around a specific emotional arc: creation (adding memories to a capsule), anticipation (waiting for the unlock date), and reveal (opening the capsule when the time comes).
+        </p>
+        <p>
+          Each phase needed a distinct visual and interaction design:
+        </p>
+        <ul>
+          <li><strong>Creation flow</strong> — clean, form-driven interface for uploading media and writing messages. Designed to feel lightweight and quick, so the emotional weight goes into the content itself, not the interface.</li>
+          <li><strong>Gallery / waiting state</strong> — a 3D scene where locked capsules float and rotate. Capsules have distinct visual appearances based on their contents and creator. Locked capsules feel tactile but inaccessible.</li>
+          <li><strong>Reveal</strong> — the moment a capsule unlocks, an animation plays: the capsule opens, its contents spill out into the gallery. Designed to feel like a gift being unwrapped.</li>
+        </ul>
+        <p>
+          3D capsule models were modeled in Blender with multiple capsule variants (round, hexagonal, cylindrical) and material treatments that hint at the content type inside.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Development -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Development</div>
+      <div class="cs-section__body">
+        <h3>Full-stack with 3D at the center</h3>
+        <p>
+          The frontend is built with React and React Three Fiber — a React renderer for Three.js that makes 3D scenes composable with React's component model. This made it straightforward to connect the 3D gallery to real application state: capsules fetched from the database appear in the 3D scene, click events on 3D objects trigger application logic.
+        </p>
+        <p>
+          The backend is a Node.js API connected to MongoDB for data persistence. User accounts, capsule metadata, unlock dates, and contributor lists are all stored in MongoDB. Media files (photos, videos) are stored in AWS S3 with pre-signed URLs for secure upload and retrieval — keeping large binary assets out of the database.
+        </p>
+        <p>
+          Key technical challenges:
+        </p>
+        <ul>
+          <li><strong>Date-gated content</strong> — capsule content is encrypted at rest and only served after the unlock date passes, verified server-side on every request.</li>
+          <li><strong>Collaborative access</strong> — multiple users can contribute to a single capsule before it locks. Managing permissions and notifications required careful API design.</li>
+          <li><strong>3D performance</strong> — loading multiple 3D models in a browser gallery requires careful asset optimization. GLTF models were compressed and LOD (level of detail) logic was implemented to maintain smooth performance as the gallery fills.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reflection -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Reflection</div>
+      <div class="cs-section__body">
+        <h3>When design and code reinforce each other</h3>
+        <p>
+          Capsule was one of the most satisfying projects because the design and technical work were genuinely inseparable. The 3D reveal animation only works because of how the data model is structured. The anticipation of waiting for an unlock date only lands emotionally because the UI doesn't reveal the capsule contents early. Every technical decision had a design implication, and every design decision had a technical cost.
+        </p>
+        <p>
+          Working across Figma, Blender, React, and AWS S3 in a single project reinforced that building end-to-end products requires being fluent across the full stack — not just at the layer you're most comfortable in.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Next project -->
+<a href="playground.html" class="cs-next">
+  <div class="cs-row">
+    <div class="cs-next__inner">
+      <div>
+        <p class="cs-next__label">Next Project</p>
+        <p class="cs-next__title">Playground</p>
+      </div>
+      <span class="cs-next__arrow">→</span>
+    </div>
+  </div>
+</a>
+
+<!-- Footer -->
+<footer class="cs-footer">
+  <div class="cs-row">
+    <div class="cs-footer__inner">
+      <p class="cs-footer__copy">© 2026 Brian Wonjun Lee</p>
+      <div class="cs-footer__links">
+        <a href="../index.html" class="cs-footer__link">Portfolio</a>
+        <a href="https://www.linkedin.com/in/brian-lee-0b706b225/" target="_blank" class="cs-footer__link">LinkedIn</a>
+        <a href="https://github.com/leebwj" target="_blank" class="cs-footer__link">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="project.js"></script>
+</body>
+</html>
