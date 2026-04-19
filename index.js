@@ -36,9 +36,12 @@ let alterStyles = (isBackToTopRendered) => {
 
 const siteNav = document.getElementById('site-nav');
 const navLinks = document.querySelectorAll('.nav__link[data-section]');
+
+// Sort sections by their actual DOM position so scroll spy always picks the correct one
 const navSections = Array.from(navLinks)
   .map(link => document.getElementById(link.dataset.section))
-  .filter(Boolean);
+  .filter(Boolean)
+  .sort((a, b) => a.offsetTop - b.offsetTop);
 
 window.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
@@ -59,7 +62,7 @@ window.addEventListener("scroll", () => {
     siteNav.classList.remove('nav--scrolled');
   }
 
-  // Active nav link
+  // Active nav link — last section whose top edge has passed the 40% viewport mark wins
   const scrollMid = scrollY + window.innerHeight * 0.4;
   let activeId = null;
   navSections.forEach(section => {
