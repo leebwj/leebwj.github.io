@@ -19,6 +19,8 @@ const handleMouseDownOnce = () => {
 
 window.addEventListener('keydown', handleFirstTab)
 
+/* Back to top */
+
 const backToTopButton = document.querySelector(".back-to-top");
 let isBackToTopRendered = false;
 
@@ -30,15 +32,47 @@ let alterStyles = (isBackToTopRendered) => {
     : "scale(0)";
 };
 
+/* Nav: scroll background + active link highlight */
+
+const siteNav = document.getElementById('site-nav');
+const navLinks = document.querySelectorAll('.nav__link[data-section]');
+const navSections = Array.from(navLinks)
+  .map(link => document.getElementById(link.dataset.section))
+  .filter(Boolean);
+
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 700) {
+  const scrollY = window.scrollY;
+
+  // Back to top
+  if (scrollY > 700) {
     isBackToTopRendered = true;
     alterStyles(isBackToTopRendered);
   } else {
     isBackToTopRendered = false;
     alterStyles(isBackToTopRendered);
   }
+
+  // Nav background
+  if (scrollY > 60) {
+    siteNav.classList.add('nav--scrolled');
+  } else {
+    siteNav.classList.remove('nav--scrolled');
+  }
+
+  // Active nav link
+  const scrollMid = scrollY + window.innerHeight * 0.4;
+  let activeId = null;
+  navSections.forEach(section => {
+    if (section.offsetTop <= scrollMid) {
+      activeId = section.id;
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('nav__link--active', link.dataset.section === activeId);
+  });
 });
+
+/* Slideshows */
 
 const slideshows = document.querySelectorAll(".work__slideshow");
 
@@ -83,3 +117,41 @@ slideshows.forEach((slideshow) => {
 
   resetTimer();
 });
+
+/* Work tabs */
+
+const tabs = document.querySelectorAll('.work__tab');
+const allBoxes = Array.from(document.querySelectorAll('.work__box'));
+
+function applyTab(activeTabEl) {
+  const tabName = activeTabEl.dataset.tab;
+
+  const matching = tabName === 'recent'
+    ? allBoxes.slice(0, 3)
+    : allBoxes.filter(box => box.dataset.tabs.split(' ').includes(tabName));
+
+  allBoxes.forEach(box => {
+    if (matching.includes(box)) {
+      box.classList.remove('work__box--hidden');
+      box.classList.remove('work__box--entering');
+      void box.offsetWidth;
+      box.classList.add('work__box--entering');
+    } else {
+      box.classList.add('work__box--hidden');
+    }
+  });
+}
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => {
+      t.classList.remove('is-active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    tab.classList.add('is-active');
+    tab.setAttribute('aria-selected', 'true');
+    applyTab(tab);
+  });
+});
+
+applyTab(tabs[0]);
