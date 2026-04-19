@@ -7,7 +7,7 @@ import { createTrafficManager } from "./traffic.js";
 
 const SCORE_PER_SECOND = 12;
 const SPEED_DISPLAY_FACTOR = 120;
-const CATCH_THRESHOLD = 3; 
+const CATCH_THRESHOLD = 3;
 
 function selectHudElements() {
   return {
@@ -19,13 +19,26 @@ function selectHudElements() {
     retryButton: document.getElementById("retryButton"),
     helpButton: document.getElementById("helpButton"),
     instructionsScreen: document.getElementById("instructionScreen"),
-    startButton: document.getElementById("startButton")
+    startButton: document.getElementById("startButton"),
+    wantedLevel: document.getElementById("wantedLevel"),
+    wantedStars: Array.from(document.querySelectorAll(".wanted-star")),
+    sirenOverlay: document.getElementById("sirenOverlay"),
   };
 }
 
 function updateHud(hud, score, speed) {
-  if (hud.score) hud.score.textContent = Math.floor(score).toString();
-  if (hud.speed) hud.speed.textContent = `${Math.max(0, Math.round(speed))}`;
+  if (hud.score) hud.score.textContent = Math.floor(score);
+  if (hud.speed) hud.speed.textContent = Math.max(0, Math.round(speed));
+}
+
+function updateWantedLevel(hud, catchTimer) {
+  const visible = catchTimer > 0;
+  hud.wantedLevel?.classList.toggle("visible", visible);
+  hud.sirenOverlay?.classList.toggle("active", visible);
+  if (hud.wantedStars) {
+    const active = visible ? Math.ceil((catchTimer / CATCH_THRESHOLD) * hud.wantedStars.length) : 0;
+    hud.wantedStars.forEach((star, i) => star.classList.toggle("active", i < active));
+  }
 }
 
 async function init() {
@@ -38,32 +51,23 @@ async function init() {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.25;
   renderer.shadowMap.enabled = false;
-  renderer.physicallyCorrectLights = true;
   container.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
   const FOG_COLOR = 0xd4f0ff;
   scene.background = new THREE.Color(FOG_COLOR);
-  scene.fog = new THREE.Fog(FOG_COLOR, 80, 280);
+  scene.fog = new THREE.Fog(FOG_COLOR, 70, 200);
 
-  const camera = new THREE.PerspectiveCamera(
-    60,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000
-  );
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 350);
   camera.position.set(20, 25, 30);
   camera.lookAt(0, 0, 0);
 
-  const ambient = new THREE.AmbientLight(0xfff7ec, 0.8);
-  scene.add(ambient);
-
-  const hemiLight = new THREE.HemisphereLight(0xfffbdd, 0x83e0a6, 0.6);
-  scene.add(hemiLight);
+  scene.add(new THREE.AmbientLight(0xfff7ec, 0.8));
+  scene.add(new THREE.HemisphereLight(0xfffbdd, 0x83e0a6, 0.6));
 
   const sunLight = new THREE.DirectionalLight(0xfff0c9, 1.35);
   sunLight.position.set(50, 80, 30);
@@ -85,7 +89,6 @@ async function init() {
   const listener = new THREE.AudioListener();
   camera.add(listener);
   const bgm = new THREE.Audio(listener);
-  scene.add(bgm);
 
   const audioLoader = new THREE.AudioLoader();
   let bgmBuffer = null;
@@ -93,14 +96,9 @@ async function init() {
   const tryPlayBgm = () => {
     if (!bgmBuffer) return;
     const resume = listener.context.resume?.();
-    const play = () => {
-      if (!bgm.isPlaying) bgm.play();
-    };
-    if (resume && typeof resume.then === "function") {
-      resume.then(play).catch(() => {});
-    } else {
-      play();
-    }
+    const play = () => { if (!bgm.isPlaying) bgm.play(); };
+    if (resume && typeof resume.then === "function") resume.then(play).catch(() => {});
+    else play();
   };
 
   document.addEventListener("click", tryPlayBgm, { once: true });
@@ -127,26 +125,15 @@ async function init() {
   let lastCopColliders = [];
 
   function togglePause(forcedState, options = {}) {
-    const { ignoreGameOver = false } = options;
-    if (isGameOver && !ignoreGameOver) return;
-
-    const nextState =
-      typeof forcedState === "boolean" ? forcedState : !isPaused;
-    isPaused = nextState;
-
-    if (hud.pauseButton) {
-      hud.pauseButton.textContent = isPaused ? ">" : "||";
-    }
+    if (isGameOver && !options.ignoreGameOver) return;
+    isPaused = typeof forcedState === "boolean" ? forcedState : !isPaused;
+    if (hud.pauseButton) hud.pauseButton.textContent = isPaused ? "▶" : "⏸";
   }
 
   function showInstructions(resume = false) {
     if (!hud.instructionsScreen) return;
     hud.instructionsScreen.classList.remove("hidden");
-
-    if (hud.startButton) {
-      hud.startButton.textContent = resume || hasStarted ? "Resume" : "Start";
-    }
-
+    if (hud.startButton) hud.startButton.textContent = resume || hasStarted ? "Resume" : "Start";
     togglePause(true, { ignoreGameOver: true });
   }
 
@@ -161,21 +148,13 @@ async function init() {
   function triggerGameOver() {
     if (isGameOver) return;
     isGameOver = true;
-
-    if (hud.gameOverScreen) {
-      hud.gameOverScreen.classList.remove("hidden");
-    }
-    if (hud.finalScore) {
-      hud.finalScore.textContent = Math.floor(score).toString();
-    }
+    hud.gameOverScreen?.classList.remove("hidden");
+    if (hud.finalScore) hud.finalScore.textContent = Math.floor(score);
   }
 
   hud.pauseButton?.addEventListener("click", () => togglePause());
   hud.retryButton?.addEventListener("click", () => window.location.reload());
-  hud.helpButton?.addEventListener("click", () => {
-    if (isGameOver) return;
-    showInstructions(true);
-  });
+  hud.helpButton?.addEventListener("click", () => { if (!isGameOver) showInstructions(true); });
   hud.startButton?.addEventListener("click", () => hideInstructions());
 
   window.addEventListener("resize", () => {
@@ -190,36 +169,32 @@ async function init() {
     requestAnimationFrame(animate);
 
     const now = performance.now();
-    const dt = (now - lastTime) / 1000;
+    const dt = Math.min((now - lastTime) / 1000, 0.05);
     lastTime = now;
 
     if (!isPaused && !isGameOver) {
       worldManager.update(carState.x, carState.z);
-      const worldObstacles = worldManager.getObstacles?.() || [];
+      const worldObstacles = worldManager.getObstacles();
 
       trafficManager.update(dt, carState, worldObstacles, lastCopColliders);
-      const trafficObstacles = trafficManager.getObstacles?.() || [];
-      const obstacles = worldObstacles.concat(trafficObstacles);
+      const obstacles = worldObstacles.concat(trafficManager.getObstacles());
 
       updateCar(car, carState, keys, camera, obstacles);
 
       const touchingPlayer = policeManager.update(dt, car, obstacles, carState);
-      lastCopColliders = policeManager.getColliders
-        ? policeManager.getColliders()
-        : [];
+      lastCopColliders = policeManager.getColliders();
 
       score += dt * SCORE_PER_SECOND;
-      const speedDisplay = Math.abs(carState.speed) * SPEED_DISPLAY_FACTOR;
-      updateHud(hud, score, speedDisplay);
+      updateHud(hud, score, Math.abs(carState.speed) * SPEED_DISPLAY_FACTOR);
 
       if (touchingPlayer) {
         catchTimer += dt;
-        if (catchTimer >= CATCH_THRESHOLD) {
-          triggerGameOver();
-        }
+        if (catchTimer >= CATCH_THRESHOLD) triggerGameOver();
       } else {
         catchTimer = 0;
       }
+
+      updateWantedLevel(hud, catchTimer);
     }
 
     renderer.render(scene, camera);
@@ -229,6 +204,4 @@ async function init() {
   animate();
 }
 
-init().catch((err) => {
-  console.error("Error during init:", err);
-});
+init().catch((err) => console.error("Init error:", err));

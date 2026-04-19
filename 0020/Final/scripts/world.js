@@ -22,6 +22,13 @@ const BUILDING_PALETTES = [
   { body: 0xf5f5f5, trim: 0xe8e8e8, accent: 0x5d5d5d }
 ];
 
+// Shared tile geometries — created once, reused by every chunk mesh.
+// These must never be disposed when chunks are unloaded.
+const GROUND_GEO = new THREE.PlaneGeometry(TILE_SIZE, TILE_SIZE);
+const ROAD_V_GEO = new THREE.PlaneGeometry(ROAD_WIDTH, TILE_SIZE + 0.1);
+const ROAD_H_GEO = new THREE.PlaneGeometry(TILE_SIZE + 0.1, ROAD_WIDTH);
+const SHARED_GEOS = new Set([GROUND_GEO, ROAD_V_GEO, ROAD_H_GEO]);
+
 function loadModel(file, { scale = 1, radiusScale = 0.35 } = {}) {
   return new Promise((resolve, reject) => {
     loader.load(
@@ -32,14 +39,12 @@ function loadModel(file, { scale = 1, radiusScale = 0.35 } = {}) {
 
         root.traverse((child) => {
           if (!child.isMesh) return;
-          const materials = Array.isArray(child.material)
-            ? child.material
-            : [child.material];
-          const shaded = materials.map((mat) => {
-            const next = mat.clone();
-            next.flatShading = true;
-            next.needsUpdate = true;
-            return next;
+          const mats = Array.isArray(child.material) ? child.material : [child.material];
+          const shaded = mats.map((m) => {
+            const n = m.clone();
+            n.flatShading = true;
+            n.needsUpdate = true;
+            return n;
           });
           child.material = Array.isArray(child.material) ? shaded : shaded[0];
           child.castShadow = true;
@@ -47,11 +52,9 @@ function loadModel(file, { scale = 1, radiusScale = 0.35 } = {}) {
         });
 
         const box = new THREE.Box3().setFromObject(root);
-        const minY = box.min.y;
         const size = new THREE.Vector3();
         box.getSize(size);
-
-        root.userData.yOffset = -minY + 0.01;
+        root.userData.yOffset = -box.min.y + 0.01;
         root.userData.baseRadius = Math.max(size.x, size.z) * radiusScale;
 
         resolve(root);
@@ -74,6 +77,7 @@ export async function createWorldManager(scene) {
     emissive: new THREE.Color(0x193e2c),
     emissiveIntensity: 0.07
   });
+  groundMat.userData.shared = true;
 
   const roadMat = new THREE.MeshStandardMaterial({
     color: ROAD_COLOR,
@@ -81,17 +85,22 @@ export async function createWorldManager(scene) {
     metalness: 0,
     flatShading: true
   });
+  roadMat.userData.shared = true;
 
-  const [rockTemplate, treeTemplate, buildingOne, buildingTwo] =
-    await Promise.all([
-      loadModel("rock2.glb", { scale: 2.4 }),
-      loadModel("tree.glb", { scale: 5.5 }),
-      loadModel("buildingOne.glb", { scale: 6.8, radiusScale: 0.5 }),
-      loadModel("buildingTwo.glb", { scale: 6.8, radiusScale: 0.5 })
-    ]);
+  const [rockTemplate, treeTemplate, buildingOne, buildingTwo] = await Promise.all([
+    loadModel("rock2.glb", { scale: 2.4 }),
+    loadModel("tree.glb", { scale: 5.5 }),
+    loadModel("buildingOne.glb", { scale: 6.8, radiusScale: 0.5 }),
+    loadModel("buildingTwo.glb", { scale: 6.8, radiusScale: 0.5 })
+  ]);
 
   const buildingTemplates = [buildingOne, buildingTwo];
   const chunks = new Map();
+
+  let lastCx = null;
+  let lastCz = null;
+  let obstaclesDirty = true;
+  let cachedObstacles = [];
 
   const hasVerticalRoad = (cx) => cx % ROAD_SPACING === 0;
   const hasHorizontalRoad = (cz) => cz % ROAD_SPACING === 0;
@@ -99,27 +108,24 @@ export async function createWorldManager(scene) {
   function isPointNearRoad(x, z, padding = 0) {
     const cx = Math.floor(x / TILE_SIZE);
     const cz = Math.floor(z / TILE_SIZE);
-    const centerX = cx * TILE_SIZE;
-    const centerZ = cz * TILE_SIZE;
-    const localX = x - centerX;
-    const localZ = z - centerZ;
     const halfRoad = ROAD_WIDTH / 2 + padding;
-    const onVertical = hasVerticalRoad(cx) && Math.abs(localX) <= halfRoad;
-    const onHorizontal = hasHorizontalRoad(cz) && Math.abs(localZ) <= halfRoad;
-    return onVertical || onHorizontal;
+    return (
+      (hasVerticalRoad(cx) && Math.abs(x - cx * TILE_SIZE) <= halfRoad) ||
+      (hasHorizontalRoad(cz) && Math.abs(z - cz * TILE_SIZE) <= halfRoad)
+    );
   }
 
-  function isSpotFree(x, z, radius, obstacles = []) {
+  function isSpotFree(x, z, radius, obstacles) {
     for (const ob of obstacles) {
-      const minDist = radius + ob.radius + 0.5;
       const dx = x - ob.x;
       const dz = z - ob.z;
+      const minDist = radius + ob.radius + 0.5;
       if (dx * dx + dz * dz < minDist * minDist) return false;
     }
     return true;
   }
 
-  function samplePropPosition(cx, cz, radius, obstacles = []) {
+  function samplePropPosition(cx, cz, radius, obstacles) {
     const centerX = cx * TILE_SIZE;
     const centerZ = cz * TILE_SIZE;
     const half = TILE_SIZE / 2 - radius - 0.5;
@@ -146,10 +152,7 @@ export async function createWorldManager(scene) {
 
       const worldX = centerX + localX;
       const worldZ = centerZ + localZ;
-      if (
-        !isPointNearRoad(worldX, worldZ, radius + BUILDING_MARGIN * 0.4) &&
-        isSpotFree(worldX, worldZ, radius, obstacles)
-      ) {
+      if (!isPointNearRoad(worldX, worldZ, radius + BUILDING_MARGIN * 0.4) && isSpotFree(worldX, worldZ, radius, obstacles)) {
         return { x: worldX, z: worldZ };
       }
     }
@@ -157,10 +160,7 @@ export async function createWorldManager(scene) {
     for (let i = 0; i < 60; i++) {
       const worldX = centerX + (Math.random() * 2 - 1) * half;
       const worldZ = centerZ + (Math.random() * 2 - 1) * half;
-      if (
-        !isPointNearRoad(worldX, worldZ, radius + 1) &&
-        isSpotFree(worldX, worldZ, radius, obstacles)
-      ) {
+      if (!isPointNearRoad(worldX, worldZ, radius + 1) && isSpotFree(worldX, worldZ, radius, obstacles)) {
         return { x: worldX, z: worldZ };
       }
     }
@@ -173,7 +173,7 @@ export async function createWorldManager(scene) {
     return THREE.MathUtils.clamp(value, center - half, center + half);
   }
 
-  function adjustAwayFromRoad(cx, cz, pos, radius, obstacles = []) {
+  function adjustAwayFromRoad(cx, cz, pos, radius, obstacles) {
     if (!pos) return null;
     const centerX = cx * TILE_SIZE;
     const centerZ = cz * TILE_SIZE;
@@ -181,42 +181,32 @@ export async function createWorldManager(scene) {
     const adjusted = { ...pos };
 
     if (hasVerticalRoad(cx)) {
-      let dir = Math.sign(adjusted.x - centerX);
-      if (dir === 0) dir = Math.random() < 0.5 ? -1 : 1;
-      if (Math.abs(adjusted.x - centerX) < safeOffset) {
-        adjusted.x = centerX + dir * safeOffset;
-      }
+      const dir = Math.sign(adjusted.x - centerX) || (Math.random() < 0.5 ? -1 : 1);
+      if (Math.abs(adjusted.x - centerX) < safeOffset) adjusted.x = centerX + dir * safeOffset;
     }
 
     if (hasHorizontalRoad(cz)) {
-      let dir = Math.sign(adjusted.z - centerZ);
-      if (dir === 0) dir = Math.random() < 0.5 ? -1 : 1;
-      if (Math.abs(adjusted.z - centerZ) < safeOffset) {
-        adjusted.z = centerZ + dir * safeOffset;
-      }
+      const dir = Math.sign(adjusted.z - centerZ) || (Math.random() < 0.5 ? -1 : 1);
+      if (Math.abs(adjusted.z - centerZ) < safeOffset) adjusted.z = centerZ + dir * safeOffset;
     }
 
     adjusted.x = clampToChunk(centerX, adjusted.x, radius);
     adjusted.z = clampToChunk(centerZ, adjusted.z, radius);
 
-    if (isPointNearRoad(adjusted.x, adjusted.z, radius + BUILDING_MARGIN * 0.6))
-      return null;
+    if (isPointNearRoad(adjusted.x, adjusted.z, radius + BUILDING_MARGIN * 0.6)) return null;
     if (!isSpotFree(adjusted.x, adjusted.z, radius, obstacles)) return null;
     return adjusted;
   }
 
   function tintBuildingClone(clone, palette) {
+    const colors = [palette.body, palette.trim, palette.accent];
     let meshIndex = 0;
     clone.traverse((child) => {
       if (!child.isMesh) return;
-      const colors = [palette.body, palette.trim, palette.accent];
-      const materials = Array.isArray(child.material)
-        ? child.material
-        : [child.material];
-      const tinted = materials.map((mat, index) => {
+      const mats = Array.isArray(child.material) ? child.material : [child.material];
+      const tinted = mats.map((mat, index) => {
         const next = mat.clone();
-        const chosen = colors[Math.min(colors.length - 1, (meshIndex + index) % colors.length)];
-        next.color = new THREE.Color(chosen);
+        next.color.set(colors[Math.min(colors.length - 1, (meshIndex + index) % colors.length)]);
         next.flatShading = true;
         next.needsUpdate = true;
         return next;
@@ -229,11 +219,8 @@ export async function createWorldManager(scene) {
   function addBuildingToChunk(chunkGroup, template, palette, x, z, rotation) {
     const clone = template.clone(true);
     tintBuildingClone(clone, palette);
-    const yOffset = template.userData.yOffset || 0;
-    clone.position.set(x, yOffset, z);
+    clone.position.set(x, template.userData.yOffset || 0, z);
     clone.rotation.y = rotation;
-    clone.castShadow = true;
-    clone.receiveShadow = true;
     chunkGroup.add(clone);
     return { x, z, radius: (template.userData.baseRadius || 3) * 0.8 };
   }
@@ -243,43 +230,32 @@ export async function createWorldManager(scene) {
     const centerZ = cz * TILE_SIZE;
 
     if (hasVerticalRoad(cx)) {
-      const geo = new THREE.PlaneGeometry(ROAD_WIDTH, TILE_SIZE + 0.1);
-      const road = new THREE.Mesh(geo, roadMat);
+      const road = new THREE.Mesh(ROAD_V_GEO, roadMat);
       road.rotation.x = -Math.PI / 2;
       road.position.set(centerX, ROAD_Y, centerZ);
-      road.receiveShadow = true;
       chunkGroup.add(road);
     }
 
     if (hasHorizontalRoad(cz)) {
-      const geo = new THREE.PlaneGeometry(TILE_SIZE + 0.1, ROAD_WIDTH);
-      const road = new THREE.Mesh(geo, roadMat);
+      const road = new THREE.Mesh(ROAD_H_GEO, roadMat);
       road.rotation.x = -Math.PI / 2;
       road.position.set(centerX, ROAD_Y, centerZ);
-      road.receiveShadow = true;
       chunkGroup.add(road);
     }
   }
 
   function addCloneToChunk(group, template, x, z, options = {}) {
     const clone = template.clone(true);
-    const yOffset = template.userData.yOffset || 0;
-    clone.position.set(x, yOffset, z);
+    clone.position.set(x, template.userData.yOffset || 0, z);
 
-    if (options.randomRotateY !== false) {
-      clone.rotation.y = Math.random() * Math.PI * 2;
-    }
+    if (options.randomRotateY !== false) clone.rotation.y = Math.random() * Math.PI * 2;
 
     let radius = template.userData.baseRadius || 1;
-    let scaleMult = 1;
-
     if (options.variationScale) {
       const s = 1 + (Math.random() - 0.5) * options.variationScale;
       clone.scale.multiplyScalar(s);
-      scaleMult = s;
+      radius *= s;
     }
-
-    radius *= scaleMult;
 
     group.add(clone);
     return { x, z, radius };
@@ -290,67 +266,43 @@ export async function createWorldManager(scene) {
     if (chunks.has(key)) return;
 
     const chunkGroup = new THREE.Group();
-    chunkGroup.name = `Chunk_${key}`;
     worldRoot.add(chunkGroup);
 
     const obstacles = [];
 
-    const groundGeo = new THREE.PlaneGeometry(TILE_SIZE, TILE_SIZE);
-    const ground = new THREE.Mesh(groundGeo, groundMat);
+    const ground = new THREE.Mesh(GROUND_GEO, groundMat);
     ground.rotation.x = -Math.PI / 2;
     ground.position.set(cx * TILE_SIZE, 0, cz * TILE_SIZE);
-    ground.receiveShadow = true;
     chunkGroup.add(ground);
 
     addRoadsToChunk(chunkGroup, cx, cz);
 
     for (let i = 0; i < BUILDINGS_PER_CHUNK; i++) {
       if (Math.random() > BUILDING_SPAWN_CHANCE) continue;
-      const template =
-        buildingTemplates[Math.floor(Math.random() * buildingTemplates.length)];
-      const palette =
-        BUILDING_PALETTES[Math.floor(Math.random() * BUILDING_PALETTES.length)];
+      const template = buildingTemplates[Math.floor(Math.random() * buildingTemplates.length)];
+      const palette = BUILDING_PALETTES[Math.floor(Math.random() * BUILDING_PALETTES.length)];
       const radius = (template.userData.baseRadius || 3) * 0.8;
-      const initialSpot = samplePropPosition(cx, cz, radius, obstacles);
-      const spot = adjustAwayFromRoad(cx, cz, initialSpot, radius, obstacles);
+      const spot = adjustAwayFromRoad(cx, cz, samplePropPosition(cx, cz, radius, obstacles), radius, obstacles);
       if (!spot) continue;
-      const centerX = cx * TILE_SIZE;
-      const centerZ = cz * TILE_SIZE;
-      const dx = Math.abs(spot.x - centerX);
-      const dz = Math.abs(spot.z - centerZ);
-      const rotation = dx >= dz ? 0 : Math.PI / 2;
-      const buildingObstacle = addBuildingToChunk(
-        chunkGroup,
-        template,
-        palette,
-        spot.x,
-        spot.z,
-        rotation
-      );
-      obstacles.push(buildingObstacle);
+      const dx = Math.abs(spot.x - cx * TILE_SIZE);
+      const dz = Math.abs(spot.z - cz * TILE_SIZE);
+      obstacles.push(addBuildingToChunk(chunkGroup, template, palette, spot.x, spot.z, dx >= dz ? 0 : Math.PI / 2));
     }
 
     for (let i = 0; i < ROCKS_PER_CHUNK; i++) {
-      const approxRadius = (rockTemplate.userData.baseRadius || 1) * 1.25;
-      const spot = samplePropPosition(cx, cz, approxRadius, obstacles);
+      const spot = samplePropPosition(cx, cz, (rockTemplate.userData.baseRadius || 1) * 1.25, obstacles);
       if (!spot) continue;
-      const ob = addCloneToChunk(chunkGroup, rockTemplate, spot.x, spot.z, {
-        variationScale: 0.4
-      });
-      obstacles.push(ob);
+      obstacles.push(addCloneToChunk(chunkGroup, rockTemplate, spot.x, spot.z, { variationScale: 0.4 }));
     }
 
     for (let i = 0; i < TREES_PER_CHUNK; i++) {
-      const approxRadius = (treeTemplate.userData.baseRadius || 1) * 1.2;
-      const spot = samplePropPosition(cx, cz, approxRadius, obstacles);
+      const spot = samplePropPosition(cx, cz, (treeTemplate.userData.baseRadius || 1) * 1.2, obstacles);
       if (!spot) continue;
-      const ob = addCloneToChunk(chunkGroup, treeTemplate, spot.x, spot.z, {
-        variationScale: 0.3
-      });
-      obstacles.push(ob);
+      obstacles.push(addCloneToChunk(chunkGroup, treeTemplate, spot.x, spot.z, { variationScale: 0.3 }));
     }
 
     chunks.set(key, { group: chunkGroup, obstacles });
+    obstaclesDirty = true;
   }
 
   function updateChunksAround(cx, cz) {
@@ -362,40 +314,43 @@ export async function createWorldManager(scene) {
 
     for (const [key, chunk] of chunks.entries()) {
       const [xStr, zStr] = key.split(",");
-      const cX = parseInt(xStr, 10);
-      const cZ = parseInt(zStr, 10);
-
       if (
-        Math.abs(cX - cx) > ACTIVE_RADIUS + 1 ||
-        Math.abs(cZ - cz) > ACTIVE_RADIUS + 1
+        Math.abs(parseInt(xStr, 10) - cx) > ACTIVE_RADIUS + 1 ||
+        Math.abs(parseInt(zStr, 10) - cz) > ACTIVE_RADIUS + 1
       ) {
         worldRoot.remove(chunk.group);
         chunk.group.traverse((obj) => {
           if (!obj.isMesh) return;
-          obj.geometry.dispose();
-          if (Array.isArray(obj.material)) {
-            obj.material.forEach((m) => m.dispose());
-          } else {
-            obj.material.dispose();
+          if (!SHARED_GEOS.has(obj.geometry)) obj.geometry.dispose();
+          if (!obj.material?.userData?.shared) {
+            Array.isArray(obj.material)
+              ? obj.material.forEach((m) => m.dispose())
+              : obj.material.dispose();
           }
         });
         chunks.delete(key);
+        obstaclesDirty = true;
       }
     }
   }
 
   function getObstacles() {
-    const all = [];
+    if (!obstaclesDirty) return cachedObstacles;
+    cachedObstacles = [];
     for (const { obstacles } of chunks.values()) {
-      all.push(...obstacles);
+      for (const ob of obstacles) cachedObstacles.push(ob);
     }
-    return all;
+    obstaclesDirty = false;
+    return cachedObstacles;
   }
 
   return {
     update(x, z) {
       const cx = Math.floor(x / TILE_SIZE);
       const cz = Math.floor(z / TILE_SIZE);
+      if (cx === lastCx && cz === lastCz) return;
+      lastCx = cx;
+      lastCz = cz;
       updateChunksAround(cx, cz);
     },
     getObstacles

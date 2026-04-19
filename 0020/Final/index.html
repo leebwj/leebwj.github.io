@@ -3,66 +3,82 @@
 <head>
   <meta charset="UTF-8" />
   <title>Road Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="game-container"></div>
 
-  <div class="tiltshift-overlay"></div>
+  <!-- Edge vignette – pure CSS, no backdrop-filter -->
+  <div class="vignette"></div>
 
-  <div class="hud">
-    <div class="hud__section">
-      <span class="hud__label">Score</span>
-      <span id="scoreValue" class="hud__value">0</span>
-    </div>
-    <div class="hud__section">
-      <span class="hud__label">Speed</span>
-      <span id="speedValue" class="hud__value">0</span>
-    </div>
-    <div class="hud__actions">
-      <button id="pauseButton" class="hud__button" type="button">||</button>
-      <button id="helpButton" class="hud__button hud__button--help" type="button">?</button>
+  <!-- Police siren edge flash when being caught -->
+  <div id="sirenOverlay" class="siren-overlay"></div>
+
+  <!-- Score – top left, floating text only -->
+  <div class="hud-score">
+    <span class="hud-eyebrow">Score</span>
+    <span id="scoreValue" class="hud-score__num">0</span>
+  </div>
+
+  <!-- Control buttons – top right -->
+  <div class="hud-actions">
+    <button id="pauseButton" class="hud-btn" aria-label="Pause">⏸</button>
+    <button id="helpButton" class="hud-btn" aria-label="Help">?</button>
+  </div>
+
+  <!-- Speed – bottom left -->
+  <div class="hud-speed">
+    <span id="speedValue" class="hud-speed__num">0</span>
+    <span class="hud-eyebrow">km/h</span>
+  </div>
+
+  <!-- Wanted level – bottom right, GTA-style stars -->
+  <div id="wantedLevel" class="wanted-level">
+    <span class="hud-eyebrow">Wanted</span>
+    <div class="wanted-stars">
+      <span class="wanted-star">★</span>
+      <span class="wanted-star">★</span>
+      <span class="wanted-star">★</span>
     </div>
   </div>
 
-  <div id="instructionScreen" class="instruction-screen">
-    <div class="instruction-screen__inner">
-      <p class="instruction-screen__eyebrow">Welcome Driver</p>
-      <p class="instruction-screen__title">Road Rogue</p>
-      <p class="instruction-screen__subtitle">
-        Boost through traffic, dodge rocks, and stay ahead of the cops. Every second alive increases your score.
-      </p>
-      <div class="instruction-screen__grid">
-        <div class="instruction-screen__card">
-          <p class="instruction-screen__card-title">Controls</p>
-          <ul>
-            <li>W / Arrow Up &mdash; Accelerate</li>
-            <li>S / Arrow Down &mdash; Brake / Reverse</li>
-            <li>A / D or Arrows &mdash; Steer</li>
-            <li>Shift &mdash; Boost burst</li>
-          </ul>
-        </div>
-        <div class="instruction-screen__card">
-          <p class="instruction-screen__card-title">Tips</p>
-          <ul>
-            <li>Stay off the rocks and trees.</li>
-            <li>Use boost to break police lines.</li>
-            <li>Need a refresher? Tap the ? button anytime.</li>
-          </ul>
-        </div>
+  <!-- Instruction / splash screen -->
+  <div id="instructionScreen" class="splash">
+    <p class="splash__eyebrow">Road Rogue</p>
+    <h1 class="splash__title">Wanted</h1>
+    <p class="splash__sub">Boost through traffic and outrun the cops.<br>Every second alive counts.</p>
+    <div class="splash__controls">
+      <div class="splash__col">
+        <p class="splash__col-label">Drive</p>
+        <ul>
+          <li><kbd>W</kbd> / ↑ &nbsp;Accelerate</li>
+          <li><kbd>S</kbd> / ↓ &nbsp;Brake · Reverse</li>
+          <li><kbd>A</kbd> <kbd>D</kbd> &nbsp;Steer</li>
+          <li><kbd>Shift</kbd> &nbsp;Boost</li>
+        </ul>
       </div>
-      <button id="startButton" type="button" class="instruction-screen__button">Start</button>
+      <div class="splash__rule"></div>
+      <div class="splash__col">
+        <p class="splash__col-label">Survive</p>
+        <ul>
+          <li>Avoid rocks and trees</li>
+          <li>Boost through police lines</li>
+          <li>Stay free for 3 sec or bust</li>
+        </ul>
+      </div>
     </div>
+    <button id="startButton" class="splash__btn">Start Engine</button>
   </div>
 
-  <div id="gameOverScreen" class="game-over hidden">
-    <div class="game-over__inner">
-      <p class="game-over__title">WASTED</p>
-      <p class="game-over__score">
-        Score <span id="finalScore" class="game-over__score-value">0</span>
-      </p>
-      <button id="retryButton" type="button">Retry</button>
-    </div>
+  <!-- Game over -->
+  <div id="gameOverScreen" class="gameover hidden">
+    <p class="gameover__title">Wasted</p>
+    <p class="gameover__score" id="finalScore">0</p>
+    <p class="gameover__score-sub">points</p>
+    <button id="retryButton" class="gameover__btn">Try Again</button>
   </div>
 
   <script type="importmap">

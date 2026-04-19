@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { resolveVsObstacles } from "./physics.js";
 
 const MODEL_PATH = "./assets/models/";
 const PLAYER_RADIUS = 1.2;
@@ -61,38 +62,6 @@ export function createCar(scene) {
   return { car, carState };
 }
 
-export function resolveCarVsObstacles(state, carRadius, obstacles) {
-  if (!obstacles || !obstacles.length) return;
-
-  for (const ob of obstacles) {
-    const dx = state.x - ob.x;
-    const dz = state.z - ob.z;
-    const sumR = carRadius + ob.radius;
-    const distSq = dx * dx + dz * dz;
-
-    if (distSq <= 1e-6 || distSq >= sumR * sumR) continue;
-
-    const dist = Math.sqrt(distSq);
-    const penetration = sumR - dist;
-    const nx = dx / dist;
-    const nz = dz / dist;
-
-    state.x += nx * penetration;
-    state.z += nz * penetration;
-
-    const fx = Math.sin(state.angle);
-    const fz = Math.cos(state.angle);
-    const alignment = fx * nx + fz * nz;
-
-    if (alignment > 0) {
-      const normalComponent = alignment * state.speed;
-      state.speed -= normalComponent * 1.1;
-    }
-
-    state.speed *= 0.9;
-  }
-}
-
 export function updateCar(car, carState, keys, camera, obstacles = []) {
   const forward = keys["w"] || keys["arrowup"];
   const backward = keys["s"] || keys["arrowdown"];
@@ -143,7 +112,7 @@ export function updateCar(car, carState, keys, camera, obstacles = []) {
   carState.z += Math.cos(carState.angle) * carState.speed;
 
   if (obstacles && obstacles.length) {
-    resolveCarVsObstacles(carState, PLAYER_RADIUS, obstacles);
+    resolveVsObstacles(carState, PLAYER_RADIUS, obstacles);
   }
 
   car.position.set(carState.x, 0.5, carState.z);

@@ -1,49 +1,12 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { resolveVsObstacles, circleOverlap } from "./physics.js";
 
 const MODEL_PATH = "./assets/models/";
 const MAX_POLICE = 3;
 const SPAWN_INTERVAL = 6;
 
-function resolveCarVsObstacles(state, carRadius, obstacles) {
-  if (!obstacles || !obstacles.length) return;
-
-  for (const ob of obstacles) {
-    const dx = state.x - ob.x;
-    const dz = state.z - ob.z;
-    const sumR = carRadius + ob.radius;
-    const distSq = dx * dx + dz * dz;
-
-    if (distSq <= 1e-6 || distSq >= sumR * sumR) continue;
-
-    const dist = Math.sqrt(distSq);
-    const penetration = sumR - dist;
-    const nx = dx / dist;
-    const nz = dz / dist;
-
-    state.x += nx * penetration;
-    state.z += nz * penetration;
-
-    const fx = Math.sin(state.angle);
-    const fz = Math.cos(state.angle);
-    const alignment = fx * nx + fz * nz;
-
-    if (alignment > 0) {
-      const normalComponent = alignment * state.speed;
-      state.speed -= normalComponent * 1.1;
-    }
-    state.speed *= 0.9;
-  }
-}
-
 const loader = new GLTFLoader();
-
-const circleHit = (ax, az, ar, bx, bz, br) => {
-  const dx = ax - bx;
-  const dz = az - bz;
-  const r = ar + br;
-  return dx * dx + dz * dz < r * r;
-};
 
 function loadPoliceModel() {
   return new Promise((resolve, reject) => {
@@ -162,7 +125,7 @@ export async function createPoliceManager(scene) {
       s.x += Math.sin(s.angle) * s.speed;
       s.z += Math.cos(s.angle) * s.speed;
 
-      resolveCarVsObstacles(s, s.radius, obstacles);
+      resolveVsObstacles(s, s.radius, obstacles);
     }
 
     for (let i = 0; i < policeCars.length; i++) {
@@ -202,7 +165,7 @@ export async function createPoliceManager(scene) {
       for (const pc of policeCars) {
         const s = pc.state;
 
-        if (circleHit(s.x, s.z, s.radius, playerState.x, playerState.z, playerRadius)) {
+        if (circleOverlap(s.x, s.z, s.radius, playerState.x, playerState.z, playerRadius)) {
           playerTouching = true;
 
           const dx = playerState.x - s.x;
