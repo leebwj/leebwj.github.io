@@ -219,3 +219,22 @@ tabs.forEach(tab => {
 });
 
 applyTab(tabs[0]);
+
+/* Work nav dropdown */
+
+document.querySelectorAll('.nav__dropdown-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const filter = item.dataset.filter;
+    const targetTab = Array.from(tabs).find(t => t.dataset.tab === filter);
+    if (targetTab) {
+      tabs.forEach(t => {
+        t.classList.remove('is-active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      targetTab.classList.add('is-active');
+      targetTab.setAttribute('aria-selected', 'true');
+      applyTab(targetTab);
+    }
+    document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+  });
+});

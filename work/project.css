@@ -24,7 +24,7 @@
 
 :root {
   --black:    #0e0d0c;
-  --pink:     #d4553a;
+  --pink:     #ff3258;
   --white:    #f2ede5;
   --white-1:  rgba(214, 206, 195, 0.9);
   --border:   1px solid rgba(255,255,255,0.07);
@@ -506,7 +506,7 @@ a {
 /* ── Footer ── */
 
 .cs-footer {
-  padding: 4rem 0;
+  padding: 6rem 0;
   border-top: var(--border);
 }
 
@@ -517,22 +517,51 @@ a {
 }
 
 .cs-footer__copy {
-  font-size: 1.4rem;
-  color: rgba(255,255,255,0.3);
+  font-family: 'Jost', sans-serif;
+  font-size: var(--font-sm);
+  color: rgba(242, 237, 229, 0.45);
+  margin: 0;
 }
 
 .cs-footer__links {
   display: flex;
-  gap: 2.4rem;
+  gap: 3.6rem;
 }
 
 .cs-footer__link {
-  font-size: 1.4rem;
-  color: rgba(255,255,255,0.4);
+  font-family: 'Jost', sans-serif;
+  font-size: var(--font-sm);
+  color: rgba(242, 237, 229, 0.6);
+  text-decoration: none;
   transition: color 0.2s;
+  position: relative;
+}
+
+.cs-footer__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--pink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(1, 0.68, 0.16, 0.9);
 }
 
 .cs-footer__link:hover { color: var(--white); }
+
+.cs-footer__link:hover::after { transform: scaleX(1); }
+
+@media(max-width: 600px) {
+  .cs-footer__inner {
+    flex-direction: column;
+    gap: 2.4rem;
+    text-align: center;
+  }
+  .cs-footer__links { justify-content: center; }
+}
 
 /* ── Responsive tweaks ── */
 

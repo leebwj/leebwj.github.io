@@ -28,7 +28,14 @@
     <a href="#top" class="nav__logo">Brian Lee</a>
     <ul class="nav__items">
       <li class="nav__item"><a href="#about" class="nav__link" data-section="about">About</a></li>
-      <li class="nav__item"><a href="#work" class="nav__link" data-section="work">Work</a></li>
+      <li class="nav__item nav__item--has-dropdown">
+        <a href="#work" class="nav__link" data-section="work">Work</a>
+        <div class="nav__dropdown">
+          <button class="nav__dropdown-item" data-filter="recent">Recent</button>
+          <button class="nav__dropdown-item" data-filter="design">Design</button>
+          <button class="nav__dropdown-item" data-filter="develop">Development</button>
+        </div>
+      </li>
       <li class="nav__item"><a href="#clients" class="nav__link" data-section="clients">Experience</a></li>
       <li class="nav__item"><a href="#contact" class="nav__link" data-section="contact">Contact</a></li>
     </ul>
@@ -103,7 +110,18 @@
             <li>UI Design</li>
             <li>User Testing</li>
           </ul>
+        </div>
 
+        <div class="work__image-col">
+          <div class="work__image-box">
+            <iframe
+              style="border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);"
+              src="https://embed.figma.com/proto/DBOeERCANozjTRaP6VYxIb/Brian-Lee---Design?node-id=47-409&viewport=1041%2C-2055%2C0.27&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=47%3A409&page-id=42%3A398&embed-host=share"
+              width="100%"
+              height="400"
+              allowfullscreen>
+            </iframe>
+          </div>
           <div class="work__links work__links--stacked">
             <a href="https://www.figma.com/proto/DBOeERCANozjTRaP6VYxIb/Brian-Lee---Design?node-id=319-216&viewport=344%2C-430%2C0.08&t=2hEc8yLmTo5mlCYw-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=319%3A216&show-proto-sidebar=1&page-id=42%3A398" target="_blank" class="link__text">
               View Prototype <span>&rarr;</span>
@@ -112,16 +130,6 @@
               Presentation <span>&rarr;</span>
             </a>
           </div>
-        </div>
-
-        <div class="work__image-box">
-          <iframe
-            style="border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);"
-            src="https://embed.figma.com/proto/DBOeERCANozjTRaP6VYxIb/Brian-Lee---Design?node-id=47-409&viewport=1041%2C-2055%2C0.27&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=47%3A409&page-id=42%3A398&embed-host=share"
-            width="100%"
-            height="400"
-            allowfullscreen>
-          </iframe>
         </div>
       </div>
 
@@ -136,15 +144,27 @@
           <p class="work__date">Aug 2025 - Dec 2025</p>
           <a href="./work/art-of-web.html" class="work__cta">View Case Study →</a>
           <p>
-            Self-Directed Project: A semester-long portfolio website that documents every project, assignment, and reading response from Art of the Web. Built with consistent styling and deliberate interaction design, the site explores internet culture while showcasing my growth in HTML, CSS, JavaScript through curated archives and interactive layouts that highlight UX and information architecture.
+            Course Project: A semester-long interactive portfolio built as a Three.js 3D scene — floating GLTF objects with custom physics and GSAP animations serve as the navigation for eight course projects spanning CSS art, generative p5.js sketches, a browser game, and an interactive data experience.
           </p>
           <ul class="work__list">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>Web Design</li>
+            <li>Three.js</li>
+            <li>GSAP</li>
+            <li>SCSS / Vite</li>
+            <li>p5.js</li>
+            <li>Canvas API</li>
           </ul>
+        </div>
 
+        <div class="work__image-col">
+          <div class="work__image-box">
+            <iframe
+              src="https://leebwj.github.io/1020/portfolio/"
+              frameborder="0"
+              width="100%"
+              height="400"
+              style="border-radius: 8px; overflow:hidden;">
+            </iframe>
+          </div>
           <div class="work__links work__links--stacked">
             <a href="https://leebwj.github.io/1020/portfolio/" target="_blank" class="link__text">
               View Project <span>&rarr;</span>
@@ -153,16 +173,6 @@
               Repository <span>&rarr;</span>
             </a>
           </div>
-        </div>
-
-        <div class="work__image-box">
-          <iframe
-            src="https://leebwj.github.io/1020/portfolio/"
-            frameborder="0"
-            width="100%"
-            height="400"
-            style="border-radius: 8px; overflow:hidden;">
-          </iframe>
         </div>
       </div>
 
@@ -186,7 +196,23 @@
             <li>React</li>
             <li>Next.js</li>
           </ul>
+        </div>
 
+        <div class="work__image-col">
+          <div class="work__image-box">
+            <div class="work__slideshow" data-interval="4200">
+              <img src="./images/pennSpark.PNG" class="work__slide is-active" alt="Penn Spark website redesign" />
+              <img src="./images/pennSpark2.PNG" class="work__slide" alt="Penn Spark website redesign" />
+              <img src="./images/pennSpark3.PNG" class="work__slide" alt="Penn Spark website redesign" />
+              <img src="./images/PennSpark4.PNG" class="work__slide" alt="Penn Spark website redesign" />
+              <button class="work__slide-control work__slide-control--prev" type="button" aria-label="Previous slide">
+                <img src="./images/arrow-up.svg" alt="" class="work__slide-icon work__slide-icon--prev" />
+              </button>
+              <button class="work__slide-control work__slide-control--next" type="button" aria-label="Next slide">
+                <img src="./images/arrow-up.svg" alt="" class="work__slide-icon work__slide-icon--next" />
+              </button>
+            </div>
+          </div>
           <div class="work__links work__links--stacked">
             <a href="https://pennspark.org/" target="_blank" class="link__text">
               Live Website <span>&rarr;</span>
@@ -194,21 +220,6 @@
             <a href="https://www.figma.com/deck/Smncuea22qlU67fbiESZaP" target="_blank" class="link__text">
               Presentation <span>&rarr;</span>
             </a>
-          </div>
-        </div>
-
-        <div class="work__image-box">
-          <div class="work__slideshow" data-interval="4200">
-            <img src="./images/pennSpark.PNG" class="work__slide is-active" alt="Penn Spark website redesign" />
-            <img src="./images/pennSpark2.PNG" class="work__slide" alt="Penn Spark website redesign" />
-            <img src="./images/pennSpark3.PNG" class="work__slide" alt="Penn Spark website redesign" />
-            <img src="./images/PennSpark4.PNG" class="work__slide" alt="Penn Spark website redesign" />
-            <button class="work__slide-control work__slide-control--prev" type="button" aria-label="Previous slide">
-              <img src="./images/arrow-up.svg" alt="" class="work__slide-icon work__slide-icon--prev" />
-            </button>
-            <button class="work__slide-control work__slide-control--next" type="button" aria-label="Next slide">
-              <img src="./images/arrow-up.svg" alt="" class="work__slide-icon work__slide-icon--next" />
-            </button>
           </div>
         </div>
       </div>
@@ -231,7 +242,12 @@
             <li>Low-Poly Modeling</li>
             <li>Game Design</li>
           </ul>
+        </div>
 
+        <div class="work__image-col">
+          <div class="work__image-box">
+            <img src="./images/rodeRogue.png" class="work__image" alt="Road Rogue gameplay" />
+          </div>
           <div class="work__links work__links--stacked">
             <a href="https://leebwj.github.io/0020/Final/index.html" target="_blank" class="link__text">
               Play Game <span>&rarr;</span>
@@ -240,10 +256,6 @@
               Repository <span>&rarr;</span>
             </a>
           </div>
-        </div>
-
-        <div class="work__image-box">
-          <img src="./images/rodeRogue.png" class="work__image" alt="Road Rogue gameplay" />
         </div>
       </div>
 
@@ -267,7 +279,21 @@
             <li>AWS S3</li>
             <li>Blender</li>
           </ul>
+        </div>
 
+        <div class="work__image-col">
+          <div class="work__image-box">
+            <iframe
+              width="100%"
+              height="400"
+              src="https://www.youtube.com/embed/VcS-ikD9YmM"
+              title="Capsule Demo"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              style="border-radius: 8px;">
+            </iframe>
+          </div>
           <div class="work__links work__links--stacked">
             <a href="https://github.com/leebwj/sp25-penn-time-capsule?tab=readme-ov-file" target="_blank" class="link__text">
               Repository <span>&rarr;</span>
@@ -276,19 +302,6 @@
               Presentation <span>&rarr;</span>
             </a>
           </div>
-        </div>
-
-        <div class="work__image-box">
-          <iframe
-            width="100%"
-            height="400"
-            src="https://www.youtube.com/embed/VcS-ikD9YmM"
-            title="Capsule Demo"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            style="border-radius: 8px;">
-          </iframe>
         </div>
       </div>
 
@@ -310,22 +323,23 @@
             <li>Substance Painter</li>
             <li>Photoshop</li>
           </ul>
+        </div>
 
+        <div class="work__image-col">
+          <div class="work__image-box">
+            <iframe
+              src="https://my.spline.design/untitled-QVRKLSCWxKCmX5aAVZUXDukV/"
+              frameborder="0"
+              width="100%"
+              height="400"
+              style="border-radius: 8px; overflow:hidden;">
+            </iframe>
+          </div>
           <div class="work__links work__links--stacked">
             <a href="https://my.spline.design/untitled-QVRKLSCWxKCmX5aAVZUXDukV/" target="_blank" class="link__text">
               View Project <span>&rarr;</span>
             </a>
           </div>
-        </div>
-
-        <div class="work__image-box">
-          <iframe
-            src="https://my.spline.design/untitled-QVRKLSCWxKCmX5aAVZUXDukV/"
-            frameborder="0"
-            width="100%"
-            height="400"
-            style="border-radius: 8px; overflow:hidden;">
-          </iframe>
         </div>
       </div>
 
@@ -347,15 +361,17 @@
             <li>File I/O</li>
             <li>Game Design</li>
           </ul>
+        </div>
 
+        <div class="work__image-col">
+          <div class="work__image-box">
+            <img src="./images/pixelrun.png" class="work__image" alt="Pixel Run" />
+          </div>
           <div class="work__links work__links--stacked">
             <a href="https://github.com/leebwj/pixeldash.github.io" target="_blank" class="link__text">
               Repository <span>&rarr;</span>
             </a>
           </div>
-        </div>
-        <div class="work__image-box">
-          <img src="./images/pixelrun.png" class="work__image" alt="Pixel Run" />
         </div>
       </div>
 
@@ -425,24 +441,14 @@
 
 <footer role="contentinfo" class="footer">
   <div class="row">
-    <ul class="footer__social-links">
-      <li class="footer__social-link-item">
-        <a href="https://github.com/leebwj" title="Link to Github Profile">
-          <img src="./images/github.svg" class="footer__social-image" alt="Github">
-        </a>
-      </li>
-      <li class="footer__social-link-item">
-        <a href="https://brianleeportfolio.cargo.site/" title="Link to Art Portfolio Website">
-          <img src="./images/Cargo.png" class="footer__social-image" alt="Cargo">
-        </a>
-      </li>
-      <li class="footer__social-link-item">
-        <a href="https://www.linkedin.com/in/brian-lee-0b706b225/">
-          <img src="./images/linkedin.svg" title="Link to Linkedin Profile" class="footer__social-image" alt="Linkedin">
-        </a>
-      </li>
-    </ul>
-
+    <div class="footer__inner">
+      <p class="footer__copy">© 2026 Brian Wonjun Lee</p>
+      <div class="footer__links">
+        <a href="https://github.com/leebwj" target="_blank" rel="noopener" class="footer__link">GitHub</a>
+        <a href="https://brianleeportfolio.cargo.site/" target="_blank" rel="noopener" class="footer__link">Art Portfolio</a>
+        <a href="https://www.linkedin.com/in/brian-lee-0b706b225/" target="_blank" rel="noopener" class="footer__link">LinkedIn</a>
+      </div>
+    </div>
   </div>
 </footer>
 

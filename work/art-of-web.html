@@ -34,7 +34,7 @@
     </div>
     <h1 class="cs-hero__title" data-reveal data-reveal-delay="80">Art of the Web</h1>
     <p class="cs-hero__subtitle" data-reveal data-reveal-delay="160">
-      A semester-long web portfolio documenting every project, reading response, and experiment from a course exploring internet culture — built with deliberate design choices and interactive layouts.
+      A semester-long interactive portfolio built as a Three.js 3D scene — floating 3D objects, custom physics, and GSAP animations house every course project and reading response from a semester exploring internet culture.
     </p>
     <div class="cs-hero__links" data-reveal data-reveal-delay="240">
       <a href="https://leebwj.github.io/1020/portfolio/" target="_blank" class="cs-link">View Site <span>→</span></a>
@@ -52,20 +52,22 @@
     </div>
     <div>
       <p class="cs-meta__label">Timeline</p>
-      <p class="cs-meta__value">Aug – Dec 2025<br>Self-Directed</p>
+      <p class="cs-meta__value">Aug – Dec 2025<br>Course Project</p>
     </div>
     <div>
       <p class="cs-meta__label">Tools</p>
       <div class="cs-tools">
-        <span class="cs-tool">HTML</span>
-        <span class="cs-tool">CSS</span>
-        <span class="cs-tool">JavaScript</span>
-        <span class="cs-tool">Web Design</span>
+        <span class="cs-tool">Three.js</span>
+        <span class="cs-tool">GSAP</span>
+        <span class="cs-tool">SCSS</span>
+        <span class="cs-tool">Vite</span>
+        <span class="cs-tool">p5.js</span>
+        <span class="cs-tool">Canvas API</span>
       </div>
     </div>
     <div>
       <p class="cs-meta__label">Type</p>
-      <p class="cs-meta__value">Portfolio website / Semester archive</p>
+      <p class="cs-meta__value">3D interactive portfolio / Semester archive</p>
     </div>
   </div>
 </div>
@@ -89,52 +91,79 @@
           Art of the Web is a course about the internet as a creative and cultural medium — exploring how the web is built, who controls it, and how it shapes and reflects culture. Rather than submitting work through a learning management system, the format required building and maintaining a public portfolio site throughout the semester.
         </p>
         <p>
-          This site became more than a submission container. It was a design challenge in its own right: how do you create a consistent, well-designed archive of work that is itself exploring questions of web design, internet aesthetics, and interactive media?
+          The portfolio became more than an archive container. It was a design and engineering challenge: how do you build something that feels as considered and creative as the work it's housing? The answer was a fully interactive 3D scene — each course project represented as a floating 3D object in space, clickable to reveal its details.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- What was built -->
+<!-- The portfolio itself -->
 <section class="cs-section">
   <div class="cs-row">
     <div class="cs-section__inner" data-reveal>
-      <div class="cs-section__label">What Was Built</div>
+      <div class="cs-section__label">The Portfolio Site</div>
       <div class="cs-section__body">
-        <h3>Consistent design across a full semester of work</h3>
+        <h3>A Three.js 3D scene as an interface</h3>
         <p>
-          Built entirely in vanilla HTML, CSS, and JavaScript — no frameworks, no libraries — the portfolio site archives every project and reading response from the semester. Each entry has its own page, styled to fit within the site's overall visual system while allowing the content to breathe.
+          The portfolio is built with Three.js and Vite — not a static HTML page, but a fully rendered WebGL scene. Nine 3D GLTF models (a book, clock, globe, tape, cube, and others) float and drift continuously across the viewport, each one representing a course project. Clicking an object opens a modal with the project description and a link.
         </p>
         <p>
-          Key design decisions throughout the build:
+          Key technical systems built for the portfolio:
         </p>
         <ul>
-          <li><strong>Consistent layout system</strong> — a shared grid and type scale applied across all pages, so the archive feels cohesive even as individual projects vary in format.</li>
-          <li><strong>Deliberate interaction design</strong> — hover states, transitions, and navigation behaviors were all designed intentionally, not left as browser defaults.</li>
-          <li><strong>Information architecture</strong> — the portfolio is organized to be browsable, with clear categories and navigation that makes it easy to move between projects, reading responses, and experiments.</li>
-          <li><strong>Internet aesthetics as content</strong> — several projects on the site directly engage with the visual language of the web itself: its layouts, typographies, and interactive conventions.</li>
+          <li><strong>Custom physics simulation</strong> — each object has its own velocity and angular velocity, updated every frame. Collision detection between objects uses radius-based overlap resolution to keep them from passing through each other. Objects bounce off the viewport bounds with restitution, and a slow random drift keeps the scene feeling alive.</li>
+          <li><strong>GLTF model loading</strong> — 3D assets are loaded with GLTFLoader, automatically scaled and centered from their bounding boxes. A loading screen tracks progress across all model load promises before the scene becomes interactive.</li>
+          <li><strong>Raycasting for interaction</strong> — mouse position is converted to normalized device coordinates each frame, and a Three.js Raycaster detects which object the cursor is over. Hovered objects scale up with a GSAP spring animation; click opens the modal.</li>
+          <li><strong>Lighting setup</strong> — ambient, directional, hemisphere, and rim lights are combined with a PMREMGenerator environment map for physically accurate reflections on the 3D models.</li>
+          <li><strong>GSAP animations</strong> — modal open/close, hover scale effects, and camera reset transitions are all handled with GSAP for smooth, spring-based motion.</li>
+          <li><strong>OrbitControls</strong> — the camera can be freely orbited, panned, and zoomed within set distance limits, with damping for a smooth feel.</li>
         </ul>
         <p>
-          Working without frameworks reinforced a deep understanding of how CSS and JavaScript actually work — not just how to use libraries that abstract them away.
+          Styled with SCSS and built with Vite for fast development and an optimized production bundle.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- What was learned -->
+<!-- Individual projects -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Course Projects</div>
+      <div class="cs-section__body">
+        <h3>Eight projects across the semester, each a different medium</h3>
+        <p>
+          The course moved through a different web technology or concept each week. The projects archived in the portfolio span a wide range of tools and ideas:
+        </p>
+        <ul>
+          <li><strong>F1 ASCII Animation</strong> — CSS/HTML animation of a Formula 1 race using ASCII characters.</li>
+          <li><strong>CSS Still Life</strong> — An 800×600 still life composed entirely from CSS: divs, gradients, layering, and keyframe animation. No images.</li>
+          <li><strong>Blue Mixtape</strong> — A multi-page personal music zine built with HTML and CSS grid/flex layout, designed as a navigable site rather than a document.</li>
+          <li><strong>Data Footprints</strong> — An interactive single-page site with hover and selector-driven responses exploring personal data and web tracking, built with vanilla JS.</li>
+          <li><strong>p5.js Clock</strong> — A generative clock built in p5.js where seconds, minutes, and hours each drive their own looping visual system.</li>
+          <li><strong>Tame the Cat</strong> — A scripted browser game with chance elements and a state machine controlling a cat character's reactions to player input, built with vanilla JS.</li>
+          <li><strong>QuadTree Painter</strong> — A generative Mondrian-style quadtree painter built with the Canvas API. Randomized recursive splits produce compositions in a de Stijl palette, with user interaction to trigger new generations.</li>
+          <li><strong>API Tool Pitch</strong> — A team project: a single-page site pitching an IFTTT-linked assistive tool concept, built collaboratively via VS Code Live Share.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reflection -->
 <section class="cs-section">
   <div class="cs-row">
     <div class="cs-section__inner" data-reveal>
       <div class="cs-section__label">Reflection</div>
       <div class="cs-section__body">
-        <h3>Growth in both craft and thinking</h3>
+        <h3>When the container is as interesting as the content</h3>
         <p>
-          This project represents a semester of consistent, iterative web work — returning to the same codebase week after week and making it better. The discipline of maintaining a public archive of your own learning, while designing that archive to be well-crafted, pushes you to care about the quality of your work at every level.
+          The decision to build the portfolio as a Three.js scene rather than a conventional page came from a genuine question: if the course is about using the web as a creative medium, shouldn't the portfolio demonstrate that same principle? A flat HTML list of links would be accurate but boring. A 3D physics scene where you literally pick up and inspect each project felt more true to the course's spirit.
         </p>
         <p>
-          The course itself — exploring the web as cultural infrastructure — shaped how I think about interface design. Every design choice on the web is a political and cultural act as much as a functional one. That perspective has carried forward into everything since.
+          Building real-time physics and interaction from scratch — without a game engine, without a physics library — meant working through the math directly: velocity, restitution, bounding volume collision. That kind of low-level problem-solving, combined with the design constraints of making it feel playful and usable rather than technically impressive but confusing, is the part of this project I found most satisfying.
         </p>
       </div>
     </div>
