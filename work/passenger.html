@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Passenger — Brian Lee</title>
+  <link rel="shortcut icon" type="image/png" href="../images/favicon.png" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+<div class="cursor cursor--dot"></div>
+<div class="cursor cursor--ring"></div>
+
+<nav class="cs-nav">
+  <div class="cs-row">
+    <div class="cs-nav__inner">
+      <a href="../index.html" class="cs-nav__back">← All Work</a>
+      <a href="../index.html" class="cs-nav__logo">Brian Lee</a>
+      <a href="mini-minecraft.html" class="cs-nav__next">Next Project →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="cs-hero">
+  <div class="cs-row">
+    <div class="cs-hero__meta" data-reveal>
+      <span class="cs-hero__tag">3D</span>
+      <span class="cs-hero__tag">Design</span>
+      <span class="cs-hero__year">Mar – Apr 2026</span>
+    </div>
+    <h1 class="cs-hero__title" data-reveal data-reveal-delay="80">Passenger</h1>
+    <p class="cs-hero__subtitle" data-reveal data-reveal-delay="160">
+      A cinematic animation — two environments, one built from desert rock and sunlight, one reclaimed by roots and silence. Made in Maya and Unreal Engine 5 with custom post-process shaders, Lumen global illumination, and real-time ray tracing.
+    </p>
+    <div class="cs-hero__links" data-reveal data-reveal-delay="240">
+      <a href="https://youtu.be/mSnqY3R2d-E?si=GY6RXucE201QNE9b" target="_blank" class="cs-link">Watch Film <span>→</span></a>
+    </div>
+  </div>
+</header>
+
+<div class="cs-row">
+  <div class="cs-meta-strip" data-reveal>
+    <div>
+      <p class="cs-meta__label">Role</p>
+      <p class="cs-meta__value">Solo — Environment,<br>Lighting, Animation, Render</p>
+    </div>
+    <div>
+      <p class="cs-meta__label">Timeline</p>
+      <p class="cs-meta__value">Mar – Apr 2026<br>Personal Project</p>
+    </div>
+    <div>
+      <p class="cs-meta__label">Tools</p>
+      <div class="cs-tools">
+        <span class="cs-tool">Unreal Engine 5</span>
+        <span class="cs-tool">Maya</span>
+        <span class="cs-tool">HLSL / GLSL</span>
+        <span class="cs-tool">Megascans</span>
+        <span class="cs-tool">Movie Render Pipeline</span>
+      </div>
+    </div>
+    <div>
+      <p class="cs-meta__label">Output</p>
+      <p class="cs-meta__value">Cinematic film<br>2560 × 1080 rendered</p>
+    </div>
+  </div>
+</div>
+
+<!-- Full-width hero video -->
+<div class="cs-full-media" data-reveal>
+  <iframe
+    width="100%"
+    height="600"
+    src="https://www.youtube.com/embed/mSnqY3R2d-E"
+    title="Passenger — Animation"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    style="border-radius: 6px; display: block;">
+  </iframe>
+</div>
+
+<!-- Overview -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Overview</div>
+      <div class="cs-section__body">
+        <h3>Two worlds, one film</h3>
+        <p>
+          Passenger is a cinematic built entirely in Unreal Engine 5, with character rigging and animation from Maya. The animation moves through two environments: a sun-scorched Utah canyon lit by a setting sun, and an abandoned subway car where a decade of growth has pushed roots through the floor, wound vines around the poles, and turned the interior into a glasshouse.
+        </p>
+        <p>
+          The two environments share a single through-line — time passing, and the world continuing without waiting for us. The canyon has existed for millions of years. The train was made to move and now cannot. Both are rendered with the same commitment to light: how golden hour wraps around sandstone, how diffused overhead sky filters through a canopy of leaves growing inside a metal tube.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Canyon Environment -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Scene 01 — Canyon</div>
+      <div class="cs-section__body">
+        <h3>Building a Utah canyon in Unreal Engine 5</h3>
+        <p>
+          The canyon environment uses Megascans photogrammetry assets — high-resolution rock formations, cliff faces, and desert ground scatter — assembled into a believable canyon valley. The goal was for the geometry to feel like it had always been there: no obvious tiling, no floating rocks, a sense of geological weight.
+        </p>
+        <p>
+          Lumen global illumination handles the bounce light that wraps into the canyon walls from the sun angle. As the virtual sun nears the horizon during golden hour, Lumen re-solves the GI in real time, pulling the canyon into deep amber shadow on one side while the lit face burns orange. No baking, no lightmaps — the lighting reacts as the camera moves through the environment.
+        </p>
+      </div>
+    </div>
+
+    <!-- Canyon stills: stacked -->
+    <div data-reveal style="margin-top: 2rem;">
+      <img src="../images/Unreal/HighresScreenshot00000.png" alt="Canyon golden hour — sun over the rim" style="width:100%; border-radius:6px; height:460px; object-fit:cover;" />
+      <p class="cs-caption">Golden hour — Lumen GI pulling warm light deep into the canyon walls</p>
+    </div>
+    <div data-reveal style="margin-top: 1.2rem;">
+      <img src="../images/Unreal/HighresScreenshot00003.png" alt="Canyon at blue hour" style="width:100%; border-radius:6px; height:460px; object-fit:cover;" />
+      <p class="cs-caption">Blue hour — sun below the horizon, cool skylight fills the scene</p>
+    </div>
+  </div>
+</section>
+
+<!-- Lighting Studies -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Lighting Studies</div>
+      <div class="cs-section__body">
+        <h3>Three passes, one environment</h3>
+        <p>
+          Before locking the canyon lighting for the final animation, three distinct lighting conditions were explored to find the most cinematic read. Each uses the same geometry, the same camera framing — only the sun angle, sky color, and post-process tone changes.
+        </p>
+        <ul>
+          <li><strong>Golden hour (photoreal)</strong> — warm directional light at 8° elevation, orange-tinted sky atmosphere, soft fill from the Lumen skylight. The sun peaks just over the canyon rim, casting a razor line of light across the rock face.</li>
+          <li><strong>Stylized / cell shader</strong> — same geometry with a post-process material that posterizes the shading into bands, flattens specular, and boosts saturation. Used for a brief stylized section of the animation as a visual break.</li>
+          <li><strong>Blue hour</strong> — sun dropped below the horizon, sky fills with a deep teal-blue. Stars begin to resolve in the sky. The canyon drops into shadow but retains form from the cool skylight ambient.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Subway Train Environment -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Scene 02 — The Train</div>
+      <div class="cs-section__body">
+        <h3>A subway car swallowed by a decade of growth</h3>
+        <p>
+          The subway environment is built on a modular NYC-style train kit — individual car shells, door panels, ceiling marquees, overhead grab rails, and seating units assembled into a coherent vehicle. The departure from the standard kit begins here: all signs of function are replaced by signs of abandonment.
+        </p>
+        <p>
+          Birch trees grow through the floor panels where the roots have found gaps. European hornbeam foliage fills the gaps between the door frames. Meadow grass and wildflowers cover what used to be the aisle. Vines loop the ceiling grab rails. The LED marquee still works — "DELAYS AHEAD" — but there are no delays because there is no train anymore.
+        </p>
+        <p>
+          The lighting inside the train comes entirely from the sky through the canopy above. Lumen computes the soft, diffuse fill of overcast-sky light filtering through a tree canopy growing through a broken roof panel. Thin god rays catch the mist particles scattered through the interior volume.
+        </p>
+      </div>
+    </div>
+
+    <!-- Train stills: marquee + exterior -->
+    <div class="cs-grid cs-grid--2 cs-grid--cinema" data-reveal>
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00004.png" alt="Subway interior — DELAYS AHEAD marquee" />
+        <p class="cs-caption">LED marquee still cycles "DELAYS AHEAD" — the train beneath it doesn't move</p>
+      </div>
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00009.png" alt="Train exterior — foliage overtaking the car" />
+        <p class="cs-caption">Exterior — wildflowers and foliage colonising the gap between car and platform</p>
+      </div>
+    </div>
+
+    <!-- Train stills: interior -->
+    <div data-reveal style="margin-top: 1.2rem;">
+      <img src="../images/Unreal/HighresScreenshot00006.png" alt="Subway interior — trees and vines" style="width:100%; border-radius:6px; object-fit:cover; height:420px;" />
+      <p class="cs-caption">Interior — birch trees through the floor panels, vines looping the grab rails, grass covering the aisle</p>
+    </div>
+
+    <!-- Train stills: light -->
+    <div class="cs-grid cs-grid--1" data-reveal style="margin-top: 1.2rem;">
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00010.png" alt="Low angle — Lumen light shafts through canopy" style="width:100%; border-radius:6px; object-fit:cover; height:420px;" />
+        <p class="cs-caption">Low angle — Lumen god rays filtering through the canopy, volumetric mist catching the light</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Post-Process Materials -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Post-Process Materials</div>
+      <div class="cs-section__body">
+        <h3>Custom HLSL shaders for stylised rendering</h3>
+        <p>
+          Two custom post-process materials were written for the project, both applied as blendable post-process volumes in Unreal's material system.
+        </p>
+        <ul>
+          <li><strong>Cell shader (canyon)</strong> — samples the scene colour buffer, quantises the luminance into discrete steps using <code>floor(luma * N) / N</code>, and reconstructs the colour. The result is a hand-painted, illustration-like look used for the animated section of the film where the environment briefly becomes stylised.</li>
+          <li><strong>Line shader (edge detection)</strong> — performs a Sobel filter on the scene depth and world normal buffers to detect edges, then composites black outlines over the scene. Two instances with different thresholds were used to control the weight of primary vs. secondary edges.</li>
+        </ul>
+        <p>
+          The post-process materials read GBuffer channels — BaseColor, WorldNormal, Roughness, Depth — exposed through Unreal's SceneTexture nodes. This lets the stylisation respond to actual surface properties rather than just the final composited pixel, keeping silhouettes and material edges crisp even at cinema resolution.
+        </p>
+      </div>
+    </div>
+
+    <!-- Post-process: 2×4 side-by-side comparison -->
+    <div class="cs-grid cs-grid--2 cs-grid--cinema" data-reveal style="margin-top: 2rem;">
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00000.png" alt="Canyon scene 1 — off" />
+        <p class="cs-caption">Canyon 1 — off (photoreal Lumen GI)</p>
+      </div>
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00002.png" alt="Canyon scene 1 — on" />
+        <p class="cs-caption">Canyon 1 — on (cell shader)</p>
+      </div>
+    </div>
+    <div class="cs-grid cs-grid--2 cs-grid--cinema" data-reveal style="margin-top: 1.2rem;">
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00001.png" alt="Canyon scene 2 — off" />
+        <p class="cs-caption">Canyon 2 — off (different angle)</p>
+      </div>
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00003.png" alt="Canyon scene 2 — blue hour" />
+        <p class="cs-caption">Canyon 2 — blue hour variant</p>
+      </div>
+    </div>
+    <div class="cs-grid cs-grid--2 cs-grid--cinema" data-reveal style="margin-top: 1.2rem;">
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00009.png" alt="Train exterior — off" />
+        <p class="cs-caption">Train exterior — off</p>
+      </div>
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00008.png" alt="Train exterior — on" />
+        <p class="cs-caption">Train exterior — on (cell shader)</p>
+      </div>
+    </div>
+    <div class="cs-grid cs-grid--2 cs-grid--cinema" data-reveal style="margin-top: 1.2rem;">
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00010.png" alt="Train interior — off" />
+        <p class="cs-caption">Train interior — off</p>
+      </div>
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00011.png" alt="Train interior — on" />
+        <p class="cs-caption">Train interior — on (cell shader)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Render Pass Breakdown -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Technical Breakdown</div>
+      <div class="cs-section__body">
+        <h3>GBuffer passes — what the renderer sees</h3>
+        <p>
+          Unreal's high-resolution screenshot tool can output individual GBuffer passes alongside the final composite. These passes reveal how the deferred renderer decomposes the scene before lighting, and they were used to validate material authoring and debug the post-process shaders.
+        </p>
+      </div>
+    </div>
+
+    <div class="cs-pass-strip cs-pass-strip--fit" data-reveal style="grid-template-columns: repeat(2, 1fr);">
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00008_BaseColor.png" alt="BaseColor pass" />
+        <p class="cs-caption">BaseColor — flat albedo, no lighting</p>
+      </div>
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00008_WorldNormal.png" alt="WorldNormal pass" />
+        <p class="cs-caption">WorldNormal — encoded surface normals</p>
+      </div>
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00008_Roughness.png" alt="Roughness pass" />
+        <p class="cs-caption">Roughness — PBR roughness channel</p>
+      </div>
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00008_Metallic.png" alt="Metallic pass" />
+        <p class="cs-caption">Metallic — PBR metallic channel</p>
+      </div>
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00008_SceneDepth.png" alt="SceneDepth pass" />
+        <p class="cs-caption">SceneDepth — linear depth buffer</p>
+      </div>
+      <div>
+        <img src="../images/Unreal/HighresScreenshot00008_PreTonemapHDRColor.png" alt="Pre-tonemap HDR colour" />
+        <p class="cs-caption">Pre-tonemap HDR — scene before exposure</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Maya Pipeline -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Maya Pipeline</div>
+      <div class="cs-section__body">
+        <h3>Character rigging, texturing, and animation in Maya</h3>
+        <p>
+          The character — a stylised low-poly cube figure — was modelled, rigged, textured, and animated in Maya before export to Unreal. The pipeline follows a standard FBX workflow with skeletal mesh and animation sequence import.
+        </p>
+        <ul>
+          <li><strong>Rigging</strong> — joint chain with IK handles for the limbs, a simple spline IK for the spine, and orient constraints on the feet. Controls are built with nurbs curves parented to the joints for a clean, animator-friendly rig.</li>
+          <li><strong>Texturing</strong> — hand-painted diffuse maps in a flat, graphic style to complement the low-poly geometry. UV unwrapping done in Maya with minimal distortion across the major surfaces.</li>
+          <li><strong>Animation</strong> — a set of core cycles and actions authored in Maya: idle, walk, jump, sit, situp, push-up, and object pickup. Each animation exported as a separate FBX clip and imported into Unreal's Animation Blueprint for state-machine blending.</li>
+          <li><strong>Unreal integration</strong> — Animation Blueprint handles transitions between clips with blend spaces for locomotion. Post-process animation layers apply procedural secondary motion on top of the keyed animation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Character in-engine -->
+    <div data-reveal style="margin-top: 2.4rem;">
+      <img src="../images/Unreal/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20012617.png" alt="Character rendered in canyon environment" style="width:100%; border-radius:6px;" />
+      <p class="cs-caption">Character in-engine — rendered in the canyon environment with Lumen GI and Unreal's deferred pipeline</p>
+    </div>
+
+    <!-- Maya rig: perspective -->
+    <div data-reveal style="margin-top: 2rem;">
+      <img src="../images/Unreal/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20012732.png" alt="Maya rig — perspective viewport" style="width:100%; border-radius:6px;" />
+      <p class="cs-caption">Maya perspective — full rig visible with joint chain, IK handles, and NURBS control curves</p>
+    </div>
+
+    <!-- Maya rig: orthographic views -->
+    <div class="cs-grid cs-grid--3" data-reveal style="margin-top: 2rem;">
+      <div>
+        <img src="../images/Unreal/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20012902.png" alt="Maya rig — front view" />
+        <p class="cs-caption">Front — joint hierarchy and control curves</p>
+      </div>
+      <div>
+        <img src="../images/Unreal/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20012929.png" alt="Maya rig — side view" />
+        <p class="cs-caption">Side — IK leg chain and foot orient constraints</p>
+      </div>
+      <div>
+        <img src="../images/Unreal/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20012951.png" alt="Maya rig — top view" />
+        <p class="cs-caption">Top — shoulder and arm control layout</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Render Pipeline -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Render Pipeline</div>
+      <div class="cs-section__body">
+        <h3>Movie Render Pipeline — cinematic output from a real-time engine</h3>
+        <p>
+          The final animation is rendered through Unreal's Movie Render Pipeline (MRP) rather than a viewport capture. MRP gives access to temporal anti-aliasing accumulation over multiple samples per frame, high-resolution output beyond the viewport size, and per-pass EXR export for compositing.
+        </p>
+        <ul>
+          <li><strong>Anti-aliasing</strong> — Temporal Super Resolution accumulated over 64 samples per frame, eliminating the subpixel shimmer that real-time TAA leaves in motion.</li>
+          <li><strong>Resolution</strong> — output at 2560 × 1080 (cinematic 2.4:1 aspect) to enforce letterboxing and push the eye wide across the canyon landscape.</li>
+          <li><strong>GBuffer pass capture</strong> — the breakdown images in this case study were captured using MRP's multi-pass output, writing each GBuffer channel to a separate PNG alongside the final composite.</li>
+          <li><strong>Ray tracing</strong> — hardware ray tracing active for reflections and shadows; Lumen handles global illumination and sky occlusion at the scene level.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reflection -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Reflection</div>
+      <div class="cs-section__body">
+        <h3>What a real-time engine demands from a filmmaker's eye</h3>
+        <p>
+          Working in Unreal for animation rather than games changes your relationship with the tools. In a game context you're optimising — fewer draw calls, smaller textures, shorter shadow distances. In a cinematic context you're chasing the image, and the real-time engine is a tool for iteration speed: change the light angle, press play, see the result in milliseconds instead of hours.
+        </p>
+        <p>
+          The hardest part was the subway environment — getting foliage assets to feel integrated rather than placed. Plants in the real world grow toward gaps in shade and follow the path of least resistance. Recreating that logic manually, one asset at a time, required looking at a lot of reference and killing a lot of placements that were technically correct but compositionally dead.
+        </p>
+        <p>
+          The post-process shader work was the most technically interesting part. Writing HLSL inside Unreal's material graph — using custom expression nodes for the Sobel filter, quantisation math, and GBuffer sampling — made the connection between shader theory and visual output concrete in a way that coursework alone hadn't.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Project navigation -->
+<div class="cs-project-nav">
+  <div class="cs-row">
+    <div class="cs-project-nav__inner">
+      <div></div>
+      <a href="mini-minecraft.html" class="cs-pnav cs-pnav--next">
+        <div>
+          <p class="cs-pnav__label">Next Project</p>
+          <p class="cs-pnav__title">Mini Minecraft</p>
+        </div>
+        <span class="cs-pnav__arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer class="cs-footer">
+  <div class="cs-row">
+    <div class="cs-footer__inner">
+      <p class="cs-footer__copy">© 2026 Brian Wonjun Lee</p>
+      <div class="cs-footer__links">
+        <a href="../index.html" class="cs-footer__link">Portfolio</a>
+        <a href="https://www.linkedin.com/in/brian-lee-0b706b225/" target="_blank" class="cs-footer__link">LinkedIn</a>
+        <a href="https://github.com/leebwj" target="_blank" class="cs-footer__link">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="project.js"></script>
+</body>
+</html>

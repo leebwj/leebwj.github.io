@@ -1,27 +1,31 @@
 /* ── Custom cursor ── */
 
-const cursorDot  = document.querySelector('.cursor--dot');
 const cursorRing = document.querySelector('.cursor--ring');
 
-if (cursorDot && cursorRing) {
+if (cursorRing) {
+  let mouseX = 0, mouseY = 0;
+  let ringX  = 0, ringY  = 0;
+  const LERP = 0.12;
+
   document.addEventListener('mousemove', (e) => {
-    cursorDot.style.transform  = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
-    cursorRing.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
   });
+
+  (function loop() {
+    ringX += (mouseX - ringX) * LERP;
+    ringY += (mouseY - ringY) * LERP;
+    cursorRing.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`;
+    requestAnimationFrame(loop);
+  })();
 
   document.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('mouseenter', () => cursorRing.classList.add('is-hovering'));
     el.addEventListener('mouseleave', () => cursorRing.classList.remove('is-hovering'));
   });
 
-  document.addEventListener('mouseleave', () => {
-    cursorDot.style.opacity  = '0';
-    cursorRing.style.opacity = '0';
-  });
-  document.addEventListener('mouseenter', () => {
-    cursorDot.style.opacity  = '1';
-    cursorRing.style.opacity = '1';
-  });
+  document.addEventListener('mouseleave', () => { cursorRing.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { cursorRing.style.opacity = ''; });
 }
 
 /* ── Scroll reveal ── */

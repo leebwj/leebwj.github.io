@@ -1,41 +1,36 @@
 /* ── Custom cursor ── */
 
-.cursor--dot,
+.cursor--dot {
+  display: none;
+}
+
 .cursor--ring {
   position: fixed;
   top: 0;
   left: 0;
+  width: 20px;
+  height: 20px;
+  background: #fff;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   will-change: transform;
-}
-
-.cursor--dot {
-  width: 7px;
-  height: 7px;
-  background: var(--white);
   transform: translate(-50%, -50%);
-  transition: transform 0.08s linear, background 0.2s;
-}
-
-.cursor--ring {
-  width: 38px;
-  height: 38px;
-  border: 1.5px solid rgba(242,237,229,0.38);
-  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition:
-    transform 0.2s ease,
-    width  0.25s ease,
-    height 0.25s ease,
-    border-color 0.25s ease,
+    width  0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.3s ease,
     opacity 0.3s ease;
 }
 
+/* Hover over links / buttons — enlarge the inversion blob */
 .cursor--ring.is-hovering {
-  width: 56px;
-  height: 56px;
-  border-color: var(--pink);
+  width: 44px;
+  height: 44px;
 }
 
 /* ── Scroll reveal ── */
@@ -646,6 +641,12 @@ body:not(.user-is-tabbing) a:focus {
     background: rgba(255, 255, 255, 0.04);
 }
 
+.work__tag--3d {
+    color: var(--white-1);
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+}
+
 /* Work box hidden / overflow state */
 
 .work__box--hidden {
@@ -843,8 +844,9 @@ body:not(.user-is-tabbing) a:focus {
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
+    background: #0a0a0a;
     opacity: 0;
     transition: opacity 0.6s ease;
 }

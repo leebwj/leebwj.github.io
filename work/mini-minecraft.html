@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Minecraft — Brian Lee</title>
+  <link rel="shortcut icon" type="image/png" href="../images/favicon.png" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor cursor--dot"></div>
+<div class="cursor cursor--ring"></div>
+
+<!-- Nav -->
+<nav class="cs-nav">
+  <div class="cs-row">
+    <div class="cs-nav__inner">
+      <a href="passenger.html" class="cs-nav__back">← Passenger</a>
+      <a href="../index.html" class="cs-nav__logo">Brian Lee</a>
+      <a href="path-at-penn.html" class="cs-nav__next">Next Project →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="cs-hero">
+  <div class="cs-row">
+    <div class="cs-hero__meta" data-reveal>
+      <span class="cs-hero__tag">3D</span>
+      <span class="cs-hero__tag">Development</span>
+      <span class="cs-hero__year">Jan – Apr 2026</span>
+    </div>
+    <h1 class="cs-hero__title" data-reveal data-reveal-delay="80">Mini Minecraft</h1>
+    <p class="cs-hero__subtitle" data-reveal data-reveal-delay="160">
+      A feature-complete Minecraft-style 3D world engine built from scratch in C++ and OpenGL — 7 procedural biomes via layered Perlin/FBM noise, 3D cave systems, PCF shadow mapping, screen-space reflections, vertex ambient occlusion, a day-night cycle, multithreaded chunk streaming, and a predator-prey NPC ecosystem with A* pathfinding on a thread pool.
+    </p>
+    <div class="cs-hero__links" data-reveal data-reveal-delay="240">
+      <a href="https://www.youtube.com/watch?v=_NExgS0mZgM&t=15s" target="_blank" class="cs-link">Demo Video <span>→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- Meta strip -->
+<div class="cs-row">
+  <div class="cs-meta-strip" data-reveal>
+    <div>
+      <p class="cs-meta__label">Role</p>
+      <p class="cs-meta__value">Graphics &amp; Systems<br>Engineer (Group of 3)</p>
+    </div>
+    <div>
+      <p class="cs-meta__label">Timeline</p>
+      <p class="cs-meta__value">Jan – Apr 2026<br>CIS 4600 Final Project</p>
+    </div>
+    <div>
+      <p class="cs-meta__label">Tools</p>
+      <div class="cs-tools">
+        <span class="cs-tool">C++</span>
+        <span class="cs-tool">OpenGL</span>
+        <span class="cs-tool">GLSL</span>
+        <span class="cs-tool">Qt</span>
+        <span class="cs-tool">Multithreading</span>
+      </div>
+    </div>
+    <div>
+      <p class="cs-meta__label">Platform</p>
+      <p class="cs-meta__value">Desktop (Windows / macOS)</p>
+    </div>
+  </div>
+</div>
+
+<!-- Featured video -->
+<div class="cs-full-media" data-reveal>
+  <iframe
+    width="100%"
+    height="560"
+    src="https://www.youtube.com/embed/_NExgS0mZgM?start=15"
+    title="Mini Minecraft Demo"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    style="border-radius: 8px; display: block;">
+  </iframe>
+</div>
+
+<!-- Overview -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Overview</div>
+      <div class="cs-section__body">
+        <h3>A full 3D voxel world engine, built from first principles</h3>
+        <p>
+          Mini Minecraft is a semester-long group project for CIS 4600 (GPU Programming) at Penn. The goal was to build a faithful recreation of Minecraft's core engine — procedural world generation, real-time rendering, player physics, and interactive terrain — using only C++17, OpenGL 3.3, and GLSL with no game engine or rendering framework. The final codebase spans 26 C++ source files and 13 GLSL shaders.
+        </p>
+        <p>
+          The project ran across three milestones, with each of three teammates owning distinct systems per milestone. My contributions spanned 7-biome procedural terrain generation, 3D cave systems with post-process fluid overlays, and a full render pipeline upgrade: PCF shadow mapping, screen-space reflections, vertex ambient occlusion, distance fog, Blinn-Phong specular highlights, and a day-night cycle.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Milestone 1 -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Milestone 1 — Procedural Terrain</div>
+      <div class="cs-section__body">
+        <h3>Generating an infinite world across 7 biomes</h3>
+        <p>
+          My first milestone was procedural terrain generation. The world supports 7 distinct biomes blended seamlessly using large-scale noise.
+        </p>
+        <ul>
+          <li><strong>Grassland &amp; Forest</strong> — Voronoi-based hill effect produces soft rolling terrain. Surface blocks are DIRT with GRASS on top; forests add procedurally placed tree assets.</li>
+          <li><strong>Mountain &amp; Rocky variants</strong> — fractal Brownian motion on Perlin noise with an abs() warp produces sharp jagged peaks of STONE capped with SNOW above Y = 200. Rocky Plains and Rocky Mountains use the same FBM stack at reduced amplitude for flatter stone fields.</li>
+          <li><strong>Desert &amp; Snowland</strong> — desert uses a low-amplitude Perlin field surfaced with SAND and beach blending at water edges; snowland uses the grassland height field with SNOW surface blocks and ice-covered lake fills.</li>
+          <li><strong>Biome blending</strong> — a large-scale Perlin noise value, remapped to [0, 1] and run through smoothstep(0.25, 0.75), acts as the interpolation weight between adjacent biome height fields, creating clear zones with smooth transitions.</li>
+          <li><strong>Block rules</strong> — Y = 0–128 fills with STONE; biome surface occupies Y = 128–255; empty columns between Y = 128–138 fill with WATER for lakes and coastlines.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- M1 images -->
+<div class="cs-row">
+  <div data-reveal style="margin-top: 2rem;">
+    <img src="../images/Minecraft/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20005708.png" alt="Grassland coast with beach and mountains" style="width:100%; border-radius:6px;" />
+    <p class="cs-caption">Grassland biome — Voronoi hills, sandy coastline, distance fog</p>
+  </div>
+  <div data-reveal style="margin-top: 2rem;">
+    <img src="../images/Minecraft/c9403d54-1e4f-4078-a1e7-f0e6913507f6.png" alt="Biome border — stone mountain meets grassland" style="width:100%; border-radius:6px;" />
+    <p class="cs-caption">Biome blending — stone mountain meets grassland via smoothstep interpolation</p>
+  </div>
+  <div data-reveal style="margin-top: 2rem;">
+    <img src="../images/Minecraft/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20005920.png" alt="Shoreline and lake coastline" style="width:100%; border-radius:6px;" />
+    <p class="cs-caption">Water generation — empty columns between Y=128–138 fill as lakes</p>
+  </div>
+  <div data-reveal style="margin-top: 2rem;">
+    <img src="../images/Minecraft/5f4599f1-feee-4f9e-a88e-7de79a92dc7d.png" alt="Grassland terrain with water lake" style="width:100%; border-radius:6px;" />
+    <p class="cs-caption">Screen-space reflections — terrain and sky reflected on water surface via view-space ray marching</p>
+  </div>
+</div>
+
+<!-- Milestone 2 -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Milestone 2 — Cave Systems &amp; Post-Process</div>
+      <div class="cs-section__body">
+        <h3>3D noise caves, fluid physics, and a post-process pipeline</h3>
+        <p>
+          The second milestone added underground depth to the world and a full post-process rendering pipeline.
+        </p>
+        <ul>
+          <li><strong>3D Perlin caves</strong> — Perlin noise extended to three dimensions with 8 surflet contributions per grid cell and trilinear interpolation. Every block below Y = 128 where the noise value falls below zero is carved to EMPTY. Caves below Y = 25 fill with LAVA; all Y = 0 blocks become unbreakable BEDROCK.</li>
+          <li><strong>Fluid physics</strong> — WATER and LAVA are non-solid. The player moves at 0.8× speed inside fluid and swims upward on Spacebar. Fluid detection reads both body and camera position for correct immersion state.</li>
+          <li><strong>Post-process pipeline</strong> — the scene first renders to a framebuffer; a second pass draws it onto a fullscreen quad and applies a blue tint (WATER) or red tint (LAVA) overlay based on camera position, simulating underwater vision.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- M2 images -->
+<div class="cs-row">
+  <div class="cs-full-media" data-reveal style="margin-top: 2rem;">
+    <img src="../images/Minecraft/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20010412.png" alt="Underground cave with lava lake" />
+  </div>
+  <p class="cs-caption" style="text-align:center; margin-top: 1rem;">3D Perlin caves — blocks below Y=128 carved by negative noise; lava fills below Y=25</p>
+</div>
+
+<!-- Milestone 3 -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Milestone 3 — Render Pipeline</div>
+      <div class="cs-section__body">
+        <h3>Shadow mapping, SSR, ambient occlusion, and more</h3>
+        <p>
+          The final milestone was a full upgrade to the rendering pipeline, pushing visual quality significantly beyond the base engine.
+        </p>
+        <ul>
+          <li><strong>PCF shadow mapping</strong> — the scene renders from the directional light's orthographic view into a depth-only framebuffer. Terrain fragments transform into light clip space and compare depth using a 7×7 PCF kernel with slope-scaled bias to eliminate acne and Peter Panning. Texel snapping stabilizes the projection as the camera moves.</li>
+          <li><strong>Screen-space reflections (SSR)</strong> — opaque geometry renders into a floating-point position buffer in view space. Water fragments compute the reflected ray in view space, project it into screen space, and ray-march against stored scene positions to find hits. Reflected color blends with water shading using Fresnel-based weights and shoreline masking.</li>
+          <li><strong>Vertex ambient occlusion</strong> — neighboring block occupancy is sampled per face vertex during chunk VBO generation, producing a per-vertex AO factor baked into the interleaved 64-byte vertex layout. The fragment shader multiplies final lighting by this factor to darken corners and block intersections.</li>
+          <li><strong>Day-night cycle</strong> — sun position, directional light color, shadow projection, fog color, and sky gradient all update together each frame to produce a continuous 24-hour cycle.</li>
+          <li><strong>Distance fog</strong> — a smoothstep fog factor interpolates terrain color toward the sky color based on world-space camera distance, tracking the dynamic sky color through the day-night cycle.</li>
+          <li><strong>Blinn-Phong specular</strong> — per-fragment specular highlights tuned per material: water (glossy), snow (matte), lava (emissive term added).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- M3 images -->
+<div class="cs-row">
+  <div class="cs-full-media" data-reveal style="margin-top: 2rem;">
+    <img src="../images/Minecraft/a3a38681-c923-417e-a413-1ba008850ad3.png" alt="Mountain at dusk with sun bloom" />
+  </div>
+  <p class="cs-caption" style="text-align:center; margin-top: 1rem;">Render pipeline — shadow mapping, Blinn-Phong specular, distance fog, and sun bloom post-process</p>
+</div>
+
+<!-- Team -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Team Contributions</div>
+      <div class="cs-section__body">
+        <h3>Built across three milestones with a team of three</h3>
+        <p>
+          Beyond my own systems, the project's full feature set was built collaboratively:
+        </p>
+        <ul>
+          <li><strong>Angelina</strong> — efficient terrain chunking with interleaved VBOs and face culling (M1); multithreaded chunk streaming with BlockTypeWorkers and VBOWorkers and mutex-protected queues (M2); view-frustum culling, GPU resource stability, chunk update batching, day/night cycle, procedural grass color, fluid distortion overlay, procedurally placed biome assets, and sound (M3).</li>
+          <li><strong>Seth</strong> — player physics with InputBundle-driven movement, flight/ground modes, grid-march collision, mouse-look, and block add/remove (M1); texture atlas UV mapping, opaque/transparent VBO split, and animated water/lava shader with alpha blending (M2); A* pathfinding on a PathfindingWorker thread pool using a lazy-deletion min-heap with PathSnapshot isolation for thread safety, predator-prey NPC ecosystem with 3 roles and 6 mood states (IDLE/WANDER/HUNT/STALK/CHASE/FLEE), OBJ model rendering, a pre-load screen, and lossy chunk streaming with LRU eviction (M3).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reflection -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Reflection</div>
+      <div class="cs-section__body">
+        <h3>What building a graphics engine teaches you</h3>
+        <p>
+          Working at the level of raw OpenGL — managing your own framebuffers, writing every shader, coordinating GPU state by hand — forces an understanding of the rendering pipeline that abstracted engines hide. Debugging shadow acne required understanding why floating-point depth comparisons fail at grazing angles. Getting SSR to not flicker required understanding how screen-space ray marching degrades at the edges of the view frustum.
+        </p>
+        <p>
+          The multithreading constraint was equally instructive. Any time a VBOWorker tries to call OpenGL on a non-main thread, the context is invalid and the call silently fails or crashes. Designing the pipeline around that constraint — workers compute data, main thread uploads — made the architecture cleaner than a naive approach would have been.
+        </p>
+        <p>
+          Most importantly, the project made abstract concepts from class concrete: noise functions that looked like math on slides produced actual mountains; the shadow map depth texture, once visualized, made the algorithm immediately legible. Building the whole stack yourself, even at high cost, produces a level of understanding that using a game engine simply cannot.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Project navigation -->
+<div class="cs-project-nav">
+  <div class="cs-row">
+    <div class="cs-project-nav__inner">
+      <a href="passenger.html" class="cs-pnav cs-pnav--prev">
+        <span class="cs-pnav__arrow">←</span>
+        <div>
+          <p class="cs-pnav__label">Previous</p>
+          <p class="cs-pnav__title">Passenger</p>
+        </div>
+      </a>
+      <a href="path-at-penn.html" class="cs-pnav cs-pnav--next">
+        <div>
+          <p class="cs-pnav__label">Next Project</p>
+          <p class="cs-pnav__title">Path@Penn Redesign</p>
+        </div>
+        <span class="cs-pnav__arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="cs-footer">
+  <div class="cs-row">
+    <div class="cs-footer__inner">
+      <p class="cs-footer__copy">© 2026 Brian Wonjun Lee</p>
+      <div class="cs-footer__links">
+        <a href="../index.html" class="cs-footer__link">Portfolio</a>
+        <a href="https://www.linkedin.com/in/brian-lee-0b706b225/" target="_blank" class="cs-footer__link">LinkedIn</a>
+        <a href="https://github.com/leebwj" target="_blank" class="cs-footer__link">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="project.js"></script>
+</body>
+</html>

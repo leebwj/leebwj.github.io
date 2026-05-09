@@ -34,6 +34,7 @@
           <button class="nav__dropdown-item" data-filter="recent">Recent</button>
           <button class="nav__dropdown-item" data-filter="design">Design</button>
           <button class="nav__dropdown-item" data-filter="develop">Development</button>
+          <button class="nav__dropdown-item" data-filter="3d">3D</button>
         </div>
       </li>
       <li class="nav__item"><a href="#clients" class="nav__link" data-section="clients">Experience</a></li>
@@ -88,9 +89,94 @@
       <button class="work__tab is-active" role="tab" data-tab="recent" aria-selected="true" type="button">Recent</button>
       <button class="work__tab" role="tab" data-tab="design" aria-selected="false" type="button">Design</button>
       <button class="work__tab" role="tab" data-tab="develop" aria-selected="false" type="button">Development</button>
+      <button class="work__tab" role="tab" data-tab="3d" aria-selected="false" type="button">3D</button>
     </div>
 
     <div class="work__boxes">
+
+      <!-- Passenger — 3D + design -->
+      <div class="work__box" data-tabs="3d design">
+        <div class="work__text">
+          <div class="work__tags">
+            <span class="work__tag work__tag--3d">3D</span>
+            <span class="work__tag work__tag--design">Design</span>
+          </div>
+          <h3>Passenger</h3>
+          <p class="work__date">Mar – Apr 2026</p>
+          <a href="./work/passenger.html" class="work__cta">View Project →</a>
+          <p>
+            A cinematic animation moving through two environments — a sun-scorched Utah canyon and an abandoned subway car reclaimed by a decade of roots, trees, and wildflowers. Built in Maya and Unreal Engine 5 with Lumen global illumination, hardware ray tracing, and custom HLSL post-process shaders for painterly and cell-shaded looks.
+          </p>
+          <ul class="work__list">
+            <li>Unreal Engine 5</li>
+            <li>Maya</li>
+            <li>Megascans</li>
+            <li>HLSL Shaders</li>
+            <li>Movie Render Pipeline</li>
+          </ul>
+        </div>
+
+        <div class="work__image-col">
+          <div class="work__image-box">
+            <iframe
+              width="100%"
+              height="400"
+              src="https://www.youtube.com/embed/mSnqY3R2d-E"
+              title="Passenger — Animation"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              style="border-radius: 8px;">
+            </iframe>
+          </div>
+          <div class="work__links work__links--stacked">
+            <a href="https://youtu.be/mSnqY3R2d-E?si=GY6RXucE201QNE9b" target="_blank" class="link__text">
+              Watch Film <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini Minecraft — 3D + develop -->
+      <div class="work__box" data-tabs="3d develop">
+        <div class="work__text">
+          <div class="work__tags">
+            <span class="work__tag work__tag--3d">3D</span>
+            <span class="work__tag work__tag--develop">Development</span>
+          </div>
+          <h3>Mini Minecraft</h3>
+          <p class="work__date">Jan 2026 - Apr 2026</p>
+          <a href="./work/mini-minecraft.html" class="work__cta">View Project →</a>
+          <p>
+            A full 3D voxel engine built from scratch in C++ and OpenGL — 7 procedural biomes via layered Perlin/FBM noise, 3D cave systems, PCF shadow mapping, screen-space reflections, vertex ambient occlusion, a day-night cycle, multithreaded chunk streaming with a BlockType/VBO worker pipeline, and a predator-prey NPC ecosystem with A* pathfinding on a thread pool.
+          </p>
+          <ul class="work__list">
+            <li>C++ / OpenGL</li>
+            <li>GLSL</li>
+            <li>Multithreading</li>
+          </ul>
+        </div>
+
+        <div class="work__image-col">
+          <div class="work__image-box">
+            <iframe
+              width="100%"
+              height="400"
+              src="https://www.youtube.com/embed/_NExgS0mZgM?start=15"
+              title="Mini Minecraft Demo"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              style="border-radius: 8px;">
+            </iframe>
+          </div>
+          <div class="work__links work__links--stacked">
+            <a href="https://www.youtube.com/watch?v=_NExgS0mZgM&t=15s" target="_blank" class="link__text">
+              Demo Video <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
 
       <!-- Path@Penn Redesign — design only -->
       <div class="work__box" data-tabs="design">
@@ -101,6 +187,7 @@
           <h3>Path@Penn Redesign</h3>
           <p class="work__date">March 2026</p>
           <a href="./work/path-at-penn.html" class="work__cta">View Case Study →</a>
+
           <p>
             Self Directed Project: Path@Penn's existing experience supports enrollment, but its dense interface, fragmented workflows, unclear registration feedback, and reliance on outside tools make course planning unnecessarily difficult, especially for first-time users. Through a self-directed UX/UI redesign grounded in user research, interviews, and iterative prototype testing, the portal was reimagined as four connected sections—Dashboard, Course, Schedule, and Degree—creating a clearer, more cohesive, and more guided academic planning experience.
           </p>
@@ -114,13 +201,11 @@
 
         <div class="work__image-col">
           <div class="work__image-box">
-            <iframe
-              style="border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);"
-              src="https://embed.figma.com/proto/DBOeERCANozjTRaP6VYxIb/Brian-Lee---Design?node-id=47-409&viewport=1041%2C-2055%2C0.27&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=47%3A409&page-id=42%3A398&embed-host=share"
-              width="100%"
-              height="400"
-              allowfullscreen>
-            </iframe>
+            <img
+              src="./images/Figma/Student Dashboard (Main).png"
+              alt="Path@Penn redesign — Student Dashboard"
+              class="work__image"
+              style="border-radius: 8px;" />
           </div>
           <div class="work__links work__links--stacked">
             <a href="https://www.figma.com/proto/DBOeERCANozjTRaP6VYxIb/Brian-Lee---Design?node-id=319-216&viewport=344%2C-430%2C0.08&t=2hEc8yLmTo5mlCYw-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=319%3A216&show-proto-sidebar=1&page-id=42%3A398" target="_blank" class="link__text">
@@ -133,16 +218,17 @@
         </div>
       </div>
 
-      <!-- Art of the Web — design + develop -->
-      <div class="work__box" data-tabs="design develop">
+      <!-- Art of the Web — design + develop + 3D -->
+      <div class="work__box" data-tabs="design develop 3d">
         <div class="work__text">
           <div class="work__tags">
+            <span class="work__tag work__tag--3d">3D</span>
             <span class="work__tag work__tag--design">Design</span>
             <span class="work__tag work__tag--develop">Development</span>
           </div>
           <h3>Art of the Web</h3>
           <p class="work__date">Aug 2025 - Dec 2025</p>
-          <a href="./work/art-of-web.html" class="work__cta">View Case Study →</a>
+          <a href="./work/art-of-web.html" class="work__cta">View Project →</a>
           <p>
             Course Project: A semester-long interactive portfolio built as a Three.js 3D scene — floating GLTF objects with custom physics and GSAP animations serve as the navigation for eight course projects spanning CSS art, generative p5.js sketches, a browser game, and an interactive data experience.
           </p>
@@ -201,10 +287,10 @@
         <div class="work__image-col">
           <div class="work__image-box">
             <div class="work__slideshow" data-interval="4200">
-              <img src="./images/pennSpark.PNG" class="work__slide is-active" alt="Penn Spark website redesign" />
-              <img src="./images/pennSpark2.PNG" class="work__slide" alt="Penn Spark website redesign" />
-              <img src="./images/pennSpark3.PNG" class="work__slide" alt="Penn Spark website redesign" />
-              <img src="./images/PennSpark4.PNG" class="work__slide" alt="Penn Spark website redesign" />
+              <img src="./images/Spark/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20011231.png" class="work__slide is-active" alt="Penn Spark homepage redesign" />
+              <img src="./images/PennSpark4.PNG" class="work__slide" alt="Penn Spark — Client Projects Stories" />
+              <img src="./images/Spark/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20011252.png" class="work__slide" alt="Penn Spark — illustration section" />
+              <img src="./images/Spark/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20011341.png" class="work__slide" alt="Penn Spark — pixel grid section" />
               <button class="work__slide-control work__slide-control--prev" type="button" aria-label="Previous slide">
                 <img src="./images/arrow-up.svg" alt="" class="work__slide-icon work__slide-icon--prev" />
               </button>
@@ -224,17 +310,18 @@
         </div>
       </div>
 
-      <!-- Road Rogue — develop only -->
-      <div class="work__box" data-tabs="develop">
+      <!-- Road Rogue — 3D + develop -->
+      <div class="work__box" data-tabs="develop 3d">
         <div class="work__text">
           <div class="work__tags">
+            <span class="work__tag work__tag--3d">3D</span>
             <span class="work__tag work__tag--develop">Development</span>
           </div>
           <h3>Road Rogue</h3>
           <p class="work__date">Nov 2025</p>
-          <a href="./work/road-rogue.html" class="work__cta">View Case Study →</a>
+          <a href="./work/road-rogue.html" class="work__cta">View Project →</a>
           <p>
-            Self-Directed Project: A 3D car chase game inspired by Smashy Road where you weave through a low-poly city while police cars hunt you down. Built with Three.js and custom low-poly assets, the project focuses on responsive driving controls, obstacle-filled streets, and a survival-based score system that ramps up the tension as the pursuit closes in.
+            Course Project (vibe-coded): A 3D car chase game inspired by Smashy Road, built using AI tools as part of a design course exploring AI-assisted creation. 3D assets were generated with Meshy, game logic scaffolded with Codex, and the result assembled with Three.js — focusing on responsive driving controls, obstacle-filled streets, and a survival score that ramps up the tension.
           </p>
           <ul class="work__list">
             <li>Three.js</li>
@@ -259,10 +346,11 @@
         </div>
       </div>
 
-      <!-- Capsule — design + develop -->
-      <div class="work__box" data-tabs="design develop">
+      <!-- Capsule — 3D + design + develop -->
+      <div class="work__box" data-tabs="design develop 3d">
         <div class="work__text">
           <div class="work__tags">
+            <span class="work__tag work__tag--3d">3D</span>
             <span class="work__tag work__tag--design">Design</span>
             <span class="work__tag work__tag--develop">Development</span>
           </div>
@@ -305,15 +393,16 @@
         </div>
       </div>
 
-      <!-- Playground — design only -->
-      <div class="work__box" data-tabs="design">
+      <!-- Playground — 3D + design -->
+      <div class="work__box" data-tabs="design 3d">
         <div class="work__text">
           <div class="work__tags">
+            <span class="work__tag work__tag--3d">3D</span>
             <span class="work__tag work__tag--design">Design</span>
           </div>
           <h3>Playground</h3>
           <p class="work__date">Mar 2025 - April 2025</p>
-          <a href="./work/playground.html" class="work__cta">View Case Study →</a>
+          <a href="./work/playground.html" class="work__cta">View Project →</a>
           <p>
             Self-Directed Project: Recreation of a childhood memory, bringing life to a character with distinctive animations through user interactive actions with the 3D models. Using keyboard or mouse, players can trigger interactive animations as "Boo" comes to life. Press 'Q' to reset the scene. (Wait for full render result)
           </p>
@@ -351,7 +440,7 @@
           </div>
           <h3>Pixel Dash</h3>
           <p class="work__date">Nov 2024 - Dec 2024</p>
-          <a href="./work/pixel-dash.html" class="work__cta">View Case Study →</a>
+          <a href="./work/pixel-dash.html" class="work__cta">View Project →</a>
           <p>
             Self-Directed Project: A side-scrolling endless runner game with collectible coins, customizable skins, and dynamic obstacles, designed to deepen my Java expertise. The project applies key concepts like File I/O for saving progress, Lists and Collections for managing game objects, and JUnit testing to validate mechanics such as collision detection and scoring. It demonstrates my ability to create engaging gameplay while ensuring robust, scalable code.
           </p>

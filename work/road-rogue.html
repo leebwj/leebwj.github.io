@@ -56,10 +56,10 @@
     <div>
       <p class="cs-meta__label">Tools</p>
       <div class="cs-tools">
+        <span class="cs-tool">Meshy</span>
+        <span class="cs-tool">Codex</span>
         <span class="cs-tool">Three.js</span>
         <span class="cs-tool">JavaScript</span>
-        <span class="cs-tool">Blender</span>
-        <span class="cs-tool">WebGL</span>
       </div>
     </div>
     <div>
@@ -80,12 +80,12 @@
     <div class="cs-section__inner" data-reveal>
       <div class="cs-section__label">Overview</div>
       <div class="cs-section__body">
-        <h3>A 3D chase game, built from scratch in the browser</h3>
+        <h3>A vibe-coded 3D chase game, built with AI tools</h3>
         <p>
-          Road Rogue is a 3D car chase game inspired by Smashy Road — a mobile game where you drive a getaway car through a city while police vehicles pursue you, with the goal of surviving as long as possible. The challenge was to recreate that core tension in a browser environment using Three.js and WebGL.
+          Road Rogue is a 3D car chase game inspired by Smashy Road, built as part of a design course exploring AI-assisted creation. The brief was open: use AI tools to design and build something interactive. The result is a browser-based car chase — drive a getaway car through a low-poly city while police vehicles pursue you, survive as long as you can.
         </p>
         <p>
-          Building a real-time 3D game without a game engine is a significant technical challenge: collision detection, physics-like movement, camera systems, asset loading, and performance optimization all have to be built from first principles. Road Rogue was a project for pushing past tutorial territory and into genuine problem-solving.
+          The project was fully vibe-coded: 3D assets generated with <strong>Meshy</strong> (text-to-3D AI), game logic scaffolded and debugged with <strong>Codex</strong> (OpenAI's coding model), and the whole thing wired together with Three.js. The workflow was more like directing than programming — describing what you want, evaluating the output, steering toward something that feels good.
         </p>
       </div>
     </div>
@@ -96,23 +96,20 @@
 <section class="cs-section">
   <div class="cs-row">
     <div class="cs-section__inner" data-reveal>
-      <div class="cs-section__label">Technical Work</div>
+      <div class="cs-section__label">AI Workflow</div>
       <div class="cs-section__body">
-        <h3>Building game systems from scratch with Three.js</h3>
+        <h3>Meshy + Codex + Three.js — the vibe-coded stack</h3>
         <p>
-          Three.js provides the 3D rendering layer — managing scenes, cameras, lights, and meshes — but game logic is a separate problem that had to be built independently. The key systems built for Road Rogue:
+          The tools shaped the process as much as the concept did. Rather than modelling assets by hand or writing every system from a blank file, the workflow leaned into AI generation at each stage:
         </p>
         <ul>
-          <li><strong>Driving controls</strong> — keyboard input handling with acceleration, braking, and steering that feels responsive and satisfying. Car movement uses a simple physics model with velocity and friction, rather than just direct position updates, to give the driving a sense of weight.</li>
-          <li><strong>Procedural city layout</strong> — the city is assembled from modular low-poly building and road blocks, randomly arranged at runtime so each playthrough feels different.</li>
-          <li><strong>Police AI</strong> — pursuit vehicles use basic steering behavior to follow the player, with awareness of the city grid to avoid getting stuck. Multiple police cars are spawned progressively as the score increases, ramping up pressure over time.</li>
-          <li><strong>Collision detection</strong> — AABB (Axis-Aligned Bounding Box) collision between the player car, police cars, and buildings. On a collision with a building, speed drops; on collision with a police car, the game ends.</li>
-          <li><strong>Score and difficulty scaling</strong> — a survival timer drives the score, and police spawn rate and speed increase as the score climbs, creating escalating tension.</li>
-          <li><strong>Camera system</strong> — a third-person follow camera that stays behind the player car, smoothly interpolating position and rotation for a cinematic feel while keeping the city visible ahead.</li>
+          <li><strong>3D assets via Meshy</strong> — the player car, police vehicles, and low-poly buildings were generated using Meshy's text-to-3D pipeline. Prompts described the shape, style, and level of detail; Meshy produced GLTF meshes that could be loaded directly into Three.js. Several iterations per asset were generated and the best selected — closer to art direction than modelling.</li>
+          <li><strong>Game logic via Codex</strong> — driving physics, police AI steering, collision detection, and the score system were scaffolded through Codex. The approach was to describe a system in plain language, evaluate the generated code, identify what was wrong or missing, and re-prompt with more specific constraints. Codex wrote the first version of most modules; the final code was the result of directed iteration.</li>
+          <li><strong>Driving controls</strong> — velocity and friction-based car movement that gives the driving a sense of weight, not just direct position updates. Acceleration, braking, and steering all feel distinct.</li>
+          <li><strong>Police AI</strong> — pursuit vehicles track the player using basic steering, spawning progressively as the score climbs to ramp up pressure over time.</li>
+          <li><strong>Procedural city layout</strong> — modular road and building blocks assembled at runtime, so each playthrough has a different layout.</li>
+          <li><strong>Score and difficulty</strong> — survival timer drives the score; police speed and spawn rate increase as it climbs.</li>
         </ul>
-        <p>
-          Low-poly 3D assets — buildings, the player car, police vehicles — were modeled in Blender, exported as GLTF, and loaded into Three.js at runtime. Keeping geometry simple was both an aesthetic choice and a performance necessity for smooth browser rendering.
-        </p>
       </div>
     </div>
   </div>
@@ -124,15 +121,15 @@
     <div class="cs-section__inner" data-reveal>
       <div class="cs-section__label">Reflection</div>
       <div class="cs-section__body">
-        <h3>What building a game teaches you about programming</h3>
+        <h3>What vibe-coding actually teaches you</h3>
         <p>
-          Games are a uniquely demanding programming environment — the game loop runs 60 times per second, every system interacts with every other system, and the user notices immediately when anything feels wrong. Building Road Rogue forced a level of rigour in performance profiling, state management, and system design that typical web projects don't require.
+          Using AI tools throughout the build changes the nature of the work — less typing, more deciding. The challenge shifts from "how do I write this" to "is this the right thing to build, and is what was generated actually correct." Codex can produce plausible-looking game logic that has subtle bugs; catching those requires understanding the system well enough to evaluate the output, which means you still need to understand the domain.
         </p>
         <p>
-          The project also deepened experience with 3D math: transformation matrices, quaternions for rotation, vector arithmetic for movement and AI steering. Three.js abstracts some of this, but building the game logic still requires understanding what's happening geometrically.
+          Meshy's text-to-3D output is stylistically unpredictable — the same prompt can produce wildly different geometry across generations. Treating it like a creative tool rather than a reliable fabricator worked better: generate many options, pick what fits the aesthetic, discard the rest. The low-poly city style emerged partly from what Meshy does well rather than from a fixed upfront vision.
         </p>
         <p>
-          Most importantly: games are fun to build. The feedback loop of making a car drive correctly, then having it chased by police cars, then watching the city come together — is immediate and satisfying in a way that motivates pushing further.
+          The honest conclusion: vibe-coding gets you to a working prototype much faster, but the quality of the result still depends entirely on how clearly you can articulate what you want and how critically you can evaluate what you get.
         </p>
       </div>
     </div>
