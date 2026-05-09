@@ -114,6 +114,7 @@
         </p>
         <ul>
           <li><strong>Grassland &amp; Forest</strong> — Voronoi-based hill effect produces soft rolling terrain. Surface blocks are DIRT with GRASS on top; forests add procedurally placed tree assets.</li>
+          <li><strong>Cave</strong> — 3D Perlin noise carves tunnel-like caves beneath the terrain using eight surflet contributions per grid cell. Low cave regions fill with LAVA, BEDROCK is placed at Y = 0, and cave threshold tuning creates narrower underground paths.</li>
           <li><strong>Mountain &amp; Rocky variants</strong> — fractal Brownian motion on Perlin noise with an abs() warp produces sharp jagged peaks of STONE capped with SNOW above Y = 200. Rocky Plains and Rocky Mountains use the same FBM stack at reduced amplitude for flatter stone fields.</li>
           <li><strong>Desert &amp; Snowland</strong> — desert uses a low-amplitude Perlin field surfaced with SAND and beach blending at water edges; snowland uses the grassland height field with SNOW surface blocks and ice-covered lake fills.</li>
           <li><strong>Biome blending</strong> — a large-scale Perlin noise value, remapped to [0, 1] and run through smoothstep(0.25, 0.75), acts as the interpolation weight between adjacent biome height fields, creating clear zones with smooth transitions.</li>
