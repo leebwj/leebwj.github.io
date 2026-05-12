@@ -31,7 +31,7 @@
     </div>
     <h1 class="cs-hero__title" data-reveal data-reveal-delay="80">Passenger</h1>
     <p class="cs-hero__subtitle" data-reveal data-reveal-delay="160">
-      A cinematic animation — two environments, one built from desert rock and sunlight, one reclaimed by roots and silence. Made in Maya and Unreal Engine 5 with custom post-process shaders, Lumen global illumination, and real-time ray tracing.
+      A cinematic short — a protagonist walks through a canyon, finds an abandoned train swallowed by a decade of growth, and picks up something that briefly opens the world backward. Made in Maya and Unreal Engine 5 with custom post-process shaders, Lumen global illumination, and real-time ray tracing.
     </p>
     <div class="cs-hero__links" data-reveal data-reveal-delay="240">
       <a href="https://youtu.be/mSnqY3R2d-E?si=GY6RXucE201QNE9b" target="_blank" class="cs-link">Watch Film <span>→</span></a>
@@ -86,12 +86,15 @@
     <div class="cs-section__inner" data-reveal>
       <div class="cs-section__label">Overview</div>
       <div class="cs-section__body">
-        <h3>Two worlds, one film</h3>
+        <h3>A protagonist moves. The world does not wait.</h3>
         <p>
-          Passenger is a cinematic built entirely in Unreal Engine 5, with character rigging and animation from Maya. The animation moves through two environments: a sun-scorched Utah canyon lit by a setting sun, and an abandoned subway car where a decade of growth has pushed roots through the floor, wound vines around the poles, and turned the interior into a glasshouse.
+          Protagonist crosses a canyon — sandstone walls scorched by a sun that has done this ten million times before, indifferent to whoever passes beneath it. At the canyon's edge, he finds a train. It stopped running long enough ago that birch trees have come up through the floor, vines have claimed the grab rails, and wildflowers have covered what was once an aisle. Inside, an apple — still there, still quiet. He picks it up, and the world opens somewhere else.
         </p>
         <p>
-          The two environments share a single through-line — time passing, and the world continuing without waiting for us. The canyon has existed for millions of years. The train was made to move and now cannot. Both are rendered with the same commitment to light: how golden hour wraps around sandstone, how diffused overhead sky filters through a canopy of leaves growing inside a metal tube.
+          When it closes again, the canyon is the same. The train is not there.
+        </p>
+        <p>
+          Built entirely in Unreal Engine 5 with character rigging and animation from Maya. The two environments — a sun-scorched Utah canyon and an overgrown subway car — share a single lighting philosophy: how golden hour wraps around sandstone, and how diffused sky light filters through a canopy of leaves growing inside a metal tube.
         </p>
       </div>
     </div>
@@ -199,38 +202,38 @@
     <div class="cs-section__inner" data-reveal>
       <div class="cs-section__label">Post-Process Materials</div>
       <div class="cs-section__body">
-        <h3>Custom HLSL shaders for stylised rendering</h3>
+        <h3>Custom post-process shaders for a painterly look</h3>
         <p>
-          Two custom post-process materials were written for the project, both applied as blendable post-process volumes in Unreal's material system.
+          Two post-process materials were written for the project and applied as blendable volumes in Unreal's material system. The primary stylisation pass active in the final film is the Line Shader.
         </p>
         <ul>
-          <li><strong>Cell shader (canyon)</strong> — samples the scene colour buffer, quantises the luminance into discrete steps using <code>floor(luma * N) / N</code>, and reconstructs the colour. The result is a hand-painted, illustration-like look used for the animated section of the film where the environment briefly becomes stylised.</li>
-          <li><strong>Line shader (edge detection)</strong> — performs a Sobel filter on the scene depth and world normal buffers to detect edges, then composites black outlines over the scene. Two instances with different thresholds were used to control the weight of primary vs. secondary edges.</li>
+          <li><strong>Line shader — anisotropic Kuwahara filter</strong> — a Sobel operator runs on scene luminance to detect the local edge gradient and compute its direction angle. That angle rotates four sampling quadrants around each pixel, aligning the Kuwahara regions with underlying surface features. For each quadrant, mean colour and variance are computed; the mean from the lowest-variance quadrant is returned. The result is a painterly, oil-painting look — flat colour areas resolve into coherent tonal patches while edges stay sharp and defined. Parameterised via Radius X/Y (brush size), KuwPow (painterliness), LineDistance, and CloseLineThickness controls. Two instances — <code>Line_Shader_Inst</code> and <code>Line_Shader_Inst_Two</code> — are applied at different blend weights.</li>
+          <li><strong>Cell shader — toon shading</strong> — samples the scene BaseColor from the GBuffer and uses If-node comparisons against shadow depth to quantize the scene into discrete tonal bands. Separate tint colours apply to the shadow and highlight regions, controlled by Shadow Bias, Shadow Contrast, and Shadow Intensity parameters. The effect can be faded out by distance using the Disable Distance parameter.</li>
         </ul>
         <p>
-          The post-process materials read GBuffer channels — BaseColor, WorldNormal, Roughness, Depth — exposed through Unreal's SceneTexture nodes. This lets the stylisation respond to actual surface properties rather than just the final composited pixel, keeping silhouettes and material edges crisp even at cinema resolution.
+          Both materials read GBuffer channels — BaseColor, WorldNormal, SceneDepth, and PostProcessInput0 — through Unreal's SceneTexture nodes, so the stylisation responds to actual surface geometry rather than just the final composited pixel.
         </p>
       </div>
     </div>
 
-    <!-- Post-process: 2×4 side-by-side comparison -->
+    <!-- Post-process: row 1 = both off, row 2 = both stylised -->
     <div class="cs-grid cs-grid--2 cs-grid--cinema" data-reveal style="margin-top: 2rem;">
       <div>
-        <img src="../images/Unreal/HighresScreenshot00000.png" alt="Canyon scene 1 — off" />
+        <img src="../images/Unreal/HighresScreenshot00000.png" alt="Canyon 1 — off (photoreal Lumen GI)" />
         <p class="cs-caption">Canyon 1 — off (photoreal Lumen GI)</p>
       </div>
       <div>
-        <img src="../images/Unreal/HighresScreenshot00002.png" alt="Canyon scene 1 — on" />
-        <p class="cs-caption">Canyon 1 — on (cell shader)</p>
+        <img src="../images/Unreal/HighresScreenshot00001.png" alt="Canyon 2 — off (different angle)" />
+        <p class="cs-caption">Canyon 2 — off (different angle)</p>
       </div>
     </div>
     <div class="cs-grid cs-grid--2 cs-grid--cinema" data-reveal style="margin-top: 1.2rem;">
       <div>
-        <img src="../images/Unreal/HighresScreenshot00001.png" alt="Canyon scene 2 — off" />
-        <p class="cs-caption">Canyon 2 — off (different angle)</p>
+        <img src="../images/Unreal/HighresScreenshot00002.png" alt="Canyon 1 — on (Kuwahara painterly shader)" />
+        <p class="cs-caption">Canyon 1 — on (anisotropic Kuwahara filter)</p>
       </div>
       <div>
-        <img src="../images/Unreal/HighresScreenshot00003.png" alt="Canyon scene 2 — blue hour" />
+        <img src="../images/Unreal/HighresScreenshot00003.png" alt="Canyon 2 — blue hour variant" />
         <p class="cs-caption">Canyon 2 — blue hour variant</p>
       </div>
     </div>
@@ -307,7 +310,7 @@
       <div class="cs-section__body">
         <h3>Character rigging, texturing, and animation in Maya</h3>
         <p>
-          The character — a stylised low-poly cube figure — was modelled, rigged, textured, and animated in Maya before export to Unreal. The pipeline follows a standard FBX workflow with skeletal mesh and animation sequence import.
+          The character — a stylised low-poly cube protagonist — was modelled, rigged, textured, and animated in Maya before export to Unreal. The pipeline follows a standard FBX workflow with skeletal mesh and animation sequence import.
         </p>
         <ul>
           <li><strong>Rigging</strong> — joint chain with IK handles for the limbs, a simple spline IK for the spine, and orient constraints on the feet. Controls are built with nurbs curves parented to the joints for a clean, animator-friendly rig.</li>
