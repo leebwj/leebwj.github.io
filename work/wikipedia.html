@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wikipedia Redesign — Brian Lee</title>
+  <link rel="shortcut icon" type="image/png" href="../images/favicon.png" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor cursor--dot"></div>
+<div class="cursor cursor--ring"></div>
+
+<!-- Nav -->
+<nav class="cs-nav">
+  <div class="cs-row">
+    <div class="cs-nav__inner">
+      <a href="path-at-penn.html" class="cs-nav__back">← Path@Penn</a>
+      <a href="../index.html" class="cs-nav__logo">Brian Lee</a>
+      <a href="penn-spark.html" class="cs-nav__next">Next Project →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="cs-hero">
+  <div class="cs-row">
+    <div class="cs-hero__meta" data-reveal>
+      <span class="cs-hero__tag">Design</span>
+      <span class="cs-hero__tag">UX Research</span>
+      <span class="cs-hero__year">Spring 2026</span>
+    </div>
+    <h1 class="cs-hero__title" data-reveal data-reveal-delay="80">Wikipedia Redesign</h1>
+    <p class="cs-hero__subtitle" data-reveal data-reveal-delay="160">
+      A full UX research-to-prototype redesign of Wikipedia's mobile interface — three user interviews, a structured survey, low-fidelity wireframing, four-user prototype testing, and a high-fidelity mobile prototype across five redesigned sections.
+    </p>
+    <div class="cs-hero__links" data-reveal data-reveal-delay="240">
+      <a href="https://embed.figma.com/proto/vKo7ySkGZW5dliYa44yHwa/Brian-Lee---Design?node-id=103-7273&viewport=1265%2C-191%2C0.29&scaling=scale-down&content-scaling=fixed&starting-point-node-id=103%3A7416&show-proto-sidebar=1&page-id=27%3A377&embed-host=share" target="_blank" class="cs-link">View Prototype <span>→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- Meta strip -->
+<div class="cs-row">
+  <div class="cs-meta-strip" data-reveal>
+    <div>
+      <p class="cs-meta__label">Role</p>
+      <p class="cs-meta__value">Solo Designer<br>UX Researcher</p>
+    </div>
+    <div>
+      <p class="cs-meta__label">Timeline</p>
+      <p class="cs-meta__value">Spring 2026<br>DSGN 2570</p>
+    </div>
+    <div>
+      <p class="cs-meta__label">Tools</p>
+      <div class="cs-tools">
+        <span class="cs-tool">Figma</span>
+        <span class="cs-tool">UX Research</span>
+        <span class="cs-tool">User Interviews</span>
+        <span class="cs-tool">User Testing</span>
+        <span class="cs-tool">Prototyping</span>
+      </div>
+    </div>
+    <div>
+      <p class="cs-meta__label">Deliverable</p>
+      <p class="cs-meta__value">High-fidelity mobile prototype — 5 redesigned sections</p>
+    </div>
+  </div>
+</div>
+
+<!-- Prototype embed -->
+<div class="cs-full-media" data-reveal>
+  <iframe
+    style="border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 8px; display: block;"
+    width="100%"
+    height="560"
+    src="https://embed.figma.com/proto/vKo7ySkGZW5dliYa44yHwa/Brian-Lee---Design?node-id=103-7273&viewport=1265%2C-191%2C0.29&scaling=scale-down&content-scaling=fixed&starting-point-node-id=103%3A7416&page-id=27%3A377&embed-host=share"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<!-- Overview -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Overview</div>
+      <div class="cs-section__body">
+        <h3>Redesigning the world's largest encyclopedia for how people actually read</h3>
+        <p>
+          Wikipedia is where most research begins — a first stop for background knowledge, a quick reference mid-conversation, a fallback when other sources fail. Despite its scale and reach, its mobile experience hasn't kept pace with how people consume information: scanning rather than reading, jumping between sections, expecting summaries before committing to depth.
+        </p>
+        <p>
+          For DSGN 2570 (Design for Usability) at Penn, a complete UX research-to-prototype redesign of Wikipedia's mobile interface was undertaken. The process followed a rigorous human-centered design cycle: structured user interviews, a quantitative survey, synthesis into insight statements and How Might We questions, low-fidelity wireframing, prototype-based user testing with four participants, and a final high-fidelity prototype delivered across five redesigned sections — Home, Article, Search, Language, and an AI Chat feature.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Problem</div>
+      <div class="cs-section__body">
+        <h3>A platform built for encyclopedias, not for people in a hurry</h3>
+        <p>
+          Wikipedia's mobile app functions. But functioning is not the same as working well. Through initial walkthroughs and early conversations, several core friction points emerged — not isolated bugs, but structural mismatches between what the interface offers and how users actually move through information:
+        </p>
+        <ul>
+          <li><strong>Dense, unstructured text</strong> — long articles with minimal visual hierarchy force users to read linearly, even when they only need a specific section. There is no quick summary, no way to preview relevance before committing to a page.</li>
+          <li><strong>Broken in-article navigation</strong> — users rely on Ctrl+F as a workaround for finding content within a page, a signal that the built-in section navigation is insufficient or invisible to most users.</li>
+          <li><strong>Cognitive overload on long articles</strong> — technical topics especially sprawl into dozens of sections. Without filtering or summarization, users frequently abandon Wikipedia and search Google instead.</li>
+          <li><strong>Buried language and settings</strong> — the language toggle is hard to find and poorly labeled, causing confusion for multilingual users who want to switch article language, not app interface language.</li>
+          <li><strong>No AI or smart summary layer</strong> — other reference tools (Perplexity, Google AI Overview) now surface answers before the user reads. Wikipedia offers nothing equivalent, leaving it feeling increasingly dated for question-oriented searches.</li>
+        </ul>
+        <blockquote class="cs-quote">
+          "I usually just Ctrl+F whatever I'm looking for. I don't actually read the article — I just scan for the part I need."
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Research -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Research</div>
+      <div class="cs-section__body">
+        <h3>Understanding how three different users actually use Wikipedia</h3>
+        <p>
+          Before designing anything, time was spent understanding how real users interact with Wikipedia — not how they're expected to, but how they actually do. Three structured interviews were conducted across different academic backgrounds: a Wharton Finance student, a College Neuroscience student, and an Engineering Computer Science student.
+        </p>
+        <p>
+          The discussion guide covered six areas: general usage patterns, navigation behavior, specific pain points, mobile vs. desktop experience, comparison with competing tools, and improvement ideas. A supplementary survey captured quantitative data on usage frequency, session length, and feature awareness.
+        </p>
+        <p>
+          Key cross-cutting findings from the interview phase:
+        </p>
+        <ul>
+          <li>All three users primarily use Wikipedia for quick background knowledge — skimming, not reading — and rely on Ctrl+F for in-page navigation because section headers alone aren't enough.</li>
+          <li>Long articles with dense terminology cause users to abandon to Google or other tools rather than persisting through the page.</li>
+          <li>Users are unaware of or don't use most Wikipedia features (language switching, table of contents, discussion tabs). The features exist but are effectively hidden.</li>
+          <li>Mobile usage is notably worse than desktop — smaller targets, more scrolling, and the table of contents is harder to access.</li>
+        </ul>
+        <p>
+          The findings were synthesized into six insight statements and six How Might We questions, each pointing toward a concrete redesign direction.
+        </p>
+      </div>
+    </div>
+    <div data-reveal style="margin-top: 2.4rem;">
+      <img src="../images/Figma/Wikipedia/User%20Insight.png" alt="User research synthesis — insight statements and HMW questions" style="width:100%; border-radius:6px;" />
+      <p class="cs-caption">Research synthesis — discussion guide, interviewee demographics, findings, and insight statements with HMW questions</p>
+    </div>
+  </div>
+</section>
+
+<!-- Lo-fi -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Lo-Fi Wireframes</div>
+      <div class="cs-section__body">
+        <h3>Mapping the redesigned structure before committing to visuals</h3>
+        <p>
+          Low-fidelity wireframes were produced for nine screens, establishing the core information architecture and navigation model before any visual design began. The lo-fi phase focused on structural decisions: what lives on the home screen, how article navigation is restructured, how the action menu surfaces contextual options, and where language and AI chat fit within the existing tab structure.
+        </p>
+        <p>
+          Key structural decisions made at this stage:
+        </p>
+        <ul>
+          <li><strong>Home</strong> — redesigned as a search-first surface with trending keywords and today's featured article surfaced as entry points rather than buried below the fold.</li>
+          <li><strong>Article navigation</strong> — section headers made persistently visible with a scrollable header strip, replacing the buried table of contents. A floating contextual action menu exposes Share, Edit, Discussion, and Page History at the right moment.</li>
+          <li><strong>Language</strong> — separated from general settings and labeled as "Article Language" to address the confusion between app language and article language.</li>
+          <li><strong>AI Chat</strong> — introduced as a dedicated tab for users who want answers rather than articles, positioned as a quick-summary layer over the existing knowledge base.</li>
+        </ul>
+      </div>
+    </div>
+    <div data-reveal style="margin-top: 2.4rem;">
+      <img src="../images/Figma/Wikipedia/Low%20Fidelity.png" alt="Lo-fi wireframe screens — all 9 states" style="width:100%; border-radius:6px;" />
+      <p class="cs-caption">Lo-fi wireframes — home, article, section navigation, language, search, and AI chat across 9 screens</p>
+    </div>
+  </div>
+</section>
+
+<!-- User Testing -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">User Testing</div>
+      <div class="cs-section__body">
+        <h3>Four users, five tasks, one prototype</h3>
+        <p>
+          Mid-fidelity prototypes were tested with four participants from different Penn schools — Wharton Finance, CAS Biology, SEAS Computer Science, and SEAS Mechanical Engineering — each running through five task-based prompts while thinking aloud. Tasks were designed to test the specific structural decisions made in the lo-fi phase: home page comprehension, article navigation, section search, language switching, and AI Chat usability.
+        </p>
+        <p>
+          Key observations across all four sessions:
+        </p>
+        <ul>
+          <li><strong>Home page</strong> — all four users understood the redesigned home immediately and found it more approachable than the existing app. The search bar, trending keywords, and today's featured article were interpreted correctly without guidance.</li>
+          <li><strong>Article navigation</strong> — section headers helped, but users still wanted short previews or summaries before committing to a section. Headers alone weren't enough to decide relevance.</li>
+          <li><strong>Search results</strong> — users wanted short article snippets in results, not just titles. "I need to know if this is the right article before I click it" was a recurring sentiment.</li>
+          <li><strong>Language switching</strong> — all four users found the language option but were uncertain whether it would change the article or the app. The label "Language" was ambiguous; "Article Language" resolved this.</li>
+          <li><strong>AI Chat</strong> — all users found the chat promising but wanted to understand upfront that it produces summaries, not full research answers. The framing needed to be set immediately on entry.</li>
+        </ul>
+      </div>
+    </div>
+    <div data-reveal style="margin-top: 2.4rem;">
+      <img src="../images/Figma/Wikipedia/User%20Testing.png" alt="User testing — goals, prompts, observations, and insights per participant" style="width:100%; border-radius:6px;" />
+      <p class="cs-caption">User testing — 4 participants, 5 task prompts, per-user observations, insights gained, and key takeaways driving final design updates</p>
+    </div>
+  </div>
+</section>
+
+<!-- Final Design -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Final Design</div>
+      <div class="cs-section__body">
+        <h3>Five sections. One coherent mobile experience.</h3>
+        <p>
+          The high-fidelity prototype delivers a redesigned Wikipedia mobile experience across five core sections, each addressing a specific failure identified in research. The visual language stays close to Wikipedia's established identity — clean typography, minimal chrome — while restructuring the information hierarchy around how people actually scan and navigate.
+        </p>
+      </div>
+    </div>
+
+    <!-- Home + Search -->
+    <div data-reveal style="margin-top: 3rem;">
+      <div class="cs-grid cs-grid--3 cs-grid--screen">
+        <div>
+          <img src="../images/Figma/Wikipedia/Home%20Main.png" alt="Wikipedia redesign — Home main screen" />
+          <p class="cs-caption">Home — trending keywords, today's featured article, search-first layout</p>
+        </div>
+        <div>
+          <img src="../images/Figma/Wikipedia/Home%201.png" alt="Wikipedia redesign — Home alternate state" />
+          <p class="cs-caption">Home — personalized reading history and language preference surfaced</p>
+        </div>
+        <div>
+          <img src="../images/Figma/Wikipedia/Search.png" alt="Wikipedia redesign — Search results with snippets" />
+          <p class="cs-caption">Search — article snippets and bookmarks let users evaluate relevance before opening</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article / Topic -->
+    <div data-reveal style="margin-top: 3rem;">
+      <div class="cs-grid cs-grid--3 cs-grid--screen">
+        <div>
+          <img src="../images/Figma/Wikipedia/Topic%201.png" alt="Article view — main reading layout" />
+          <p class="cs-caption">Article — clean reading view with visible section header strip</p>
+        </div>
+        <div>
+          <img src="../images/Figma/Wikipedia/Topic%203.png" alt="Article view — contextual action menu" />
+          <p class="cs-caption">Action menu — Share, Edit, Discussion, Page History on tap</p>
+        </div>
+        <div>
+          <img src="../images/Figma/Wikipedia/Topic%209.png" alt="Article view — keyboard and search" />
+          <p class="cs-caption">In-article search — replaces Ctrl+F workaround with native search</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat -->
+    <div data-reveal style="margin-top: 3rem;">
+      <div class="cs-grid cs-grid--3 cs-grid--screen" data-reveal>
+        <div>
+          <img src="../images/Figma/Wikipedia/Chat%20Main.png" alt="AI Chat — main entry screen" />
+          <p class="cs-caption">Chat main — framed upfront as a quick-summary tool, not a research assistant</p>
+        </div>
+        <div>
+          <img src="../images/Figma/Wikipedia/Chat.png" alt="AI Chat — conversation view" />
+          <p class="cs-caption">Chat in use — answers with inline citation links back to full articles</p>
+        </div>
+        <div>
+          <img src="../images/Figma/Wikipedia/Chat-1.png" alt="AI Chat — alternate state" />
+          <p class="cs-caption">Follow-up questions — conversation continues with context retained</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- More / Language -->
+    <div data-reveal style="margin-top: 3rem;">
+      <div class="cs-grid cs-grid--3 cs-grid--screen" data-reveal>
+        <div>
+          <img src="../images/Figma/Wikipedia/More%20Main.png" alt="More tab — main view" />
+          <p class="cs-caption">More — settings and features surfaced with clear hierarchy</p>
+        </div>
+        <div>
+          <img src="../images/Figma/Wikipedia/More.png" alt="More — language selection" />
+          <p class="cs-caption">Article Language — relabeled to distinguish article vs. app language</p>
+        </div>
+        <div>
+          <img src="../images/Figma/Wikipedia/More-1.png" alt="More — expanded settings" />
+          <p class="cs-caption">Language list — searchable, with save confirmation state</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reflection -->
+<section class="cs-section">
+  <div class="cs-row">
+    <div class="cs-section__inner" data-reveal>
+      <div class="cs-section__label">Reflection</div>
+      <div class="cs-section__body">
+        <h3>What habituation hides from usability</h3>
+        <p>
+          The most revealing part of this project was how thoroughly users had adapted to Wikipedia's shortcomings. Ctrl+F for in-page search, a tab open for each related article, Google as the real search layer — these weren't complaints; they were workflows. Users had built systems around the interface's failures so completely that some didn't initially identify them as problems at all.
+        </p>
+        <p>
+          Surfacing those workarounds as design signals — not just as feedback — was the core methodological challenge. The interviews weren't useful because users said "this is broken." They were useful because of what users showed when asked to complete a task: where they paused, where they reached for something that wasn't there, where they fell back to a behavior the interface hadn't intended.
+        </p>
+        <p>
+          The AI Chat feature exposed the sharpest tension in the project: adding something new to a platform defined by not being biased or opinionated. Framing it as a summary tool rather than an answer engine — and linking every response back to source articles — was both a usability decision and a philosophical one. Wikipedia's credibility depends on citations and transparency; the chat had to preserve that contract.
+        </p>
+        <p>
+          The final prototype is a mobile-first redesign, not a feature addition. Most of what changed was not new — it was the same Wikipedia, reorganized around how people actually read.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Project navigation -->
+<div class="cs-project-nav">
+  <div class="cs-row">
+    <div class="cs-project-nav__inner">
+      <a href="path-at-penn.html" class="cs-pnav cs-pnav--prev">
+        <span class="cs-pnav__arrow">←</span>
+        <div>
+          <p class="cs-pnav__label">Previous</p>
+          <p class="cs-pnav__title">Path@Penn Redesign</p>
+        </div>
+      </a>
+      <a href="penn-spark.html" class="cs-pnav cs-pnav--next">
+        <div>
+          <p class="cs-pnav__label">Next Project</p>
+          <p class="cs-pnav__title">Penn Spark Redesign</p>
+        </div>
+        <span class="cs-pnav__arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="cs-footer">
+  <div class="cs-row">
+    <div class="cs-footer__inner">
+      <p class="cs-footer__copy">© 2026 Brian Wonjun Lee</p>
+      <div class="cs-footer__links">
+        <a href="../index.html" class="cs-footer__link">Portfolio</a>
+        <a href="https://www.linkedin.com/in/brian-lee-0b706b225/" target="_blank" class="cs-footer__link">LinkedIn</a>
+        <a href="https://github.com/leebwj" target="_blank" class="cs-footer__link">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="project.js"></script>
+</body>
+</html>
