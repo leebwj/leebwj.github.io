@@ -12,7 +12,11 @@
 
   <meta name="Brian Wonjun Lee" content="Passionate about crafting immersive 3D graphics and exploring the limitless potential of programming. I thrive at the intersection of creativity and technology, building visually stunning and technically sophisticated solutions that bring ideas to life. Whether it's designing intricate virtual worlds or developing innovative tools, I'm driven by a fascination for how code transforms imagination into reality.">
   <meta name="keywords" content="Brian Wonjun Lee, Java, OCaml, C++, C#, Visual Studio, Oracle, DBeaver, SQLite, Blender, Adobe Creative Suite" />
-  <link rel="stylesheet" href="index.css?v=3" />
+  <link rel="stylesheet" href="index.css?v=4" />
+
+  <!-- Preload critical fonts so they're ready before first paint -->
+  <link rel="preload" href="./fonts/HKGrotesk-Regular.woff" as="font" type="font/woff" crossorigin />
+  <link rel="preload" href="./fonts/Jost-Regular.ttf" as="font" type="font/ttf" crossorigin />
 </head>
 
 <body>
@@ -72,7 +76,7 @@
       </div>
 
       <div class="about__photo-container" data-reveal data-reveal-delay="200">
-        <img class="about__photo" src="./images/IMG_0047.jpg" alt="" />
+        <img class="about__photo" src="./images/IMG_0047.jpg" alt="" fetchpriority="high" loading="eager" />
       </div>
     </div>
   </div>
@@ -118,16 +122,12 @@
 
         <div class="work__image-col">
           <div class="work__image-box">
-            <iframe
-              width="100%"
-              height="400"
-              src="https://www.youtube.com/embed/mSnqY3R2d-E"
-              title="Passenger — Animation"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              style="border-radius: 8px;">
-            </iframe>
+            <div class="yt-facade" data-src="https://www.youtube.com/embed/mSnqY3R2d-E?autoplay=1" data-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+              <img class="yt-facade__thumb" src="https://img.youtube.com/vi/mSnqY3R2d-E/hqdefault.jpg" alt="Passenger — Animation" loading="lazy" />
+              <button class="yt-facade__play" aria-label="Play Passenger video">
+                <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.5 7.7c-.8-2.9-2.5-5.4-5.4-6.2C55.8.1 34 0 34 0S12.2.1 6.9 1.5c-2.9.8-4.6 3.3-5.4 6.2C.1 12.4 0 24 0 24s.1 11.6 1.5 16.3c.8 2.9 2.5 5.4 5.4 6.2C12.2 47.9 34 48 34 48s21.8-.1 27.1-1.5c2.9-.8 4.6-3.3 5.4-6.2C67.9 35.6 68 24 68 24s-.1-11.6-1.5-16.3z" fill="red"/><path d="M45 24L27 14v20z" fill="#fff"/></svg>
+              </button>
+            </div>
           </div>
           <div class="work__links work__links--stacked">
             <a href="https://youtu.be/mSnqY3R2d-E?si=GY6RXucE201QNE9b" target="_blank" class="link__text">
@@ -160,16 +160,12 @@
 
         <div class="work__image-col">
           <div class="work__image-box">
-            <iframe
-              width="100%"
-              height="400"
-              src="https://www.youtube.com/embed/_NExgS0mZgM?start=15"
-              title="Mini Minecraft Demo"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              style="border-radius: 8px;">
-            </iframe>
+            <div class="yt-facade" data-src="https://www.youtube.com/embed/_NExgS0mZgM?start=15&autoplay=1" data-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+              <img class="yt-facade__thumb" src="https://img.youtube.com/vi/_NExgS0mZgM/hqdefault.jpg" alt="Mini Minecraft Demo" loading="lazy" />
+              <button class="yt-facade__play" aria-label="Play Mini Minecraft demo">
+                <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.5 7.7c-.8-2.9-2.5-5.4-5.4-6.2C55.8.1 34 0 34 0S12.2.1 6.9 1.5c-2.9.8-4.6 3.3-5.4 6.2C.1 12.4 0 24 0 24s.1 11.6 1.5 16.3c.8 2.9 2.5 5.4 5.4 6.2C12.2 47.9 34 48 34 48s21.8-.1 27.1-1.5c2.9-.8 4.6-3.3 5.4-6.2C67.9 35.6 68 24 68 24s-.1-11.6-1.5-16.3z" fill="red"/><path d="M45 24L27 14v20z" fill="#fff"/></svg>
+              </button>
+            </div>
           </div>
           <div class="work__links work__links--stacked">
             <a href="https://www.youtube.com/watch?v=_NExgS0mZgM&t=15s" target="_blank" class="link__text">
@@ -206,6 +202,7 @@
                 src="./images/Figma/Wikipedia/Thumbnail.png"
                 alt="Wikipedia redesign — thumbnail"
                 class="work__image"
+                loading="lazy"
                 style="border-radius: 0; transform: scale(1.12); transform-origin: center;" />
             </div>
           </div>
@@ -244,6 +241,7 @@
               src="./images/Figma/Student Dashboard (Main).png"
               alt="Path@Penn redesign — Student Dashboard"
               class="work__image"
+              loading="lazy"
               style="border-radius: 8px;" />
           </div>
           <div class="work__links work__links--stacked">
@@ -287,6 +285,7 @@
               frameborder="0"
               width="100%"
               height="400"
+              loading="lazy"
               style="border-radius: 8px; overflow:hidden;">
             </iframe>
           </div>
@@ -326,10 +325,10 @@
         <div class="work__image-col">
           <div class="work__image-box">
             <div class="work__slideshow" data-interval="4200">
-              <img src="./images/Spark/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20011231.png" class="work__slide is-active" alt="Penn Spark homepage redesign" />
-              <img src="./images/PennSpark4.PNG" class="work__slide" alt="Penn Spark — Client Projects Stories" />
-              <img src="./images/Spark/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20011252.png" class="work__slide" alt="Penn Spark — illustration section" />
-              <img src="./images/Spark/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20011341.png" class="work__slide" alt="Penn Spark — pixel grid section" />
+              <img src="./images/Spark/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20011231.png" class="work__slide is-active" alt="Penn Spark homepage redesign" loading="lazy" />
+              <img src="./images/PennSpark4.PNG" class="work__slide" alt="Penn Spark — Client Projects Stories" loading="lazy" />
+              <img src="./images/Spark/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20011252.png" class="work__slide" alt="Penn Spark — illustration section" loading="lazy" />
+              <img src="./images/Spark/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-05-09%20011341.png" class="work__slide" alt="Penn Spark — pixel grid section" loading="lazy" />
               <button class="work__slide-control work__slide-control--prev" type="button" aria-label="Previous slide">
                 <img src="./images/arrow-up.svg" alt="" class="work__slide-icon work__slide-icon--prev" />
               </button>
@@ -372,7 +371,7 @@
 
         <div class="work__image-col">
           <div class="work__image-box">
-            <img src="./images/rodeRogue.png" class="work__image" alt="Road Rogue gameplay" />
+            <img src="./images/rodeRogue.png" class="work__image" alt="Road Rogue gameplay" loading="lazy" />
           </div>
           <div class="work__links work__links--stacked">
             <a href="https://leebwj.github.io/0020/Final/index.html" target="_blank" class="link__text">
@@ -410,16 +409,12 @@
 
         <div class="work__image-col">
           <div class="work__image-box">
-            <iframe
-              width="100%"
-              height="400"
-              src="https://www.youtube.com/embed/VcS-ikD9YmM"
-              title="Capsule Demo"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              style="border-radius: 8px;">
-            </iframe>
+            <div class="yt-facade" data-src="https://www.youtube.com/embed/VcS-ikD9YmM?autoplay=1" data-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+              <img class="yt-facade__thumb" src="https://img.youtube.com/vi/VcS-ikD9YmM/hqdefault.jpg" alt="Capsule Demo" loading="lazy" />
+              <button class="yt-facade__play" aria-label="Play Capsule demo">
+                <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.5 7.7c-.8-2.9-2.5-5.4-5.4-6.2C55.8.1 34 0 34 0S12.2.1 6.9 1.5c-2.9.8-4.6 3.3-5.4 6.2C.1 12.4 0 24 0 24s.1 11.6 1.5 16.3c.8 2.9 2.5 5.4 5.4 6.2C12.2 47.9 34 48 34 48s21.8-.1 27.1-1.5c2.9-.8 4.6-3.3 5.4-6.2C67.9 35.6 68 24 68 24s-.1-11.6-1.5-16.3z" fill="red"/><path d="M45 24L27 14v20z" fill="#fff"/></svg>
+              </button>
+            </div>
           </div>
           <div class="work__links work__links--stacked">
             <a href="https://github.com/leebwj/sp25-penn-time-capsule?tab=readme-ov-file" target="_blank" class="link__text">
@@ -460,6 +455,7 @@
               frameborder="0"
               width="100%"
               height="400"
+              loading="lazy"
               style="border-radius: 8px; overflow:hidden;">
             </iframe>
           </div>
@@ -493,7 +489,7 @@
 
         <div class="work__image-col">
           <div class="work__image-box">
-            <img src="./images/pixelrun.png" class="work__image" alt="Pixel Run" />
+            <img src="./images/pixelrun.png" class="work__image" alt="Pixel Run" loading="lazy" />
           </div>
           <div class="work__links work__links--stacked">
             <a href="https://github.com/leebwj/pixeldash.github.io" target="_blank" class="link__text">
@@ -583,7 +579,7 @@
 <a href="#top" class="back-to-top" title="Back to Top">
   <img src="./images/arrow-up.svg" alt="Back to Top" class="back-to-top__image"/>
 </a>
-<script src="./index.js?v=3"></script>
+<script src="./index.js?v=4" defer></script>
 </body>
 
 </html>

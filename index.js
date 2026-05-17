@@ -1,3 +1,20 @@
+/* ── YouTube facades ── */
+
+document.querySelectorAll('.yt-facade').forEach(facade => {
+  facade.addEventListener('click', () => {
+    const iframe = document.createElement('iframe');
+    iframe.width = '100%';
+    iframe.height = '400';
+    iframe.src = facade.dataset.src;
+    iframe.title = facade.querySelector('img').alt;
+    iframe.frameBorder = '0';
+    iframe.allow = facade.dataset.allow;
+    iframe.allowFullscreen = true;
+    iframe.style.borderRadius = '8px';
+    facade.replaceWith(iframe);
+  });
+});
+
 /* ── Custom cursor ── */
 
 const cursorRing = document.querySelector('.cursor--ring');

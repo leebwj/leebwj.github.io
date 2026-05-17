@@ -52,6 +52,7 @@
     font-family: 'Hk Grotesk';
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
     src: url('./fonts/HKGrotesk-Regular.woff') format('woff');
 }
 
@@ -59,7 +60,8 @@
     font-family: 'Jost';
     font-style: normal;
     font-weight: 400;
-    src: url('./fonts/Jost-Regular.ttf') format('woff');
+    font-display: swap;
+    src: url('./fonts/Jost-Regular.ttf') format('truetype');
 }
 
 * {
@@ -1110,4 +1112,50 @@ body:not(.user-is-tabbing) a:focus {
     .footer__links {
         justify-content: center;
     }
+}
+
+/* ── YouTube facade ── */
+
+.yt-facade {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.yt-facade__thumb {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.yt-facade:hover .yt-facade__thumb {
+    transform: scale(1.03);
+}
+
+.yt-facade__play {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1;
+    opacity: 0.92;
+    transition: opacity 0.2s, transform 0.2s;
+    filter: drop-shadow(0 2px 12px rgba(0,0,0,0.5));
+}
+
+.yt-facade:hover .yt-facade__play {
+    opacity: 1;
+    transform: scale(1.1);
 }
