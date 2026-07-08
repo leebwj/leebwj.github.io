@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+  <!-- ═══ CareerOS launch redirect (ROOT-ONLY, reversible) ═══════════════════
+       This old homepage now forwards to the current site, leebrian.dev.
+       Only THIS root page redirects — every subpage (/0020, /1020, /work/*)
+       stays live and untouched. To restore the old homepage: delete this block.
+       Fires before render (no flash); meta-refresh is the no-JS fallback. -->
+  <script>location.replace("https://leebrian.dev/");</script>
+  <meta http-equiv="refresh" content="0; url=https://leebrian.dev/" />
+  <link rel="canonical" href="https://leebrian.dev/" />
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" type="image/png" href="./images/favicon.png" />
